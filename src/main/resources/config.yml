@@ -1,0 +1,15 @@
+Mongo:
+  Host: localhost
+  Port: 27017
+  Database: RevilsPvP
+  Auth:
+    Enabled: false
+    User: RevilsAdmin
+    Pass: Revils123
+    Database: RevilsPvP
+LocalRedis:
+  Host: localhost
+  Port: 6379
+BackboneRedis:
+  Host: localhost
+  Port: 6379

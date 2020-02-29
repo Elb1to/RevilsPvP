@@ -1,0 +1,10 @@
+package eu.revils.revilspvp.kt.scoreboard
+
+import org.bukkit.entity.Player
+import java.util.LinkedList
+
+interface ScoreGetter {
+
+    fun getScores(scores: LinkedList<String>, player: Player)
+
+}
