@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.comphenix.protocol.ProtocolLibrary;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.qrakn.morpheus.Morpheus;
@@ -144,9 +145,9 @@ public final class RevilsPvP extends JavaPlugin {
         instance = this;
         saveDefaultConfig();
 
+        //new MongoManager();
         setupRedis();
-        new MongoManager();
-        //setupMongo();
+        setupMongo();
 
         uuidCache = new RedisUUIDCache();
         uuidCache.load();
@@ -303,6 +304,24 @@ public final class RevilsPvP extends JavaPlugin {
         String databaseId = getConfig().getString("Mongo.Database");
         mongoDatabase = mongoClient.getDatabase(databaseId);
     }*/
+
+    private void setupMongo() {
+        if (getConfig().getBoolean("Mongo.Auth.Enabled")) {
+            mongoDatabase = new MongoClient(
+                    new ServerAddress(
+                            getConfig().getString("Mongo.Host"),
+                            getConfig().getInt("Mongo.Port")
+                    ),
+                    MongoCredential.createCredential(
+                            getConfig().getString("Mongo.Auth.User"),
+                            "admin", getConfig().getString("Mongo.Auth.Pass").toCharArray()
+                    ),
+                    MongoClientOptions.builder().build()
+            ).getDatabase("RevilsPvP");
+        } else {
+            mongoDatabase = new MongoClient(getConfig().getString("Mongo.Host"), getConfig().getInt("Mongo.Port")).getDatabase("RevilsPvP");
+        }
+    }
 
     // This is here because chunk snapshots are (still) being deserialized, and serialized sometimes.
     private static class ChunkSnapshotAdapter extends TypeAdapter<ChunkSnapshot> {
