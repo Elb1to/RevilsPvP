@@ -36,7 +36,7 @@ public class MongoManager {
             mongoDatabase = mongoClient.getDatabase(RevilsPvP.getInstance().getConfig().getString("Mongo.Host"));
             statsCollection = mongoDatabase.getCollection("playerStatistics");
         } catch (Exception e) {
-            Bukkit.getConsoleSender().sendMessage("§6[RevilsPvP] §cFailed to connect to MongoDB");
+            Bukkit.getConsoleSender().sendMessage("§6[RevilsPvP-STANDALONE] §cFailed to connect to MongoDB");
             Bukkit.getServer().getPluginManager().disablePlugin(RevilsPvP.getInstance());
         }
     }
