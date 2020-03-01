@@ -25,6 +25,13 @@
 
 ## IMPORTANT! Manage your Arenas and Kits using /Manage
 
+## Permissions
+ * revilspvp.admin
+ * revilspvp.silent
+ * revilspvp.famous
+ * revilspvp.toggleduels
+ * revilspvp.inventory.all
+
 ## Terms & Conditions
 * Do not resell the plugin or the sourcecode
 * No refund of the plugin or sourcecode
