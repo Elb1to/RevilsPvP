@@ -34,7 +34,7 @@ final class LobbyLayoutProvider implements BiConsumer<Player, TabLayout> {
                     continue;
                 }
 
-                tabLayout.set(x++, y, ChatColor.GOLD + kitType.getDisplayName() + " - " + eloHandler.getElo(player, kitType));
+                tabLayout.set(x++, y, ChatColor.GRAY + kitType.getDisplayName() + " - " + eloHandler.getElo(player, kitType));
 
                 if (x == 3) {
                     x = 0;
@@ -48,7 +48,7 @@ final class LobbyLayoutProvider implements BiConsumer<Player, TabLayout> {
                 return;
             }
 
-            tabLayout.set(1, 8, ChatColor.BLUE.toString() + ChatColor.BOLD + "Your Party");
+            tabLayout.set(1, 8, ChatColor.GOLD.toString() + ChatColor.BOLD + "Your Party");
 
             int x = 0;
             int y = 9;
@@ -56,7 +56,7 @@ final class LobbyLayoutProvider implements BiConsumer<Player, TabLayout> {
             for (UUID member : getOrderedMembers(player, party)) {
                 int ping = RevilsPvPLayoutProvider.getPingOrDefault(member);
                 String suffix = member == party.getLeader() ? ChatColor.GRAY + "*" : "";
-                String displayName = ChatColor.BLUE + RevilsPvP.getInstance().getUuidCache().name(member) + suffix;
+                String displayName = ChatColor.YELLOW + RevilsPvP.getInstance().getUuidCache().name(member) + suffix;
 
                 tabLayout.set(x++, y, displayName, ping);
 
