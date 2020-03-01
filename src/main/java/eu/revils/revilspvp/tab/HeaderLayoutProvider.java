@@ -21,7 +21,7 @@ final class HeaderLayoutProvider implements BiConsumer<Player, TabLayout> {
         }
 
         status: {
-            tabLayout.set(1, 1, ChatColor.GRAY + "Your Connection: " + getPing(player) + "ms");
+            tabLayout.set(1, 1, ChatColor.GRAY + "Your Ping: " + getPing(player) + "ms");
         }
     }
 
