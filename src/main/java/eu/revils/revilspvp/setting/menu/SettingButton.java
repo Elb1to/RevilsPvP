@@ -21,7 +21,7 @@ import java.util.List;
  */
 final class SettingButton extends Button {
 
-    private static final String ENABLED_ARROW = ChatColor.BLUE.toString() + ChatColor.BOLD + "  ► ";
+    private static final String ENABLED_ARROW = ChatColor.GOLD.toString() + ChatColor.BOLD + "  ► ";
     private static final String DISABLED_SPACER = "    ";
 
     private final Setting setting;
