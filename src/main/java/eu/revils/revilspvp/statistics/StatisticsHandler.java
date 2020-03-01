@@ -28,6 +28,8 @@ public class StatisticsHandler implements Listener {
     
     private static MongoCollection<Document> COLLECTION;
     private Map<UUID, Map<String, Map<Statistic, Double>>> statisticsMap;
+
+    // TODO: Make the Stats save each 5 minutes, instead of each 30 seconds
     
     public StatisticsHandler() {
         COLLECTION = MongoUtils.getCollection("playerStatistics");
