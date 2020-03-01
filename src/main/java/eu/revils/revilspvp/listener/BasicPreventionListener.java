@@ -8,15 +8,12 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockFadeEvent;
-import org.bukkit.event.block.BlockFormEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.block.BlockSpreadEvent;
-import org.bukkit.event.block.LeavesDecayEvent;
+import org.bukkit.event.block.*;
+import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -32,25 +29,9 @@ public final class BasicPreventionListener implements Listener {
 
     @EventHandler
     public void onPlayerLogin(PlayerLoginEvent event) {
-        // if we have a whitelist we probably are manually
-        // controlling who can log in and don't need this
         if (true || Bukkit.hasWhitelist()) {
             return;
         }
-
-//        ProfileHandler profileHandler = Hydrogen.getInstance().getProfileHandler();
-//        Optional<Profile> profileOpt = profileHandler.getProfile(event.getPlayer().getUniqueId());
-//
-//        boolean allowed = false;
-//
-//        if (profileOpt.isPresent()) {
-//            Map<String, Boolean> perms = profileOpt.get().getPermissions();
-//            allowed = perms.getOrDefault("potpvp.vip", false);
-//        }
-//
-//        if (!allowed) {
-//            event.disallow(PlayerLoginEvent.Result.KICK_OTHER, ChatColor.DARK_PURPLE + "RevilsPvP is VIP-only for testing");
-//        }
     }
 
     @EventHandler
@@ -75,6 +56,26 @@ public final class BasicPreventionListener implements Listener {
         }
     }
 
+    // I might want to keep these 2 EventHandlers commented
+    // until they're needed or if they could make an improvement
+    // regarding RevilsPvP :)
+    //
+    //@EventHandler
+    //public void onChunkUnload(ChunkUnloadEvent event) {
+    //    event.setCancelled(true);
+    //}
+    //
+    //@EventHandler
+    //public void onWorldLoad(WorldLoadEvent event) {
+    //    event.getWorld().getEntities().clear();
+    //    event.getWorld().setDifficulty(Difficulty.HARD);
+    //}
+
+    @EventHandler
+    public void onCreatureSpawn(CreatureSpawnEvent event) {
+        event.setCancelled(true);
+    }
+
     @EventHandler
     public void onThunderChange(ThunderChangeEvent event) {
         event.setCancelled(true);
@@ -92,12 +93,17 @@ public final class BasicPreventionListener implements Listener {
     }
 
     @EventHandler
-    public void onBlockSpread(BlockSpreadEvent event) {
+    public void onPlayerPortal(PlayerPortalEvent event) {
         event.setCancelled(true);
     }
 
     @EventHandler
     public void onLeavesDecay(LeavesDecayEvent event) {
+        event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onBlockSpread(BlockSpreadEvent event) {
         event.setCancelled(true);
     }
 
@@ -108,11 +114,6 @@ public final class BasicPreventionListener implements Listener {
 
     @EventHandler
     public void onBlockForm(BlockFormEvent event) {
-        event.setCancelled(true);
-    }
-
-    @EventHandler
-    public void onPlayerPortal(PlayerPortalEvent event) {
         event.setCancelled(true);
     }
 
@@ -128,6 +129,28 @@ public final class BasicPreventionListener implements Listener {
         if (!canInteractWithBlocks(event.getPlayer())) {
             event.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    public void onHangingBreak(HangingBreakEvent event) {
+        event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onBlockBurn(BlockBurnEvent event) {
+        event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onBlockIgnite(BlockIgniteEvent event) {
+        if (event.getCause() == BlockIgniteEvent.IgniteCause.LIGHTNING) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onPrime(ExplosionPrimeEvent event) {
+        event.setCancelled(true);
     }
 
     private boolean canInteractWithBlocks(Player player) {
