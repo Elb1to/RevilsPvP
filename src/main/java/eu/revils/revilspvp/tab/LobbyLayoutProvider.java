@@ -55,8 +55,8 @@ final class LobbyLayoutProvider implements BiConsumer<Player, TabLayout> {
 
             for (UUID member : getOrderedMembers(player, party)) {
                 int ping = RevilsPvPLayoutProvider.getPingOrDefault(member);
-                String suffix = member == party.getLeader() ? ChatColor.GRAY + "*" : "";
-                String displayName = ChatColor.YELLOW + RevilsPvP.getInstance().getUuidCache().name(member) + suffix;
+                String suffix = member == party.getLeader() ? ChatColor.GOLD + "*" : "";
+                String displayName = ChatColor.GRAY + RevilsPvP.getInstance().getUuidCache().name(member) + suffix;
 
                 tabLayout.set(x++, y, displayName, ping);
 
