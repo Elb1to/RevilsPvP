@@ -38,7 +38,7 @@ public enum Setting {
         null // no permission required
     ),
     VIEW_OTHER_SPECTATORS(
-            ChatColor.GOLD + "" + ChatColor.BOLD + "Other Spectators",
+            ChatColor.GOLD.toString() + ChatColor.BOLD + "Other Spectators",
         ImmutableList.of(
             ChatColor.GRAY + "If enabled, you can see spectators",
             ChatColor.GRAY + "in the same match as you.",
@@ -52,7 +52,7 @@ public enum Setting {
         null // no permission required
     ),
     ALLOW_SPECTATORS(
-            ChatColor.GOLD + "" + ChatColor.BOLD + "Allow Spectators",
+            ChatColor.GOLD.toString() + ChatColor.BOLD + "Allow Spectators",
             ImmutableList.of(
                     ChatColor.GRAY + "If enabled, players can spectate your",
                     ChatColor.GRAY + "matches with /spectate.",
@@ -66,7 +66,7 @@ public enum Setting {
             null // no permission required
     ),
     RECEIVE_DUELS(
-            ChatColor.GOLD + "" + ChatColor.BOLD + "Duel Invites",
+            ChatColor.GOLD.toString() + ChatColor.BOLD + "Duel Invites",
         ImmutableList.of(
             ChatColor.GRAY + "If enabled, you will be able to receive",
             ChatColor.GRAY + "duels from other players or parties.",
@@ -80,7 +80,7 @@ public enum Setting {
         "revilspvp.toggleduels"
     ),
     VIEW_OTHERS_LIGHTNING(
-            ChatColor.GOLD + "" + ChatColor.BOLD + "Death Lightning",
+            ChatColor.GOLD.toString() + ChatColor.BOLD + "Death Lightning",
         ImmutableList.of(
             ChatColor.GRAY + "If enabled, lightning will be visible",
             ChatColor.GRAY + "when other players die.",
@@ -94,7 +94,7 @@ public enum Setting {
         null // no permission required
     ),
     NIGHT_MODE(
-            ChatColor.GOLD + "" + ChatColor.BOLD + "Night Mode",
+            ChatColor.GOLD.toString() + ChatColor.BOLD + "Night Mode",
         ImmutableList.of(
             ChatColor.GRAY + "If enabled, your player time will be",
             ChatColor.GRAY + "changed to night time.",
@@ -108,7 +108,7 @@ public enum Setting {
         null // no permission required
     ),
     ENABLE_GLOBAL_CHAT(
-            ChatColor.GOLD + "" + ChatColor.BOLD + "Global Chat",
+            ChatColor.GOLD.toString() + ChatColor.BOLD + "Global Chat",
         ImmutableList.of(
             ChatColor.GRAY + "If enabled, you will see messages",
             ChatColor.GRAY + "sent in the global chat channel.",
@@ -122,7 +122,7 @@ public enum Setting {
         null // no permission required
     ),
     SEE_TOURNAMENT_JOIN_MESSAGE(
-            ChatColor.GOLD + "" + ChatColor.BOLD + "Tournament Join Messages",
+            ChatColor.GOLD.toString() + ChatColor.BOLD + "Tournament Join Messages",
             ImmutableList.of(
                 ChatColor.GRAY + "If enabled, you will see messages",
                 ChatColor.GRAY + "when people join the tournament",
@@ -136,7 +136,7 @@ public enum Setting {
             null // no permission required
     ),
     SEE_TOURNAMENT_ELIMINATION_MESSAGES(
-            ChatColor.GOLD + "" + ChatColor.BOLD + "Tournament Elimination Messages",
+            ChatColor.GOLD.toString() + ChatColor.BOLD + "Tournament Elimination Messages",
             ImmutableList.of(
                 ChatColor.GRAY + "If enabled, you will see messages when",
                 ChatColor.GRAY + "people are eliminated the tournament",
