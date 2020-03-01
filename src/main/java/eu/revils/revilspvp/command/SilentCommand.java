@@ -10,7 +10,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 
 public final class SilentCommand {
 
-    @Command(names = {"silent"}, permission = "potpvp.silent")
+    @Command(names = {"silent"}, permission = "revilspvp.silent")
     public static void silent(Player sender) {
         if (sender.hasMetadata("ModMode")) {
             sender.removeMetadata("ModMode", RevilsPvP.getInstance());

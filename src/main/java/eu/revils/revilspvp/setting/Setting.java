@@ -77,7 +77,7 @@ public enum Setting {
         ChatColor.YELLOW + "Allow duel invites",
         ChatColor.YELLOW + "Disallow duel invites",
         true,
-        "potpvp.toggleduels"
+        "revilspvp.toggleduels"
     ),
     VIEW_OTHERS_LIGHTNING(
             ChatColor.GOLD + "" + ChatColor.BOLD + "Death Lightning",

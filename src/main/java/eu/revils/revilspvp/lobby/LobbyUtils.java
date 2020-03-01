@@ -143,7 +143,7 @@ public final class LobbyUtils {
 
                 ItemStack eventItem = EventItems.getEventItem();
 
-                if (player.hasPermission("potpvp.admin")) {
+                if (player.hasPermission("revilspvp.admin")) {
                     if (eventItem != null) {
                         inventory.setItem(6, eventItem);
                     }

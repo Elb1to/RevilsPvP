@@ -66,7 +66,7 @@ public final class DuelCommand {
                 return;
             }
 
-            if (target.hasPermission("potpvp.famous") && System.currentTimeMillis() - lobbyHandler.getLastLobbyTime(target) < 3_000) {
+            if (target.hasPermission("revilspvp.famous") && System.currentTimeMillis() - lobbyHandler.getLastLobbyTime(target) < 3_000) {
                 sender.sendMessage(ChatColor.RED + target.getName() + " just returned to the lobby, please wait a moment.");
                 return;
             }

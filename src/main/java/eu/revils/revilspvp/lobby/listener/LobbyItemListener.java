@@ -33,7 +33,7 @@ public final class LobbyItemListener extends ItemListener {
             // even though we don't shouldn't need to do this
             // we do anyway because of the sensitivity of the manage
             // menu.
-            if (p.hasPermission("potpvp.admin")) {
+            if (p.hasPermission("revilspvp.admin")) {
                 ManageCommand.manage(p);
             }
         });

@@ -31,7 +31,8 @@ import redis.clients.jedis.Jedis;
 
 public final class RankedMatchQualificationListener implements Listener {
 
-    public static final String KEY_PREFIX = "potpvp:rankedMatchQualification:";
+    // Changed from potpvp: to revilspvp:
+    public static final String KEY_PREFIX = "revilspvp:rankedMatchQualification:";
     public static final int MIN_MATCH_WINS = 10;
     private static final Map<UUID, Integer> rankedMatchQualificationWins = new ConcurrentHashMap<>();
 
