@@ -82,7 +82,7 @@ final class LobbyScoreGetter implements BiConsumer<Player, LinkedList<String>> {
             scores.add(ChatColor.GRAY.toString() + ChatColor.BOLD + "In Silent Mode");
         }
 
-        /*Tournament tournament = RevilsPvP.getInstance().getTournamentHandler().getTournament();
+        Tournament tournament = RevilsPvP.getInstance().getTournamentHandler().getTournament();
         if (tournament != null) {
             scores.add("&7&m--------------------");
             scores.add("&6&lTournament");
@@ -111,7 +111,7 @@ final class LobbyScoreGetter implements BiConsumer<Player, LinkedList<String>> {
                 scores.add("&c" + (teamSize < 3 ? "Players" : "Teams") + "&7: " + tournament.getActiveParties().size() * multiplier + "/" + tournament.getRequiredPartiesToStart() * multiplier);
                 scores.add("&6Duration&7: " + TimeUtils.formatIntoMMSS((int) (System.currentTimeMillis() - tournament.getRoundStartedAt()) / 1000));
             }
-        }*/
+        }
     }
 
     private MatchQueueEntry getQueueEntry(Player player) {
