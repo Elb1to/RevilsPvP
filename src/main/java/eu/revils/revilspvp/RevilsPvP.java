@@ -18,7 +18,6 @@ import com.qrakn.morpheus.Morpheus;
 import eu.revils.revilspvp.follow.FollowHandler;
 import eu.revils.revilspvp.kit.KitHandler;
 import eu.revils.revilspvp.lobby.LobbyHandler;
-import eu.revils.revilspvp.mongo.MongoManager;
 import eu.revils.revilspvp.party.PartyHandler;
 import eu.revils.revilspvp.kt.menu.ButtonListeners;
 import eu.revils.revilspvp.kt.protocol.InventoryAdapter;
@@ -145,7 +144,6 @@ public final class RevilsPvP extends JavaPlugin {
         instance = this;
         saveDefaultConfig();
 
-        //new MongoManager();
         setupRedis();
         setupMongo();
 
@@ -289,21 +287,6 @@ public final class RevilsPvP extends JavaPlugin {
 
         redis.load(localBuilder.build(), backboneBuilder.build());
     }
-
-    /*private void setupMongo() {
-
-        final MongoCredential credentials = MongoCredential.createCredential(
-                getConfig().getString("Mongo.User"),
-                getConfig().getString("Mongo.Database"),
-                getConfig().getString("Mongo.Pass").toCharArray()
-        );
-
-        mongoClient = new MongoClient(new ServerAddress(getConfig().getString("Mongo.Host"), getConfig().getInt("Mongo.Port")), Collections.singletonList(credentials));
-        mongoClient = new MongoClient(getConfig().getString("Mongo.Host"), getConfig().getInt("Mongo.Port"), Collections.singletonList(credential));
-
-        String databaseId = getConfig().getString("Mongo.Database");
-        mongoDatabase = mongoClient.getDatabase(databaseId);
-    }*/
 
     private void setupMongo() {
         if (getConfig().getBoolean("Mongo.Auth.Enabled")) {
