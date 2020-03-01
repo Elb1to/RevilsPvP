@@ -19,26 +19,25 @@ import java.util.List;
 public final class HelpCommand {
 
     private static final List<String> HELP_MESSAGE_HEADER = ImmutableList.of(
-        ChatColor.DARK_PURPLE + RevilsPvPLang.LONG_LINE,
-        "§5§lPractice Help",
-        ChatColor.DARK_PURPLE + RevilsPvPLang.LONG_LINE,
-        "§7§lRemember: §eMost things are clickable!",
+        ChatColor.GOLD + RevilsPvPLang.LONG_LINE,
+        "§6§lPractice Help",
+        ChatColor.GOLD + RevilsPvPLang.LONG_LINE,
         ""
     );
 
     private static final List<String> HELP_MESSAGE_LOBBY = ImmutableList.of(
-        "§5Common Commands:",
+        "§6Common Commands:",
         "§e/duel <player> §7- Challenge a player to a duel",
         "§e/party invite <player> §7- Invite a player to a party",
         "",
-        "§5Other Commands:",
+        "§6Other Commands:",
         "§e/party help §7- Information on party commands",
         "§e/report <player> <reason> §7- Report a player for violating the rules",
         "§e/request <message> §7- Request assistance from a staff member"
     );
 
     private static final List<String> HELP_MESSAGE_MATCH = ImmutableList.of(
-        "§5Common Commands:",
+        "§6Common Commands:",
         "§e/spectate <player> §7- Spectate a player in a match",
         "§e/report <player> <reason> §7- Report a player for violating the rules",
         "§e/request <message> §7- Request assistance from a staff member"
@@ -46,11 +45,9 @@ public final class HelpCommand {
 
     private static final List<String> HELP_MESSAGE_FOOTER = ImmutableList.of(
         "",
-        "§5Server Information:",
-        RevilsPvP.getInstance().getDominantColor() == ChatColor.LIGHT_PURPLE ? "§eOfficial Teamspeak §7- §dts.MineHQ.com" : "§eOfficial Teamspeak §7- §dts.MineHQ.com",
-        RevilsPvP.getInstance().getDominantColor() == ChatColor.LIGHT_PURPLE ? "§eOfficial Rules §7- §dwww.MineHQ.com/rules" : "§eOfficial Rules §7- §dwww.MineHQ.com/rules",
-        RevilsPvP.getInstance().getDominantColor() == ChatColor.LIGHT_PURPLE ? "§eStore §7- §dwww.MineHQ.com/store" : "§eStore §7- §dwww.MineHQ.com/store",
-     // "§ePractice Leaderboards §7- §dwww.MineHQ.com/stats/potpvp",
+        "§6Server Information:",
+        RevilsPvP.getInstance().getDominantColor() == ChatColor.YELLOW ? "§eOfficial Discord §7- §6revils.eu/discord" : "§eOfficial Discord §7- §6revils.eu/discord",
+        RevilsPvP.getInstance().getDominantColor() == ChatColor.YELLOW ? "§eStore §7- §6revils.eu/store" : "§eStore §7- §6revils.eu/store",
         ChatColor.DARK_PURPLE + RevilsPvPLang.LONG_LINE
     );
 

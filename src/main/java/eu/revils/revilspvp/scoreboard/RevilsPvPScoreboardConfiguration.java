@@ -8,7 +8,8 @@ public final class RevilsPvPScoreboardConfiguration {
 
     public static ScoreboardConfiguration create() {
         return new ScoreboardConfiguration(
-                TitleGetter.forStaticString("&6&lMineHQ &7" + StringEscapeUtils.unescapeJava("\u2758") +" &fPractice"),
+                //TitleGetter.forStaticString("&6&lRevils &7" + StringEscapeUtils.unescapeJava("\u2758") +" &fPractice"),
+                TitleGetter.forStaticString("&6&lRevils &7(&fPractice&7)"),
                 new MultiplexingScoreGetter(
                         new MatchScoreGetter(),
                         new LobbyScoreGetter(),
