@@ -90,8 +90,7 @@ public final class QueueHandler {
     }
 
     public int countPlayersQueued(KitType kitType, boolean ranked) {
-        return soloQueues.get(kitType, ranked).countPlayersQueued() +
-               partyQueues.get(kitType, ranked).countPlayersQueued();
+        return soloQueues.get(kitType, ranked).countPlayersQueued() + partyQueues.get(kitType, ranked).countPlayersQueued();
     }
 
     public boolean joinQueue(Player player, KitType kitType, boolean ranked) {

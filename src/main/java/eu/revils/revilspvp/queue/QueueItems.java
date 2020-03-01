@@ -4,9 +4,7 @@ import eu.revils.revilspvp.kt.util.ItemUtils;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-
 import lombok.experimental.UtilityClass;
-
 import static org.bukkit.ChatColor.*;
 
 @UtilityClass
@@ -37,5 +35,4 @@ public final class QueueItems {
         ItemUtils.setDisplayName(JOIN_PARTY_RANKED_QUEUE_ITEM, BLUE.toString() + BOLD + "» " + GREEN + BOLD + "Play 2v2 Ranked" + BLUE.toString() + BOLD + " «");
         ItemUtils.setDisplayName(LEAVE_PARTY_RANKED_QUEUE_ITEM, BLUE.toString() + BOLD + "» " + RED + BOLD + "Leave 2v2 Ranked" + BLUE.toString() + BOLD + " «");
     }
-
 }
