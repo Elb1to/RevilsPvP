@@ -17,7 +17,6 @@ interface SkywarsGameEventLoot {
         fun getItems(player: Player, logic: SkywarsGameEventLogic, loot: SkywarsGameEventLoot, block: Block): List<ItemStack> {
             val toReturn = ArrayList<ItemStack>()
             val tier = getTier(logic, block)
-
             val armor = loot.getArmor(tier)
             val weapons = loot.getWeapons(tier)
             val misc = loot.getMiscellaneous(tier)
@@ -26,7 +25,8 @@ interface SkywarsGameEventLoot {
 
             for (i in 0..amount) {
 
-                // armor
+                // SkyWars Armor on Chests
+                //
                 if (SkywarsGameEventLootUtils.hasFullArmor(player)) {
                     if (Random.nextInt(5) == 1) {
                         val item = SkywarsGameEventLootUtils.getBetterArmorItem(player, armor.shuffled(), toReturn)
@@ -44,9 +44,11 @@ interface SkywarsGameEventLoot {
                         continue
                     }
                 }
-                // armor
+                //
+                // SkyWars Armor on Chests
 
-                // sword
+                // SkyWars Swords on Chests
+                //
                 val sword = SkywarsGameEventLootUtils.getSword(player)
                 if (sword == null) {
                     if (Random.nextInt(2) == 1) {
@@ -65,16 +67,19 @@ interface SkywarsGameEventLoot {
                         }
                     }
                 }
-                // sword
+                //
+                // SkyWars Swords on Chests
 
-                // blocks
+                // SkyWars Blocks on Chests
+                //
                 if (!(SkywarsGameEventLootUtils.containsBlocks(toReturn))) {
                     if (Random.nextBoolean() && blocks.isNotEmpty()) {
                         toReturn.add(blocks.random())
                         continue
                     }
                 }
-                // blocks
+                //
+                // SkyWars Blocks on Chests
 
                 val item = misc.random()
                 if (!(toReturn.contains(item))) {
@@ -85,7 +90,7 @@ interface SkywarsGameEventLoot {
             return toReturn
         }
 
-        private fun getTier(logic: SkywarsGameEventLogic, block: Block): SkywarsGameEventLootTier { // kinda aids but meh
+        private fun getTier(logic: SkywarsGameEventLogic, block: Block): SkywarsGameEventLootTier {
             var closestSpawnPoint = -1.0
             val chestLocation = block.location.clone()
             chestLocation.y = 0.0

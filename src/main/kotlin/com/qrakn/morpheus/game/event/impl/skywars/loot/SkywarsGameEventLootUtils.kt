@@ -183,10 +183,18 @@ object SkywarsGameEventLootUtils {
             secondLevels += second.getEnchantmentLevel(enchantment)
         }
 
+        // Original IF Statement from below
+        //
+        // if (getTier(first) > getTier(second)) {
+        //    return if (secondLevels >= firstLevels + 1) {
+        //        false
+        //    } else true
+        // }
+        //
+        // Original IF Statement from below
+
         if (getTier(first) > getTier(second)) {
-            return if (secondLevels >= firstLevels + 1) {
-                false
-            } else true
+            return secondLevels < firstLevels + 1
         }
 
         return if (getTier(first) == getTier(second)) {
