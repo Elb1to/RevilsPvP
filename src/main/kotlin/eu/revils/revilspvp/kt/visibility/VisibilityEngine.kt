@@ -54,7 +54,7 @@ class VisibilityEngine {
     }
 
     fun treatAsOnline(target: Player, viewer: Player): Boolean {
-        return viewer.canSee(target) || !target.hasMetadata("invisible") || viewer.hasPermission("stark.staff")
+        return viewer.canSee(target) || !target.hasMetadata("invisible") || viewer.hasPermission("revilspvp.staff")
     }
 
     private fun shouldSee(target: Player, viewer: Player): Boolean {
