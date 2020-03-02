@@ -148,10 +148,12 @@ public final class BasicPreventionListener implements Listener {
         }
     }
 
-    @EventHandler
-    public void onPrime(ExplosionPrimeEvent event) {
-        event.setCancelled(true);
-    }
+    // Disabled because of the TNT Handlers on the SkyWars Event
+    //
+    // @EventHandler
+    // public void onPrime(ExplosionPrimeEvent event) {
+    //     event.setCancelled(true);
+    // }
 
     private boolean canInteractWithBlocks(Player player) {
         if (RevilsPvP.getInstance().getMatchHandler().isPlayingMatch(player)) {
