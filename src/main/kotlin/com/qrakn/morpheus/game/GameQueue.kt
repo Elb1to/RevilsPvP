@@ -75,9 +75,7 @@ object GameQueue {
                 game.end()
                 continue
             }
-
         }
-
     }
 
     fun add(game: Game) {

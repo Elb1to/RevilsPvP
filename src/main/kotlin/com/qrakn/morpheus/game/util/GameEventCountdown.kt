@@ -37,7 +37,6 @@ class GameEventCountdown(var duration: Int, val runnable: Runnable, vararg val p
 
             duration--
         }
-
     }
 
 }
