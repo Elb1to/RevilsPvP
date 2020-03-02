@@ -25,15 +25,17 @@ object SumoGameEvent : GameEvent {
     init {
         val meta = tutorialBook.itemMeta as BookMeta
 
-        meta.displayName = ChatColor.DARK_PURPLE.toString() + "How To Play Sumo"
-        meta.author = "VeltPvP"
+        meta.displayName = ChatColor.GOLD.toString() + "How To Play Sumo"
+        meta.author = "Revils Network"
         meta.title = "How To Play Sumo"
         meta.pages = listOf(
-                ChatColor.BOLD.toString() + "SUMO TUTORIAL\n" + ChatColor.RESET +
-                        "\nIn Sumo, you'll be placed on a platform" +
-                        " with an opponent and whoever knocks the other" +
-                        " person off first wins the match." +
-                        "\n\n\n" + ChatColor.RED.toString() + "If you're in a Duo game, you can team up with other people " +
+                ChatColor.YELLOW.toString() + ChatColor.BOLD + "SUMO TUTORIAL\n" + ChatColor.RESET +
+                        "\n" +
+                        "In Sumo, you'll be placed on a platform " +
+                        "with an opponent and whoever knocks the other " +
+                        "person off first wins the match. " +
+                        "\n\n\n" +
+                        ChatColor.RED.toString() + "If you're in a 2v2 game, you can team up with others " +
                         ChatColor.RED.toString() + "by right-clicking them with nothing in your hand."
         )
 
