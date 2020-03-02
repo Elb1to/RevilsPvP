@@ -167,7 +167,6 @@ object SkywarsGameEventTypeParameter : GameParameter {
 
                 return toReturn
             }
-
         }
 
         override fun getDisplayName(): String {
@@ -239,7 +238,6 @@ object SkywarsGameEventTypeParameter : GameParameter {
 
                         toReturn.addAll(armor)
                     }
-
                 }
 
                 return toReturn
