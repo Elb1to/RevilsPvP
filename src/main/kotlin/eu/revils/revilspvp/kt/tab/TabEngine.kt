@@ -41,9 +41,8 @@ class TabEngine {
         tabs.remove(player.name)
     }
 
-    private fun fetchSkin(): PropertyMap? {
-        val propertyMap = RevilsPvP.getInstance().redis.runBackboneRedisCommand { redis ->
-            redis.get("stark:skinPropertyMap")
+    /*private fun fetchSkin(): PropertyMap? {
+        val propertyMap = RevilsPvP.getInstance().redis.runBackboneRedisCommand { redis -> redis.get("stark:skinPropertyMap")
         }
 
         if (propertyMap != null && propertyMap.isNotEmpty()) {
@@ -64,7 +63,7 @@ class TabEngine {
         }
 
         return localPropertyMap
-    }
+    }*/
 
     fun getPropertyMapSerializer(): PropertyMap.Serializer {
         var value = propertyMapSerializer.get()
@@ -87,8 +86,8 @@ class TabEngine {
             synchronized(defaultPropertyMap) {
                 value = defaultPropertyMap.get()
                 if (value == null) {
-                    val actualValue = fetchSkin()
-                    value = actualValue ?: defaultPropertyMap
+                    //val actualValue = fetchSkin()
+                    //value = actualValue ?: defaultPropertyMap
                     defaultPropertyMap.set(value)
                 }
             }
