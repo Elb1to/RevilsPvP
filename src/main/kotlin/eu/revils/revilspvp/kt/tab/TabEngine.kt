@@ -54,11 +54,11 @@ class TabEngine {
         val profile = GameProfile(UUID.fromString("6b22037d-c043-4271-94f2-adb00368bf16"), "bananasquad")
         val authenticationService = YggdrasilAuthenticationService(Proxy.NO_PROXY, "") as HttpAuthenticationService
         val sessionService = authenticationService.createMinecraftSessionService()
-        val profile2 = sessionService.fillProfileProperties(profile, true)
+        val profile2 = sessionService.fillProfileProperties(profile, false)
         val localPropertyMap = profile2.properties
 
         RevilsPvP.getInstance().redis.runBackboneRedisCommand { redis -> Bukkit.getLogger().info("Caching PropertyMap for skin...")
-            redis.setex("stark:skinPropertyMap", 30, getPropertyMapSerializer().serialize(localPropertyMap, null, null).toString())
+            redis.setex("stark:skinPropertyMap", 3600, getPropertyMapSerializer().serialize(localPropertyMap, null, null).toString())
         }
 
         return localPropertyMap
