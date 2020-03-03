@@ -58,6 +58,7 @@ abstract class GameTeamEventLogic(private val game: Game) : GameEventLogic {
                 return participant
             }
         }
+
         return null
     }
 
@@ -67,6 +68,7 @@ abstract class GameTeamEventLogic(private val game: Game) : GameEventLogic {
                 return true
             }
         }
+
         return false
     }
 }
