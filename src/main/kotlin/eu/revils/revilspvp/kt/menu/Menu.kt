@@ -18,10 +18,10 @@ abstract class Menu {
 
     var buttons: ConcurrentHashMap<Int, Button> = ConcurrentHashMap()
     var autoUpdate: Boolean = true
-    var updateAfterClick: Boolean = true
+    var updateAfterClick: Boolean = false
     var placeholder: Boolean = true
     var noncancellingInventory: Boolean = false
-    var async: Boolean = true
+    var async: Boolean = false
     var manualClose: Boolean = true
     private var staticTitle: String
 
