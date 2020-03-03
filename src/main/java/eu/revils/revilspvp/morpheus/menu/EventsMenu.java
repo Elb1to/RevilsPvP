@@ -21,7 +21,6 @@ public class EventsMenu extends Menu {
         setAutoUpdate(true);
     }
 
-
     @Override
     public Map<Integer, Button> getButtons(Player player) {
         Map<Integer, Button> toReturn = new HashMap<>();
@@ -75,7 +74,6 @@ public class EventsMenu extends Menu {
                         game.addSpectator(player);
                     }
                 }
-
             });
         }
 
