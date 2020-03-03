@@ -52,13 +52,13 @@ class GameStartTask(private val plugin: JavaPlugin, game: Game) {
 
             for (player in Bukkit.getOnlinePlayers()) {
                 player.sendMessage(arrayOf("",
-                        ChatColor.GRAY.toString() + "███████",
-                        ChatColor.GRAY.toString() + "█" + ChatColor.GOLD + "█████" + ChatColor.GRAY + "█" + " " + ChatColor.GOLD + "[${game.event.getName()} Event]",
-                        ChatColor.GRAY.toString() + "█" + ChatColor.GOLD + "█" + ChatColor.GRAY + "█████" + " " + game.host.displayName + ChatColor.GRAY + " is hosting an event!",
-                        ChatColor.GRAY.toString() + "█" + ChatColor.GOLD + "████" + ChatColor.GRAY + "██" + " " + ChatColor.GRAY + "Starts in " + ChatColor.AQUA + (formatIntoDetailedString(((startsAt + 500 - System.currentTimeMillis()) / 1000).toInt())),
-                        ChatColor.GRAY.toString() + "█" + ChatColor.GOLD + "█" + ChatColor.GRAY + "█████" + " " + ChatColor.GRAY + "Join with the ${ChatColor.GREEN}emerald${ChatColor.GRAY} in your hotbar.",
-                        ChatColor.GRAY.toString() + "█" + ChatColor.GOLD + "█████" + ChatColor.GRAY + "█" + " " + ChatColor.GRAY + ChatColor.ITALIC + "Event Type: (" + StringUtils.join(game.parameters.map { it.getDisplayName() }, ", ") + ")",
-                        ChatColor.GRAY.toString() + "███████",
+                        ChatColor.DARK_GRAY.toString() + "███████",
+                        ChatColor.DARK_GRAY.toString() + "█" + ChatColor.GOLD + "█████" + ChatColor.DARK_GRAY + "█" + " " + ChatColor.GOLD + "[${game.event.getName()} Event]",
+                        ChatColor.DARK_GRAY.toString() + "█" + ChatColor.GOLD + "█" + ChatColor.DARK_GRAY + "█████" + " " + game.host.displayName + ChatColor.GRAY + " is hosting an event!",
+                        ChatColor.DARK_GRAY.toString() + "█" + ChatColor.GOLD + "████" + ChatColor.DARK_GRAY + "██" + " " + ChatColor.GRAY + "Starts in " + ChatColor.AQUA + (formatIntoDetailedString(((startsAt + 500 - System.currentTimeMillis()) / 1000).toInt())),
+                        ChatColor.DARK_GRAY.toString() + "█" + ChatColor.GOLD + "█" + ChatColor.DARK_GRAY + "█████" + " " + ChatColor.GRAY + "Join with the ${ChatColor.GREEN}emerald${ChatColor.GRAY} in your hotbar.",
+                        ChatColor.DARK_GRAY.toString() + "█" + ChatColor.GOLD + "█████" + ChatColor.DARK_GRAY + "█" + " " + ChatColor.GRAY + ChatColor.ITALIC + "Event Type: (" + StringUtils.join(game.parameters.map { it.getDisplayName() }, ", ") + ")",
+                        ChatColor.DARK_GRAY.toString() + "███████",
                         "")
                 )
             }
