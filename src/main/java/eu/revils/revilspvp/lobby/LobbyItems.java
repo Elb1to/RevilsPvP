@@ -31,7 +31,7 @@ public final class LobbyItems {
         ItemUtils.setDisplayName(DISABLE_SPEC_MODE_ITEM, BLUE.toString() + BOLD + "» " + AQUA + BOLD + "Disable Spectator Mode" + BLUE.toString() + BOLD + " «");
         ItemUtils.setDisplayName(MANAGE_ITEM, BLUE.toString() + BOLD + "» " + RED + BOLD + "Manage RevilsPvP" + BLUE.toString() + BOLD + " «");
         ItemUtils.setDisplayName(UNFOLLOW_ITEM, BLUE.toString() + BOLD + "» " + RED + BOLD + "Stop Following" + BLUE.toString() + BOLD + " «");
-        ItemUtils.setDisplayName(PLAYER_STATISTICS, LEFT_ARROW + ChatColor.LIGHT_PURPLE.toString() + BOLD + "Statistics" + RIGHT_ARROW);
+        ItemUtils.setDisplayName(PLAYER_STATISTICS, BLUE.toString() + BOLD + "» " + LIGHT_PURPLE + BOLD + "Statistics" +  BLUE.toString() + BOLD + " «");
     }
 
 }
