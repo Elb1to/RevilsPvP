@@ -17,17 +17,11 @@ import static org.bukkit.ChatColor.BOLD;
 @UtilityClass
 public final class EventItems {
 
-    public static final ItemStack EVENTS_ITEM = new ItemStack(Material.EMERALD);
-
-    static {
-        ItemUtils.setDisplayName(EVENTS_ITEM, BLUE.toString() + BOLD + "» " + GOLD + BOLD + "Join an Event" + BLUE.toString() + BOLD + " «");
-    }
-
     public static ItemStack getEventItem() {
         List<Game> game = GameQueue.INSTANCE.getCurrentGames();
 
         if (game.size() > 0) {
-            return ItemBuilder.of(Material.EMERALD).name(LIGHT_PURPLE + BLUE.toString() + BOLD + "» " + GOLD + BOLD + "Join an Event" + BLUE.toString() + BOLD + " «").build();
+            return ItemBuilder.of(Material.EMERALD).name(BLUE.toString() + BOLD + "» " + GOLD + BOLD + "Join an Event" + BLUE.toString() + BOLD + " «").build();
         }
 
         return null;
