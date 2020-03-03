@@ -21,7 +21,7 @@ abstract class Menu {
     var updateAfterClick: Boolean = true
     var placeholder: Boolean = true
     var noncancellingInventory: Boolean = false
-    var async: Boolean = false
+    var async: Boolean = true
     var manualClose: Boolean = true
     private var staticTitle: String
 
