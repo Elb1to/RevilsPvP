@@ -63,7 +63,7 @@ public abstract class ItemListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent event) {
+    public void onPlayerQuit(PlayerQuitEvent event)  {
         canUseButton.remove(event.getPlayer().getUniqueId());
     }
 
