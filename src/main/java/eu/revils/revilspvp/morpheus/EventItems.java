@@ -14,6 +14,8 @@ import static net.md_5.bungee.api.ChatColor.LIGHT_PURPLE;
 @UtilityClass
 public final class EventItems {
 
+    public static final ItemStack EVENTS_ITEM = new ItemStack(Material.EMERALD);
+
     public static ItemStack getEventItem() {
         List<Game> game = GameQueue.INSTANCE.getCurrentGames();
 
