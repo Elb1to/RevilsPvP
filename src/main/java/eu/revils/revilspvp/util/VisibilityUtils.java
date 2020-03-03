@@ -52,7 +52,7 @@ public final class VisibilityUtils {
         SettingHandler settingHandler = RevilsPvP.getInstance().getSettingHandler();
         FollowHandler followHandler = RevilsPvP.getInstance().getFollowHandler();
         PartyHandler partyHandler = RevilsPvP.getInstance().getPartyHandler();
-        LobbyHandler lobbyHandler = RevilsPvP.getInstance().getLobbyHandler();
+        //LobbyHandler lobbyHandler = RevilsPvP.getInstance().getLobbyHandler();
         MatchHandler matchHandler = RevilsPvP.getInstance().getMatchHandler();
 
         Match targetMatch = matchHandler.getMatchPlayingOrSpectating(target);
@@ -63,12 +63,12 @@ public final class VisibilityUtils {
             //LobbyHandler targetLobby = lobbyHandler.isInLobby(target)
             Optional<UUID> following = followHandler.getFollowing(viewer);
 
-            boolean viewerPlayerInLobby = lobbyHandler.isInLobby(viewer);
+            //boolean viewerPlayerInLobby = lobbyHandler.isInLobby(viewer);
             boolean viewerPlayingMatch = matchHandler.isPlayingOrSpectatingMatch(viewer);
             boolean viewerSameParty = targetParty != null && targetParty.isMember(viewer.getUniqueId());
             boolean viewerFollowingTarget = following.isPresent() && following.get().equals(target.getUniqueId());
 
-            return viewerPlayerInLobby || viewerPlayingMatch || viewerSameParty || viewerFollowingTarget;
+            return /*viewerPlayerInLobby ||*/ viewerPlayingMatch || viewerSameParty || viewerFollowingTarget;
         } else {
             // we're in a match so we only hide other spectators (if our settings say so)
             boolean targetIsSpectator = targetMatch.isSpectator(target.getUniqueId());
