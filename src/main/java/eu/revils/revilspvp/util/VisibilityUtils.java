@@ -2,6 +2,9 @@ package eu.revils.revilspvp.util;
 
 import eu.revils.revilspvp.RevilsPvP;
 import eu.revils.revilspvp.follow.FollowHandler;
+import eu.revils.revilspvp.lobby.LobbyHandler;
+import eu.revils.revilspvp.lobby.LobbyUtils;
+import eu.revils.revilspvp.lobby.listener.LobbyGeneralListener;
 import eu.revils.revilspvp.party.Party;
 import eu.revils.revilspvp.party.PartyHandler;
 import eu.revils.revilspvp.match.Match;
@@ -49,6 +52,7 @@ public final class VisibilityUtils {
         SettingHandler settingHandler = RevilsPvP.getInstance().getSettingHandler();
         FollowHandler followHandler = RevilsPvP.getInstance().getFollowHandler();
         PartyHandler partyHandler = RevilsPvP.getInstance().getPartyHandler();
+        LobbyHandler lobbyHandler = RevilsPvP.getInstance().getLobbyHandler();
         MatchHandler matchHandler = RevilsPvP.getInstance().getMatchHandler();
 
         Match targetMatch = matchHandler.getMatchPlayingOrSpectating(target);
@@ -56,13 +60,15 @@ public final class VisibilityUtils {
         if (targetMatch == null) {
             // we're not in a match so we hide other players based on their party/match
             Party targetParty = partyHandler.getParty(target);
+            //LobbyHandler targetLobby = lobbyHandler.isInLobby(target)
             Optional<UUID> following = followHandler.getFollowing(viewer);
 
+            boolean viewerPlayerInLobby = lobbyHandler.isInLobby(viewer);
             boolean viewerPlayingMatch = matchHandler.isPlayingOrSpectatingMatch(viewer);
             boolean viewerSameParty = targetParty != null && targetParty.isMember(viewer.getUniqueId());
             boolean viewerFollowingTarget = following.isPresent() && following.get().equals(target.getUniqueId());
 
-            return viewerPlayingMatch || viewerSameParty || viewerFollowingTarget;
+            return viewerPlayerInLobby || viewerPlayingMatch || viewerSameParty || viewerFollowingTarget;
         } else {
             // we're in a match so we only hide other spectators (if our settings say so)
             boolean targetIsSpectator = targetMatch.isSpectator(target.getUniqueId());
