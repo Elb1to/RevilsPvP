@@ -29,5 +29,4 @@ class PlayerInfoPacketMod(name: String, ping: Int, profile: GameProfile, action:
     fun sendToPlayer(player: Player) {
         (player as CraftPlayer).handle.playerConnection.sendPacket(packet)
     }
-
 }
