@@ -17,9 +17,9 @@ import java.lang.reflect.Method
 abstract class Menu {
 
     var buttons: ConcurrentHashMap<Int, Button> = ConcurrentHashMap()
-    var autoUpdate: Boolean = false
-    var updateAfterClick: Boolean = false
-    var placeholder: Boolean = false
+    var autoUpdate: Boolean = true
+    var updateAfterClick: Boolean = true
+    var placeholder: Boolean = true
     var noncancellingInventory: Boolean = false
     var async: Boolean = false
     var manualClose: Boolean = true
@@ -39,9 +39,13 @@ abstract class Menu {
         return staticTitle
     }
 
-    open fun onOpen(player: Player) {}
+    open fun onOpen(player: Player) {
 
-    open fun onClose(player: Player, manualClose: Boolean) {}
+    }
+
+    open fun onClose(player: Player, manualClose: Boolean) {
+
+    }
 
     private fun createInventory(player: Player): Inventory {
         val invButtons = getButtons(player)

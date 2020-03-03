@@ -90,7 +90,9 @@ abstract class Button {
         return null
     }
 
-    open fun clicked(player: Player, slot: Int, clickType: ClickType, view: InventoryView) {}
+    open fun clicked(player: Player, slot: Int, clickType: ClickType, view: InventoryView) {
+
+    }
 
     open fun shouldCancel(player: Player, slot: Int, clickType: ClickType): Boolean {
         return true
@@ -101,7 +103,7 @@ abstract class Button {
     }
 
     open fun getButtonItem(player: Player): ItemStack {
-        val buttonItem = ItemStack(getMaterial(player)?: Material.AIR, getAmount(player), getDamageValue(player).toShort())
+        val buttonItem = ItemStack(getMaterial(player) ?: Material.AIR, getAmount(player), getDamageValue(player).toShort())
         val meta = buttonItem.itemMeta
 
         if (meta != null) {
