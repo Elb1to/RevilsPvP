@@ -11,9 +11,8 @@ import org.bukkit.entity.Player;
 public final class KitSetKnockbackCommand {
 
     @Command(names = { "kittype setKnockback" }, permission = "op", description = "Sets a kit-type's knockback profile")
-    //public static void addToken(CommandSender sender, @Param(name = "player") String playerName, @Param(name = "amount") int amount) {
-    public void execute(Player player, @Param(name = "kittype") KitType kitType, @Param(name = "kitName") String kitName, @Param(name = "knockbackprofile") String knockbackProfile) {
-        KitType target = KitType.byId(kitName);
+    public void execute(Player player, @Param(name = "kittype") KitType kitType, @Param(name = "knockbackprofile") String knockbackProfile) {
+        KitType target = KitType.byId(kitType.getId());
         if (target == null) {
             player.sendMessage(ChatColor.RED + "This kit doesn't exist.");
             return;
