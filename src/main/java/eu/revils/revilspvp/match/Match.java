@@ -17,6 +17,8 @@ import eu.revils.revilspvp.lobby.LobbyHandler;
 import eu.revils.revilspvp.postmatchinv.PostMatchPlayer;
 import eu.revils.revilspvp.setting.Setting;
 import eu.revils.revilspvp.setting.SettingHandler;
+import net.hylist.command.KnockbackCommand;
+import net.hylist.knockback.KnockbackProfile;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -56,6 +58,7 @@ import eu.revils.revilspvp.util.ItemListener;
 import eu.revils.revilspvp.util.MongoUtils;
 import eu.revils.revilspvp.util.PatchedPlayerUtils;
 import eu.revils.revilspvp.util.VisibilityUtils;
+import org.spigotmc.SpigotConfig;
 
 public final class Match {
     
@@ -184,6 +187,8 @@ public final class Match {
                 
                 updateVisiblity.add(player);
                 PatchedPlayerUtils.resetInventory(player, GameMode.SURVIVAL);
+
+                PatchedPlayerUtils.setKnockbackProfile(player, kitType.getKnockbackProfile() == null ? SpigotConfig.globalKbProfile.getName() : kitType.getKnockbackProfile());
             }
         }
         
