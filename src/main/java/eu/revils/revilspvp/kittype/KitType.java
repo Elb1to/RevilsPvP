@@ -42,7 +42,7 @@ public final class KitType {
         });
 
         teamFight.icon = new MaterialData(Material.BEACON);
-        teamFight.id = "alex is a god xd";
+        teamFight.id = "elb1to is a god xd";
         teamFight.displayName = "HCF Team Fight";
         teamFight.displayColor = ChatColor.AQUA;
 
@@ -143,6 +143,11 @@ public final class KitType {
     @Getter @Setter private int sort = 0;
 
     @Getter @Setter private boolean supportsRanked = false;
+
+    /**
+     * Determines the knockback profile the kit will use for matches.
+     */
+    @Getter @Setter private String knockbackProfile;
 
     public static KitType byId(String id) {
         for (KitType kitType : allTypes) {
