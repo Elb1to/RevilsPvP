@@ -5,7 +5,6 @@ import eu.revils.revilspvp.kt.command.Command;
 import eu.revils.revilspvp.kt.command.data.parameter.Param;
 import net.hylist.knockback.CraftKnockbackProfile;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public final class KitSetKnockbackCommand {
