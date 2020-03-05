@@ -3,12 +3,10 @@ package eu.revils.revilspvp;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
 import com.comphenix.protocol.ProtocolLibrary;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.mongodb.MongoClientOptions;
@@ -53,10 +51,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.BlockVector;
 import org.bukkit.util.Vector;
-
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
-
 import lombok.Getter;
 import net.frozenorb.chunksnapshot.ChunkSnapshot;
 import eu.revils.revilspvp.arena.ArenaHandler;
@@ -111,7 +107,6 @@ public final class RevilsPvP extends JavaPlugin {
 
     private MongoClient mongoClient;
     @Getter private MongoDatabase mongoDatabase;
-
     @Getter private SettingHandler settingHandler;
     @Getter private DuelHandler duelHandler;
     @Getter private KitHandler kitHandler;
@@ -126,7 +121,6 @@ public final class RevilsPvP extends JavaPlugin {
     @Getter private EloHandler eloHandler;
     @Getter private PvPClassHandler pvpClassHandler;
     @Getter private TournamentHandler tournamentHandler;
-
     @Getter public Redis redis;
     @Getter public CommandHandler commandHandler;
     @Getter public ScoreboardEngine scoreboardEngine;
@@ -134,7 +128,6 @@ public final class RevilsPvP extends JavaPlugin {
     @Getter public NametagEngine nametagEngine;
     @Getter public VisibilityEngine visibilityEngine;
     @Getter public UUIDCache uuidCache;
-
     @Getter private ChatColor dominantColor = ChatColor.GOLD;
     @Getter private RevilsPvPCache cache = new RevilsPvPCache();
 
