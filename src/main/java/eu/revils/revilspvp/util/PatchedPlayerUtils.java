@@ -1,7 +1,10 @@
 package eu.revils.revilspvp.util;
 
 import eu.revils.revilspvp.RevilsPvP;
+import net.hylist.knockback.CraftKnockbackProfile;
+import net.hylist.knockback.KnockbackProfile;
 import org.bukkit.GameMode;
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
@@ -56,5 +59,12 @@ public class PatchedPlayerUtils {
 
     public static String getFormattedName(UUID uuid) {
         return RevilsPvP.getInstance().getUuidCache().name(uuid);
+    }
+
+    public static void setKnockbackProfile(Player player, String knockbackProfile) {
+        CraftKnockbackProfile profile = new CraftKnockbackProfile(knockbackProfile);
+        if (player.isOnline() && new CraftKnockbackProfile(knockbackProfile).getName() != null) {
+            ((CraftPlayer)player).getHandle().setKbProfile(profile);
+        }
     }
 }
