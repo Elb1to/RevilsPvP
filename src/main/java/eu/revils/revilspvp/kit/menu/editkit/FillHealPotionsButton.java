@@ -23,15 +23,15 @@ final class FillHealPotionsButton extends Button {
 
     @Override
     public String getName(Player player) {
-        return ChatColor.BLUE + "Fill Empty Space";
+        return ChatColor.GOLD + "Fill Empty Space";
     }
 
     @Override
     public List<String> getDescription(Player player) {
         return ImmutableList.of(
             "",
-            ChatColor.LIGHT_PURPLE + "Fill your empty inventory space",
-            ChatColor.LIGHT_PURPLE + "with Splash Health Potions."
+            ChatColor.YELLOW + "Fill your empty inventory space",
+            ChatColor.YELLOW + "with Splash Health Potions."
         );
     }
 
