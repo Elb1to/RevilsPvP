@@ -5,12 +5,14 @@ import eu.revils.revilspvp.kt.command.Command;
 import eu.revils.revilspvp.kt.command.data.parameter.Param;
 import net.hylist.knockback.CraftKnockbackProfile;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public final class KitSetKnockbackCommand {
 
     @Command(names = { "kittype setKnockback" }, permission = "op", description = "Sets a kit-type's knockback profile")
-    public void execute(Player player, @Param(name = "kittype") KitType kitType, String kitName, String knockbackProfile) {
+    //public static void addToken(CommandSender sender, @Param(name = "player") String playerName, @Param(name = "amount") int amount) {
+    public void execute(Player player, @Param(name = "kittype") KitType kitType, @Param(name = "kitName") String kitName, @Param(name = "knockbackprofile") String knockbackProfile) {
         KitType target = KitType.byId(kitName);
         if (target == null) {
             player.sendMessage(ChatColor.RED + "This kit doesn't exist.");
