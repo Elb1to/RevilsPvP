@@ -5,7 +5,6 @@ import com.mongodb.client.MongoCollection;
 import eu.revils.revilspvp.RevilsPvP;
 import eu.revils.revilspvp.util.MongoUtils;
 
-import net.hylist.knockback.KnockbackProfile;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -145,7 +144,11 @@ public final class KitType {
 
     @Getter @Setter private boolean supportsRanked = false;
 
-    @Getter @Setter private KnockbackProfile knockbackProfile;
+    /**
+     * Determines the knockback profile the kit will use for matches.
+
+    @Getter @Setter private String knockbackProfile;
+     */
 
     public static KitType byId(String id) {
         for (KitType kitType : allTypes) {

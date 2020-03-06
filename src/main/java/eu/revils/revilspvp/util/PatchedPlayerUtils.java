@@ -61,10 +61,10 @@ public class PatchedPlayerUtils {
         return RevilsPvP.getInstance().getUuidCache().name(uuid);
     }
 
-    public static void setKnockbackProfile(Player player, String knockbackProfile) {
+    /*public static void setKnockbackProfile(Player player, String knockbackProfile) {
         CraftKnockbackProfile profile = new CraftKnockbackProfile(knockbackProfile);
         if (player.isOnline() && new CraftKnockbackProfile(knockbackProfile).getName() != null) {
             ((CraftPlayer)player).getHandle().setKbProfile(profile);
         }
-    }
+    }*/
 }

@@ -188,7 +188,7 @@ public final class Match {
                 updateVisiblity.add(player);
                 PatchedPlayerUtils.resetInventory(player, GameMode.SURVIVAL);
 
-                PatchedPlayerUtils.setKnockbackProfile(player, kitType.getKnockbackProfile() == null ? SpigotConfig.globalKbProfile.getName() : kitType.getKnockbackProfile());
+                //PatchedPlayerUtils.setKnockbackProfile(player, kitType.getKnockbackProfile() == null ? SpigotConfig.globalKbProfile.getName() : kitType.getKnockbackProfile());
             }
         }
         
