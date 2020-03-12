@@ -1,7 +1,8 @@
 package eu.revils.revilspvp.kt.command
 
-@Retention(AnnotationRetention.RUNTIME)
-@Target(AnnotationTarget.FUNCTION)
+@Retention
+@Target
+
 annotation class Command(val names: Array<String>,
                          val permission: String = "",
                          val hidden: Boolean = false,
