@@ -86,9 +86,9 @@ public final class LobbyItemListener extends ItemListener {
             }
         });
 
-        addHandler(LobbyItems.PLAYER_STATISTICS, player -> {
+        /*addHandler(LobbyItems.PLAYER_STATISTICS, player -> {
             new StatisticsMenu().openMenu(player);
-        });
+        });*/
 
         addHandler(LobbyItems.UNFOLLOW_ITEM, UnfollowCommand::unfollow);
     }
