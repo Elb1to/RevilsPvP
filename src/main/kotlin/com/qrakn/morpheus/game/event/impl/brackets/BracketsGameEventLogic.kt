@@ -102,9 +102,9 @@ open class BracketsGameEventLogic(val game: Game) : GameTeamEventLogic(game) {
                 game.spectators.remove(player)
                 Bukkit.getPluginManager().callEvent(PlayerGameInteractionEvent(player, game))
 
-                if (kit != null && kit is BracketsGameKitParameter.BracketsGameKitOption) {
-                    kit.apply(player)
-                }
+                //if (kit != null && kit is BracketsGameKitParameter.BracketsGameKitOption) {
+                //    kit.apply(player)
+                //}
             }
 
             opponent.players.forEachIndexed { index, player ->
@@ -122,7 +122,6 @@ open class BracketsGameEventLogic(val game: Game) : GameTeamEventLogic(game) {
                     kit.apply(player)
                 }
             }
-
             return
         }
 
