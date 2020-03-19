@@ -53,7 +53,7 @@ object BracketsGameKitParameter : GameParameter {
             player.inventory.armorContents = getArmor()
             val items = getItems().toMutableList()
 
-            var filler = items[3]
+            var filler = items[2]
             if (filler != null && filler.type != Material.POTION && filler.type != Material.MUSHROOM_SOUP) {
                 filler = ItemStack(Material.AIR)
             }
@@ -82,7 +82,7 @@ object BracketsGameKitParameter : GameParameter {
 
                 if (item.type.isEdible && item.type != Material.MUSHROOM_SOUP && item.type != Material.GOLDEN_APPLE) {
                     items.remove(item)
-                    items.add(filler) // im so lazy
+                    items.add(filler)
                     continue
                 }
 
@@ -90,7 +90,6 @@ object BracketsGameKitParameter : GameParameter {
                     items[8] = item
                     items[7] = filler
                 }
-
             }
 
             player.inventory.contents = items.toTypedArray()
