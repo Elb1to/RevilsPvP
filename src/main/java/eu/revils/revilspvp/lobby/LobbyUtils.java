@@ -138,7 +138,7 @@ public final class LobbyUtils {
                 inventory.setItem(1, QueueItems.JOIN_SOLO_RANKED_QUEUE_ITEM);
                 inventory.setItem(4, LobbyItems.ENABLE_SPEC_MODE_ITEM);
                 //inventory.setItem(5, EventItems.EVENTS_ITEM);
-                inventory.setItem(6, LobbyItems.PLAYER_STATISTICS);
+                //inventory.setItem(6, LobbyItems.PLAYER_STATISTICS);
                 inventory.setItem(8, KitItems.OPEN_EDITOR_ITEM);
 
                 ItemStack eventItem = EventItems.getEventItem();
