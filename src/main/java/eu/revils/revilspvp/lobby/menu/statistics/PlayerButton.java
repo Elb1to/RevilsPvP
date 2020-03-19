@@ -8,6 +8,7 @@ import eu.revils.revilspvp.kt.menu.Button;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+
 import java.util.List;
 
 public class PlayerButton extends Button {
