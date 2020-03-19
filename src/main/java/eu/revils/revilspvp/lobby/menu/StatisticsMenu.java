@@ -58,7 +58,7 @@ public final class StatisticsMenu extends Menu {
     }
 
     @Override
-    public int size(@NotNull Map<Integer, ? extends Button> buttons) {
+    public int size(Map<Integer, ? extends Button> buttons) {
         return 9 * 6;
     }
 
