@@ -8,6 +8,7 @@ import eu.revils.revilspvp.match.MatchState;
 import eu.revils.revilspvp.util.InventoryUtils;
 import eu.revils.revilspvp.util.VisibilityUtils;
 
+import net.frozenorb.qlib.nametag.FrozenNametagHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -34,7 +35,7 @@ public final class FollowHandler {
 
     public void startFollowing(Player player, Player target) {
         followingData.put(player.getUniqueId(), target.getUniqueId());
-        player.sendMessage(ChatColor.BLUE + "Now following " + ChatColor.YELLOW + target.getName() + ChatColor.BLUE + ", exit with /unfollow.");
+        player.sendMessage(ChatColor.YELLOW + "Now following " + ChatColor.LIGHT_PURPLE + target.getName() + ChatColor.YELLOW + ", exit with /unfollow.");
 
         MatchHandler matchHandler = RevilsPvP.getInstance().getMatchHandler();
         Match targetMatch = matchHandler.getMatchPlayingOrSpectating(target);
@@ -44,7 +45,7 @@ public final class FollowHandler {
         } else {
             InventoryUtils.resetInventoryDelayed(player);
             VisibilityUtils.updateVisibility(player);
-            RevilsPvP.getInstance().nametagEngine.reloadOthersFor(player);
+            FrozenNametagHandler.reloadOthersFor(player);
 
             player.teleport(target);
         }
@@ -54,10 +55,10 @@ public final class FollowHandler {
         UUID prevTarget = followingData.remove(player.getUniqueId());
 
         if (prevTarget != null) {
-            player.sendMessage(ChatColor.BLUE + "Stopped following " + ChatColor.YELLOW + RevilsPvP.getInstance().getUuidCache().name(prevTarget) + ChatColor.BLUE + ".");
+            player.sendMessage(ChatColor.YELLOW + "Stopped following " + ChatColor.LIGHT_PURPLE + RevilsPvP.getInstance().getUuidCache().name(prevTarget) + ChatColor.YELLOW + ".");
             InventoryUtils.resetInventoryDelayed(player);
             VisibilityUtils.updateVisibility(player);
-            RevilsPvP.getInstance().nametagEngine.reloadOthersFor(player);
+            FrozenNametagHandler.reloadOthersFor(player);
         }
     }
 

@@ -1,18 +1,19 @@
 package eu.revils.revilspvp.scoreboard;
 
-import java.util.LinkedList;
 import java.util.function.BiConsumer;
 
 import com.qrakn.morpheus.game.Game;
 import com.qrakn.morpheus.game.GameQueue;
 import com.qrakn.morpheus.game.GameState;
 import eu.revils.revilspvp.RevilsPvP;
-import eu.revils.revilspvp.kt.scoreboard.ScoreGetter;
-import org.bukkit.entity.Player;
-
 import eu.revils.revilspvp.match.MatchHandler;
 import eu.revils.revilspvp.setting.Setting;
 import eu.revils.revilspvp.setting.SettingHandler;
+import org.bukkit.entity.Player;
+
+
+import net.frozenorb.qlib.scoreboard.ScoreGetter;
+import net.frozenorb.qlib.util.LinkedList;
 
 final class MultiplexingScoreGetter implements ScoreGetter {
 
@@ -21,10 +22,9 @@ final class MultiplexingScoreGetter implements ScoreGetter {
     private final BiConsumer<Player, LinkedList<String>> gameScoreGetter;
 
     MultiplexingScoreGetter(
-        BiConsumer<Player, LinkedList<String>> matchScoreGetter,
-        BiConsumer<Player, LinkedList<String>> lobbyScoreGetter,
-        BiConsumer<Player, LinkedList<String>> gameScoreGetter
-
+            BiConsumer<Player, LinkedList<String>> matchScoreGetter,
+            BiConsumer<Player, LinkedList<String>> lobbyScoreGetter,
+            BiConsumer<Player, LinkedList<String>> gameScoreGetter
     ) {
         this.matchScoreGetter = matchScoreGetter;
         this.lobbyScoreGetter = lobbyScoreGetter;
@@ -52,8 +52,10 @@ final class MultiplexingScoreGetter implements ScoreGetter {
         }
 
         if (!scores.isEmpty()) {
-            scores.addFirst("&a&7&m--------------------");
-            scores.add("&f&7&m--------------------");
+            scores.addFirst("&a&7&m----------------------");
+            scores.add("");
+            scores.add("&eRevils.eu/discord");
+            scores.add("&f&7&m----------------------");
         }
     }
 

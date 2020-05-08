@@ -150,10 +150,13 @@ public final class Party {
     }
 
     public void invite(Player target) {
+        if (!RevilsPvPValidation.canInviteParty(target, this)){
+            return;
+        }
         PartyInvite invite = new PartyInvite(this, target.getUniqueId());
 
         target.spigot().sendMessage(PartyLang.inviteAcceptPrompt(this));
-        message(ChatColor.DARK_GREEN + target.getName() + ChatColor.GREEN + " has been invited to join your party.");
+        message(ChatColor.BLUE + "[Party] " + ChatColor.LIGHT_PURPLE + target.getName() + ChatColor.YELLOW + " has been invited to join your party.");
 
         invites.add(invite);
         Bukkit.getScheduler().runTaskLater(RevilsPvP.getInstance(), () -> invites.remove(invite), PartyHandler.INVITE_EXPIRATION_SECONDS * 20);
@@ -161,6 +164,9 @@ public final class Party {
 
     public void join(Player player) {
         if (members.contains(player.getUniqueId())) {
+            return;
+        }
+        if (!RevilsPvPValidation.canInviteParty(player, this)) {
             return;
         }
 
@@ -175,9 +181,9 @@ public final class Party {
         }
 
         Player leaderBukkit = Bukkit.getPlayer(leader);
-        player.sendMessage(ChatColor.YELLOW + "You have joined " + ChatColor.AQUA + leaderBukkit.getName() + ChatColor.YELLOW + "'s party.");
+        player.sendMessage(ChatColor.BLUE + "[Party] " + ChatColor.YELLOW + "You have joined " + ChatColor.LIGHT_PURPLE + leaderBukkit.getName() + ChatColor.YELLOW + "'s party.");
 
-        message(ChatColor.DARK_GREEN + player.getName() + ChatColor.GREEN + " has joined your party.");
+        message(ChatColor.BLUE + "[Party] " + ChatColor.LIGHT_PURPLE + player.getName() + ChatColor.YELLOW + " has joined your party.");
 
         members.add(player.getUniqueId());
         RevilsPvP.getInstance().getPartyHandler().updatePartyCache(player.getUniqueId(), this);
@@ -206,11 +212,11 @@ public final class Party {
             Player newLeader = Bukkit.getPlayer(membersArray[ThreadLocalRandom.current().nextInt(membersArray.length)]);
 
             this.leader = newLeader.getUniqueId();
-            message(ChatColor.AQUA + newLeader.getName() + ChatColor.YELLOW + " has been randomly promoted to leader of your party.");
+            message(ChatColor.BLUE + "[Party] " + ChatColor.LIGHT_PURPLE + newLeader.getName() + ChatColor.YELLOW + " has been randomly promoted to leader of your party.");
         }
 
-        player.sendMessage(ChatColor.YELLOW + "You have left your party.");
-        message(ChatColor.DARK_RED + player.getName() + ChatColor.RED + " has left your party.");
+        player.sendMessage(ChatColor.BLUE + "[Party] " + ChatColor.YELLOW + "You have left your party.");
+        message(ChatColor.BLUE + "[Party] " + ChatColor.LIGHT_PURPLE + player.getName() + ChatColor.YELLOW + " has left your party.");
 
         VisibilityUtils.updateVisibility(player);
         forEachOnline(VisibilityUtils::updateVisibility);
@@ -224,7 +230,7 @@ public final class Party {
     public void setLeader(Player player) {
         this.leader = player.getUniqueId();
 
-        message(ChatColor.AQUA + player.getName() + ChatColor.YELLOW + " has been promoted to leader of your party.");
+        message(ChatColor.BLUE + "[Party] " + ChatColor.LIGHT_PURPLE + player.getName() + ChatColor.YELLOW + " has been promoted to leader of your party.");
         resetInventoriesDelayed();
     }
 
@@ -237,7 +243,7 @@ public final class Party {
             RevilsPvP.getInstance().getPartyHandler().updatePartyCache(player.getUniqueId(), null);
         });
 
-        message(ChatColor.RED + "Your party has been disbanded.");
+        message(ChatColor.BLUE + "[Party] " + ChatColor.RED + "Your party has been disbanded.");
         resetInventoriesDelayed();
     }
 
@@ -248,8 +254,8 @@ public final class Party {
 
         RevilsPvP.getInstance().getPartyHandler().updatePartyCache(player.getUniqueId(), null);
 
-        player.sendMessage(ChatColor.YELLOW + "You have been kicked from your party.");
-        message(ChatColor.DARK_RED + player.getName() + ChatColor.RED + " has been kicked from your party.");
+        player.sendMessage(ChatColor.BLUE + "[Party] " + ChatColor.YELLOW + "You have been kicked from your party.");
+        message(ChatColor.BLUE + "[Party] " + ChatColor.LIGHT_PURPLE + player.getName() + ChatColor.YELLOW + " has been kicked from your party.");
 
         VisibilityUtils.updateVisibility(player);
         forEachOnline(VisibilityUtils::updateVisibility);

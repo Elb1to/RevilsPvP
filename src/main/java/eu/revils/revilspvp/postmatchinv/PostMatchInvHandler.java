@@ -106,7 +106,7 @@ public final class PostMatchInvHandler {
             }
 
             player.sendMessage(PostMatchInvLang.LINE);
-            player.sendMessage(RevilsPvP.getInstance().getDominantColor() + "Post-Match Inventories " + ChatColor.GRAY + "(click name to view)");
+            player.sendMessage(RevilsPvP.getInstance().getDominantColor() + "Post-Match Inventories " + ChatColor.GRAY + "(click name to View):");
 
             for (Object line : lines) {
                 if (line instanceof TextComponent[]) {

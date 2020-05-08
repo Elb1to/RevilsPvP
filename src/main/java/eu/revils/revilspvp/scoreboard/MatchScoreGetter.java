@@ -5,12 +5,15 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.function.BiConsumer;
 
+import net.frozenorb.qlib.scoreboard.ScoreFunction;
+import net.frozenorb.qlib.util.LinkedList;
+
+
 import eu.revils.revilspvp.RevilsPvP;
-import eu.revils.revilspvp.kt.scoreboard.ScoreFunction;
-import eu.revils.revilspvp.kt.util.PlayerUtils;
-import eu.revils.revilspvp.kt.util.TimeUtils;
 import eu.revils.revilspvp.pvpclasses.pvpclasses.ArcherClass;
 import eu.revils.revilspvp.pvpclasses.pvpclasses.BardClass;
+import net.frozenorb.qlib.util.PlayerUtils;
+import net.frozenorb.qlib.util.TimeUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -90,7 +93,7 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
         // they're not in a match
         if (match == null) {
             if (followingOpt.isPresent()) {
-                scores.add("&5Following: *&7" + RevilsPvP.getInstance().getUuidCache().name(followingOpt.get()));
+                scores.add("&fFollowing&7: &a" + RevilsPvP.getInstance().getUuidCache().name(followingOpt.get()));
             }
 
             if (player.hasMetadata("ModMode")) {
@@ -120,7 +123,7 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
         // check (we can't define the lambda up top and reference because we reference the
         // scores variable)
         if (followingOpt.isPresent()) {
-            scores.add("&5Following: *&7" + RevilsPvP.getInstance().getUuidCache().name(followingOpt.get()));
+            scores.add("&fFollowing&7: *&a" + RevilsPvP.getInstance().getUuidCache().name(followingOpt.get()));
         }
 
         if (player.hasMetadata("ModMode")) {
@@ -177,7 +180,7 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
     }
 
     private void render1v1MatchLines(List<String> scores, MatchTeam otherTeam) {
-        scores.add("&c&lOpponent: &f" + RevilsPvP.getInstance().getUuidCache().name(otherTeam.getFirstMember()));
+        scores.add("&fOpponent&7: &c" + RevilsPvP.getInstance().getUuidCache().name(otherTeam.getFirstMember()));
 
     }
 
@@ -230,7 +233,7 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
                 }
 
                 namePrefix = "&a";
-                healthStr = healthColor.toString() + health + " *❤*" + ChatColor.GRAY;
+                healthStr = " &7▪ " + healthColor.toString() + health + " *❤*" + ChatColor.GRAY;
 
                 if (healingMethod != null) {
                     healsStr = " &l⏐ " + healsColor.toString() + heals + " " + (heals == 1 ? healingMethod.getShortSingular() : healingMethod.getShortPlural());
@@ -285,7 +288,7 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
 
     private void renderSpectatorLines(List<String> scores, Match match, MatchTeam oldTeam) {
         String rankedStr = match.isRanked() ? " (R)" : "";
-        scores.add("&eKit: &f" + match.getKitType().getColoredDisplayName() + rankedStr);
+        scores.add("&fKit&7: &a" + match.getKitType().getColoredDisplayName() + rankedStr);
 
         List<MatchTeam> teams = match.getTeams();
 
@@ -298,13 +301,13 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
                 // spectators who were on a team see teams as they releate
                 // to them, not just one/two.
                 if (oldTeam == null) {
-                    scores.add("&5Team One: &f" + teamOne.getAliveMembers().size() + "/" + teamOne.getAllMembers().size());
-                    scores.add("&bTeam Two: &f" + teamTwo.getAliveMembers().size() + "/" + teamTwo.getAllMembers().size());
+                    scores.add("&fTeam One&7: &a" + teamOne.getAliveMembers().size() + "/" + teamOne.getAllMembers().size());
+                    scores.add("&fTeam Two&7: &a" + teamTwo.getAliveMembers().size() + "/" + teamTwo.getAllMembers().size());
                 } else {
                     MatchTeam otherTeam = oldTeam == teamOne ? teamTwo : teamOne;
 
-                    scores.add("&aTeam: &f" + oldTeam.getAliveMembers().size() + "/" + oldTeam.getAllMembers().size());
-                    scores.add("&cOpponents: &f" + otherTeam.getAliveMembers().size() + "/" + otherTeam.getAllMembers().size());
+                    scores.add("&fTeam&7: &a" + oldTeam.getAliveMembers().size() + "/" + oldTeam.getAllMembers().size());
+                    scores.add("&fOpponents&7: &c" + otherTeam.getAliveMembers().size() + "/" + otherTeam.getAllMembers().size());
                 }
             }
         }
@@ -330,7 +333,7 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
         }
 
         // spectators don't have any bold entries on their scoreboard
-        scores.add(RevilsPvP.getInstance().getDominantColor() + "&6&lDuration: &f" + formattedDuration);
+        scores.add(RevilsPvP.getInstance().getDominantColor() + "&fDuration: &6" + formattedDuration);
     }
 
     private void renderPingLines(List<String> scores, Match match, Player ourPlayer) {
@@ -345,10 +348,10 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
 
             if (firstTeamPlayers.size() == 1 && secondTeamPlayers.size() == 1) {
                 scores.add("&7&b&4"); // spaceer
-                scores.add("&5Your Ping: &7" + PlayerUtils.getPing(ourPlayer));
+                scores.add("&fYour Ping: &a" + PlayerUtils.getPing(ourPlayer));
                 Player otherPlayer = Bukkit.getPlayer(match.getTeam(ourPlayer.getUniqueId()) == firstTeam ? secondTeam.getFirstMember() : firstTeam.getFirstMember());
                 if (otherPlayer == null) return;
-                scores.add("&5Their Ping: &7" + PlayerUtils.getPing(otherPlayer));
+                scores.add("&fTheir Ping&7: &c" + PlayerUtils.getPing(otherPlayer));
             }
         }
     }
@@ -438,7 +441,7 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
             long diff = ArcherClass.getMarkedPlayers().get(player.getName()) - System.currentTimeMillis();
 
             if (diff > 0) {
-                return (ScoreFunction.getTIME_FANCY().apply(diff / 1000F));
+                return (ScoreFunction.TIME_FANCY.apply(diff / 1000F));
             }
         }
 
@@ -450,7 +453,7 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
             float diff = BardClass.getLastEffectUsage().get(player.getName()) - System.currentTimeMillis();
 
             if (diff > 0) {
-                return (ScoreFunction.getTIME_SIMPLE().apply((int) (diff / 1000F)));
+                return (ScoreFunction.TIME_SIMPLE.apply(diff / 1000F));
             }
         }
 

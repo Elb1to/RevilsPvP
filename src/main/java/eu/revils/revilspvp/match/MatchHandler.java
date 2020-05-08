@@ -13,6 +13,7 @@ import eu.revils.revilspvp.RevilsPvP;
 import eu.revils.revilspvp.arena.Arena;
 import eu.revils.revilspvp.arena.ArenaHandler;
 import eu.revils.revilspvp.arena.ArenaSchematic;
+import eu.revils.revilspvp.match.listener.*;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -22,26 +23,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import eu.revils.revilspvp.kittype.KitType;
-import eu.revils.revilspvp.match.listener.GoldenHeadListener;
-import eu.revils.revilspvp.match.listener.KitSelectionListener;
-import eu.revils.revilspvp.match.listener.MatchBlockPickupListener;
-import eu.revils.revilspvp.match.listener.MatchBuildListener;
-import eu.revils.revilspvp.match.listener.MatchComboListener;
-import eu.revils.revilspvp.match.listener.MatchCountdownListener;
-import eu.revils.revilspvp.match.listener.MatchDeathMessageListener;
-import eu.revils.revilspvp.match.listener.MatchDurationLimitListener;
-import eu.revils.revilspvp.match.listener.MatchEnderPearlDamageListener;
-import eu.revils.revilspvp.match.listener.MatchFreezeListener;
-import eu.revils.revilspvp.match.listener.MatchGeneralListener;
-import eu.revils.revilspvp.match.listener.MatchHardcoreHealingListener;
-import eu.revils.revilspvp.match.listener.MatchHealthDisplayListener;
-import eu.revils.revilspvp.match.listener.MatchPartySpectateListener;
-import eu.revils.revilspvp.match.listener.MatchRodListener;
-import eu.revils.revilspvp.match.listener.MatchSoupListener;
-import eu.revils.revilspvp.match.listener.MatchStatsListener;
-import eu.revils.revilspvp.match.listener.MatchWizardListener;
-import eu.revils.revilspvp.match.listener.SpectatorItemListener;
-import eu.revils.revilspvp.match.listener.SpectatorPreventionListener;
 
 public final class MatchHandler {
 

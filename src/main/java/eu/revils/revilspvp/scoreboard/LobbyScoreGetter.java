@@ -1,9 +1,9 @@
 package eu.revils.revilspvp.scoreboard;
 
-import java.util.LinkedList;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.BiConsumer;
+
 
 import eu.revils.revilspvp.RevilsPvP;
 import eu.revils.revilspvp.party.Party;
@@ -19,6 +19,7 @@ import eu.revils.revilspvp.match.MatchHandler;
 import eu.revils.revilspvp.queue.MatchQueue;
 import eu.revils.revilspvp.queue.MatchQueueEntry;
 import eu.revils.revilspvp.queue.QueueHandler;
+import net.frozenorb.qlib.util.LinkedList;
 
 final class LobbyScoreGetter implements BiConsumer<Player, LinkedList<String>> {
 
@@ -30,15 +31,14 @@ final class LobbyScoreGetter implements BiConsumer<Player, LinkedList<String>> {
         QueueHandler queueHandler = RevilsPvP.getInstance().getQueueHandler();
         EloHandler eloHandler = RevilsPvP.getInstance().getEloHandler();
 
+        scores.add("&fOnline&7: &a" + RevilsPvP.getInstance().getCache().getOnlineCount());
+        scores.add("&fPlaying&7: &a" + RevilsPvP.getInstance().getCache().getFightsCount());
+
         Party playerParty = partyHandler.getParty(player);
         if (playerParty != null) {
             int size = playerParty.getMembers().size();
-            scores.add("&9Your Party: &f" + size);
+            scores.add(ChatColor.GRAY + RevilsPvP.getInstance().getUuidCache().name(playerParty.getLeader()) + ChatColor.WHITE + "'s Party&7: &a" + size);
         }
-
-        scores.add("&eOnline: &f" + RevilsPvP.getInstance().getCache().getOnlineCount());
-        scores.add("&dIn Fights: &f" + RevilsPvP.getInstance().getCache().getFightsCount());
-        scores.add("&bIn Queues: &f" + RevilsPvP.getInstance().getCache().getQueuesCount());
 
         // this definitely can be a .ifPresent, however creating the new lambda that often
         // was causing some performance issues, so we do this less pretty (but more efficent)
@@ -46,7 +46,7 @@ final class LobbyScoreGetter implements BiConsumer<Player, LinkedList<String>> {
         // scores variable)
         if (followingOpt.isPresent()) {
             Player following = Bukkit.getPlayer(followingOpt.get());
-            scores.add("&6Following: *&7" + following.getName());
+            scores.add("&fFollowing&7: *&a" + following.getName());
 
             if (player.hasPermission("basic.staff")) {
                 MatchQueueEntry targetEntry = getQueueEntry(following);
@@ -54,8 +54,8 @@ final class LobbyScoreGetter implements BiConsumer<Player, LinkedList<String>> {
                 if (targetEntry != null) {
                     MatchQueue queue = targetEntry.getQueue();
 
-                    scores.add("&6Target queue:");
-                    scores.add("&7" + (queue.isRanked() ? "Ranked" : "Unranked") + " " + queue.getKitType().getDisplayName());
+                    scores.add("&6Target Queue&6:");
+                    scores.add(" &7▪ &e" + (queue.isRanked() ? "Ranked" : "Unranked") + " " + queue.getKitType().getDisplayName());
                 }
             }
         }
@@ -66,50 +66,48 @@ final class LobbyScoreGetter implements BiConsumer<Player, LinkedList<String>> {
             String waitTimeFormatted = TimeUtils.formatIntoMMSS(entry.getWaitSeconds());
             MatchQueue queue = entry.getQueue();
 
-            scores.add("&b&7&m--------------------");
-            scores.add(queue.getKitType().getDisplayColor() + (queue.isRanked() ? "Ranked" : "Unranked") + " " + queue.getKitType().getDisplayName());
-            scores.add("&6Time: *&f" + waitTimeFormatted);
+            scores.add("");
+            scores.add("&fQueuing for:");
+            scores.add(ChatColor.GOLD.toString() + queue.getKitType().getDisplayColor() + (queue.isRanked() ? "Ranked" : "Unranked") + " " + queue.getKitType().getDisplayName());
 
             if (queue.isRanked()) {
                 int elo = eloHandler.getElo(entry.getMembers(), queue.getKitType());
                 int window = entry.getWaitSeconds() * QueueHandler.RANKED_WINDOW_GROWTH_PER_SECOND;
 
-                scores.add("&6Search range: *&f" + Math.max(0, elo - window) + " - " + (elo + window));
+                scores.add("&fRange&7: &6" + Math.max(0, elo - window) + " - " + (elo + window));
             }
         }
 
         if (player.hasMetadata("ModMode")) {
-            scores.add(ChatColor.GRAY.toString() + ChatColor.BOLD + "In Silent Mode");
+            scores.add(ChatColor.GRAY.toString() + ChatColor.BOLD + "Silent Mode Active!");
         }
 
         Tournament tournament = RevilsPvP.getInstance().getTournamentHandler().getTournament();
         if (tournament != null) {
-            scores.add("&7&m--------------------");
-            scores.add("&6&lTournament");
+            scores.add("");
+            scores.add("&6&lTournament&7:");
 
             if (tournament.getStage() == Tournament.TournamentStage.WAITING_FOR_TEAMS) {
                 int teamSize = tournament.getRequiredPartySize();
-                scores.add("&cKit&7: " + tournament.getType().getDisplayName());
-                scores.add("&cTeam Size&7: " + teamSize + "v" + teamSize);
+                scores.add(" &7▪ &fKit&7: &a" + tournament.getType().getDisplayName());
+                scores.add(" &7▪ &fTeam Size&7: &a" + teamSize + "v" + teamSize);
                 int multiplier = teamSize < 3 ? teamSize : 1;
-                scores.add("&c" + (teamSize < 3 ? "Players"  : "Teams") + "&7: " + (tournament.getActiveParties().size() * multiplier + "/" + tournament.getRequiredPartiesToStart() * multiplier));
+                scores.add(" &7▪ &f" + (teamSize < 3 ? "Players"  : "Teams") + "&7: &a" + (tournament.getActiveParties().size() * multiplier + "/" + tournament.getRequiredPartiesToStart() * multiplier));
             } else if (tournament.getStage() == Tournament.TournamentStage.COUNTDOWN) {
                 if (tournament.getCurrentRound() == 0) {
-                    scores.add("&9");
-                    scores.add("&7Begins in &c" + tournament.getBeginNextRoundIn() + "&7 second" + (tournament.getBeginNextRoundIn() == 1 ? "." : "s."));
+                    scores.add(" &7▪ &eBegins in &b" + tournament.getBeginNextRoundIn() + "s&e!");
                 } else {
-                    scores.add("&9");
-                    scores.add("&c&lRound " + (tournament.getCurrentRound() + 1));
-                    scores.add("&7Begins in &c" + tournament.getBeginNextRoundIn() + "&7 second" + (tournament.getBeginNextRoundIn() == 1 ? "." : "s."));
+                    scores.add(" &7▪ &fRound &d#" + (tournament.getCurrentRound() + 1));
+                    scores.add(" &7▪ &eBegins in &b" + tournament.getBeginNextRoundIn() + "s&e!");
                 }
             } else if (tournament.getStage() == Tournament.TournamentStage.IN_PROGRESS) {
-                scores.add("&cRound&7: " + tournament.getCurrentRound());
+                scores.add(" &7▪ &fRound&7: &a#" + tournament.getCurrentRound());
 
                 int teamSize = tournament.getRequiredPartySize();
                 int multiplier = teamSize < 3 ? teamSize : 1;
 
-                scores.add("&c" + (teamSize < 3 ? "Players" : "Teams") + "&7: " + tournament.getActiveParties().size() * multiplier + "/" + tournament.getRequiredPartiesToStart() * multiplier);
-                scores.add("&6Duration&7: " + TimeUtils.formatIntoMMSS((int) (System.currentTimeMillis() - tournament.getRoundStartedAt()) / 1000));
+                scores.add(" &7▪ &f" + (teamSize < 3 ? "Players" : "Teams") + "&7: &a" + tournament.getActiveParties().size() * multiplier + "/" + tournament.getRequiredPartiesToStart() * multiplier);
+                scores.add(" &7▪ &fDuration&7: &a" + TimeUtils.formatIntoMMSS((int) (System.currentTimeMillis() - tournament.getRoundStartedAt()) / 1000));
             }
         }
     }

@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 
 public final class PearlCooldownListener implements Listener {
 
-    private static final long PEARL_COOLDOWN_MILLIS = TimeUnit.SECONDS.toMillis(16);
+    private static final long PEARL_COOLDOWN_MILLIS = TimeUnit.SECONDS.toMillis(15);
 
     private final Map<UUID, Long> pearlCooldown = new ConcurrentHashMap<>();
 

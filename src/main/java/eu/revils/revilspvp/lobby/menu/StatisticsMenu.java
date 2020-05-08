@@ -7,14 +7,16 @@ import eu.revils.revilspvp.kittype.KitType;
 import eu.revils.revilspvp.lobby.menu.statistics.GlobalEloButton;
 import eu.revils.revilspvp.lobby.menu.statistics.KitButton;
 import eu.revils.revilspvp.lobby.menu.statistics.PlayerButton;
-import eu.revils.revilspvp.kt.util.ItemBuilder;
+import net.frozenorb.qlib.menu.Button;
+import net.frozenorb.qlib.menu.Menu;
+import net.frozenorb.qlib.util.ItemBuilder;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import eu.revils.revilspvp.kt.menu.Button;
-import eu.revils.revilspvp.kt.menu.Menu;
+
 import org.jetbrains.annotations.NotNull;
+
 
 public final class StatisticsMenu extends Menu {
 
@@ -58,7 +60,7 @@ public final class StatisticsMenu extends Menu {
     }
 
     @Override
-    public int size(Map<Integer, ? extends Button> buttons) {
+    public int size(Map<Integer, Button> buttons) {
         return 9 * 6;
     }
 

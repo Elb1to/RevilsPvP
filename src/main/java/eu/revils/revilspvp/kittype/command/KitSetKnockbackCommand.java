@@ -16,15 +16,13 @@ public final class KitSetKnockbackCommand {
             player.sendMessage(ChatColor.RED + "This kit doesn't exist.");
             return;
         }
-
         if (new CraftKnockbackProfile(knockbackProfile).getName() == null) {
             player.sendMessage(ChatColor.RED + "This KB Profile doesn't exist.");
             return;
         }
-
-        //target.setKnockbackProfile(knockbackProfile);
-        //kitType.saveAsync();
-
+        target.setKnockbackProfile(knockbackProfile);
+        kitType.saveAsync();
         player.sendMessage(ChatColor.GREEN + "You've updated" + kitType + "'s knockback profile.");
     }
+
 }

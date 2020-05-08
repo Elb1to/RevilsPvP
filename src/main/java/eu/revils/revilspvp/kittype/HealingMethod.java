@@ -37,7 +37,7 @@ public enum HealingMethod {
     ),
     SOUP(
         "soup", "soups", // short singular/plural
-        "mushroom soup", "mushroom soups", // long singular/plural
+        "Mushroom Stew", "mushroom stew", // long singular/plural
         Material.MUSHROOM_SOUP,
         (short) 0,
         i -> ItemUtils.countStacksMatching(i, ItemUtils.SOUP_PREDICATE)

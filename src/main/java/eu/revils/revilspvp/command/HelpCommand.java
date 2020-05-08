@@ -19,36 +19,33 @@ import java.util.List;
 public final class HelpCommand {
 
     private static final List<String> HELP_MESSAGE_HEADER = ImmutableList.of(
-        ChatColor.GOLD + RevilsPvPLang.LONG_LINE,
-        "§6§lPractice Help",
-        ChatColor.GOLD + RevilsPvPLang.LONG_LINE,
-        ""
+        ChatColor.GRAY + RevilsPvPLang.LONG_LINE
     );
 
     private static final List<String> HELP_MESSAGE_LOBBY = ImmutableList.of(
         "§6Common Commands:",
-        "§e/duel <player> §7- Challenge a player to a duel",
-        "§e/party invite <player> §7- Invite a player to a party",
+        " §7▪ §e/duel <player> §7- Challenge a player to a duel",
+        " §7▪ §e/party invite <player> §7- Invite a player to a party",
         "",
         "§6Other Commands:",
-        "§e/party help §7- Information on party commands",
-        "§e/report <player> <reason> §7- Report a player for violating the rules",
-        "§e/request <message> §7- Request assistance from a staff member"
+        " §7▪ §e/party help §7- Information on party commands",
+        " §7▪ §e/report <player> <reason> §7- Report a player for violating the rules",
+        " §7▪ §e/request <message> §7- Request assistance from a staff member"
     );
 
     private static final List<String> HELP_MESSAGE_MATCH = ImmutableList.of(
         "§6Common Commands:",
-        "§e/spectate <player> §7- Spectate a player in a match",
-        "§e/report <player> <reason> §7- Report a player for violating the rules",
-        "§e/request <message> §7- Request assistance from a staff member"
+        " §7▪ §e/spectate <player> §7- Spectate a player in a match",
+        " §7▪ §e/report <player> <reason> §7- Report a player for violating the rules",
+        " §7▪ §e/request <message> §7- Request assistance from a staff member"
     );
 
     private static final List<String> HELP_MESSAGE_FOOTER = ImmutableList.of(
         "",
         "§6Server Information:",
-        RevilsPvP.getInstance().getDominantColor() == ChatColor.YELLOW ? "§eOfficial Discord §7- §6revils.eu/discord" : "§eOfficial Discord §7- §6revils.eu/discord",
-        RevilsPvP.getInstance().getDominantColor() == ChatColor.YELLOW ? "§eStore §7- §6revils.eu/store" : "§eStore §7- §6revils.eu/store",
-        ChatColor.DARK_PURPLE + RevilsPvPLang.LONG_LINE
+        RevilsPvP.getInstance().getDominantColor() == ChatColor.YELLOW ? " §7▪ §eOfficial Discord §7- §6Revils.eu/discord" : "§eOfficial Discord §7- §6revils.eu/discord",
+        RevilsPvP.getInstance().getDominantColor() == ChatColor.YELLOW ? " §7▪ §eStore §7- §6Revils.eu/store" : "§eStore §7- §6revils.eu/store",
+        ChatColor.GRAY + RevilsPvPLang.LONG_LINE
     );
 
     @Command(names = {"help", "?", "halp", "helpme"}, permission = "")

@@ -11,6 +11,7 @@ import eu.revils.revilspvp.util.InventoryUtils;
 import eu.revils.revilspvp.util.PatchedPlayerUtils;
 import eu.revils.revilspvp.util.VisibilityUtils;
 
+import net.frozenorb.qlib.nametag.FrozenNametagHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -54,8 +55,8 @@ public final class LobbyHandler {
     private void returnToLobbySkipItemSlot(Player player) {
         player.teleport(getLobbyLocation());
 
-        RevilsPvP.getInstance().nametagEngine.reloadPlayer(player);
-        RevilsPvP.getInstance().nametagEngine.reloadOthersFor(player);
+        FrozenNametagHandler.reloadPlayer(player);
+        FrozenNametagHandler.reloadOthersFor(player);
 
         VisibilityUtils.updateVisibility(player);
         PatchedPlayerUtils.resetInventory(player, GameMode.SURVIVAL, true);

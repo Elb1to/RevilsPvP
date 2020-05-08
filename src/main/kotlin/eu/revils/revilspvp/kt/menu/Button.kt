@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
 import java.util.stream.Collectors
 
-abstract class Button {
+abstract class Button() {
 
     companion object {
         val BAR = "&7&m${StringUtils.repeat("-", 32)}"

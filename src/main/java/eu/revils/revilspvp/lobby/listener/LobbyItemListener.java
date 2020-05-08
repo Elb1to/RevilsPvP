@@ -8,6 +8,9 @@ import eu.revils.revilspvp.lobby.LobbyItems;
 import eu.revils.revilspvp.match.Match;
 import eu.revils.revilspvp.match.MatchHandler;
 import eu.revils.revilspvp.match.MatchState;
+import eu.revils.revilspvp.party.command.PartyCreateCommand;
+import eu.revils.revilspvp.setting.command.SettingsCommand;
+import eu.revils.revilspvp.setting.menu.SettingsMenu;
 import eu.revils.revilspvp.util.ItemListener;
 import eu.revils.revilspvp.validation.RevilsPvPValidation;
 import eu.revils.revilspvp.lobby.menu.SpectateMenu;
@@ -30,12 +33,11 @@ public final class LobbyItemListener extends ItemListener {
 
     public LobbyItemListener(LobbyHandler lobbyHandler) {
         addHandler(LobbyItems.MANAGE_ITEM, p -> {
-            // even though we don't shouldn't need to do this
-            // we do anyway because of the sensitivity of the manage
-            // menu.
-            if (p.hasPermission("revilspvp.admin")) {
-                ManageCommand.manage(p);
-            }
+            PartyCreateCommand.partyCreate(p);
+        });
+
+        addHandler(LobbyItems.PLAYER_SETTINGS, p -> {
+            SettingsCommand.settings(p);
         });
 
         addHandler(LobbyItems.DISABLE_SPEC_MODE_ITEM, player -> {
@@ -85,10 +87,13 @@ public final class LobbyItemListener extends ItemListener {
                 canUseRandomSpecItem.put(player.getUniqueId(), System.currentTimeMillis() + 3_000L);
             }
         });
-
-        /*addHandler(LobbyItems.PLAYER_STATISTICS, player -> {
+        addHandler(LobbyItems.PLAYER_STATISTICS, player -> {
             new StatisticsMenu().openMenu(player);
-        });*/
+        });
+
+        addHandler(LobbyItems.PLAYER_SETTINGS, player -> {
+            new SettingsMenu().openMenu(player);
+        });
 
         addHandler(LobbyItems.UNFOLLOW_ITEM, UnfollowCommand::unfollow);
     }

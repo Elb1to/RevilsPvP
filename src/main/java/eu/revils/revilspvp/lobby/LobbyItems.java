@@ -20,18 +20,23 @@ public final class LobbyItems {
     public static final ItemStack SPECTATE_MENU_ITEM = new ItemStack(Material.PAPER);
     public static final ItemStack ENABLE_SPEC_MODE_ITEM = new ItemStack(Material.REDSTONE_TORCH_ON);
     public static final ItemStack DISABLE_SPEC_MODE_ITEM = new ItemStack(Material.LEVER);
-    public static final ItemStack MANAGE_ITEM = new ItemStack(Material.ANVIL);
+    public static final ItemStack MANAGE_ITEM = new ItemStack(Material.NAME_TAG);
+    public static final ItemStack PLAYER_SETTINGS = new ItemStack(Material.REDSTONE_COMPARATOR);
     public static final ItemStack UNFOLLOW_ITEM = new ItemStack(Material.INK_SACK, 1, DyeColor.RED.getDyeData());
-    //public static final ItemStack PLAYER_STATISTICS = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
+    public static final ItemStack PLAYER_STATISTICS = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
+
+
 
     static {
-        ItemUtils.setDisplayName(SPECTATE_RANDOM_ITEM, BLUE.toString() + BOLD + "» " + YELLOW + BOLD + "Spectate Random Match" + BLUE.toString() + BOLD + " «");
-        ItemUtils.setDisplayName(SPECTATE_MENU_ITEM, BLUE.toString() + BOLD + "» " + GREEN + BOLD + "Spectate Menu" + BLUE.toString() + BOLD + " «");
-        ItemUtils.setDisplayName(ENABLE_SPEC_MODE_ITEM, BLUE.toString() + BOLD + "» " + AQUA + BOLD + "Enable Spectator Mode" + BLUE.toString() + BOLD + " «");
-        ItemUtils.setDisplayName(DISABLE_SPEC_MODE_ITEM, BLUE.toString() + BOLD + "» " + AQUA + BOLD + "Disable Spectator Mode" + BLUE.toString() + BOLD + " «");
-        ItemUtils.setDisplayName(MANAGE_ITEM, BLUE.toString() + BOLD + "» " + RED + BOLD + "Manage RevilsPvP" + BLUE.toString() + BOLD + " «");
-        ItemUtils.setDisplayName(UNFOLLOW_ITEM, BLUE.toString() + BOLD + "» " + RED + BOLD + "Stop Following" + BLUE.toString() + BOLD + " «");
-        //ItemUtils.setDisplayName(PLAYER_STATISTICS, BLUE.toString() + BOLD + "» " + LIGHT_PURPLE + BOLD + "Statistics" +  BLUE.toString() + BOLD + " «");
+        ItemUtils.setDisplayName(SPECTATE_RANDOM_ITEM, GOLD + "Spectate Random Match" + GRAY + " (Right-Click)");
+        ItemUtils.setDisplayName(SPECTATE_MENU_ITEM, GREEN + "Spectate Menu" + GRAY + " (Right-Click)");
+        ItemUtils.setDisplayName(ENABLE_SPEC_MODE_ITEM, GREEN + "Enable Spectator Mode" + GRAY + " (Right-Click)");
+        ItemUtils.setDisplayName(DISABLE_SPEC_MODE_ITEM, RED + "Disable Spectator Mode" + GRAY + " (Right-Click)");
+        ItemUtils.setDisplayName(MANAGE_ITEM, LIGHT_PURPLE + "Create a Party" + GRAY + " (Right-Click)");
+        ItemUtils.setDisplayName(PLAYER_SETTINGS, YELLOW + "Settings" + GRAY + " (Right-Click)");
+        ItemUtils.setDisplayName(UNFOLLOW_ITEM, RED + "Stop Following" + GRAY + " (Right-Click)");
+        ItemUtils.setDisplayName(PLAYER_STATISTICS, BLUE + "Statistics" + GRAY + " (Right-Click)");
+
     }
 
 }

@@ -72,7 +72,7 @@ public final class QueueItemListener extends ItemListener {
                 new CustomSelectKitTypeMenu(kitType -> {
                     queueHandler.joinQueue(player, kitType, ranked);
                     player.closeInventory();
-                }, ranked ? selectionAdditionRanked : selectionAdditionUnranked, ChatColor.BLUE + "" + ChatColor.BOLD + "Join " + (ranked ? "Ranked" : "Unranked") + " Queue...", ranked).openMenu(player);
+                }, ranked ? selectionAdditionRanked : selectionAdditionUnranked, ChatColor.DARK_GRAY + "Join " + (ranked ? "Ranked" : "Unranked") + " Queue...", ranked).openMenu(player);
             }
         };
     }
@@ -123,22 +123,22 @@ public final class QueueItemListener extends ItemListener {
                 Math.max(1, Math.min(64, ranked ? inQueueRanked + inFightsRanked : inQueueUnranked + inFightsUnranked)),
                 ranked ?  ImmutableList.of(
                         ChatColor.WHITE + " ",
-                        ChatColor.AQUA + "" + BOLD + ChatColor.UNDERLINE + "Ranked:",
-                        ChatColor.GREEN + "  In fights: " + ChatColor.WHITE + inFightsRanked,
-                        ChatColor.GREEN + "  In queue: " + ChatColor.WHITE + inQueueRanked,
+                        ChatColor.AQUA + "" + BOLD + ChatColor.UNDERLINE + "Ranked" + ChatColor.GRAY + ":",
+                        ChatColor.GREEN + " &7▪ &fIn fights: " + ChatColor.GREEN + inFightsRanked,
+                        ChatColor.GREEN + " &7▪ &fIn queue: " + ChatColor.GREEN + inQueueRanked,
                         ChatColor.WHITE + " ",
-                        ChatColor.AQUA + "" + BOLD + "Unranked:",
-                        ChatColor.GREEN + "  In fights: " + ChatColor.WHITE + inFightsUnranked,
-                        ChatColor.GREEN + "  In queue: " + ChatColor.WHITE + inQueueUnranked) :
+                        ChatColor.AQUA + "" + BOLD + ChatColor.UNDERLINE + "Unranked" + ChatColor.GRAY + ":",
+                        ChatColor.GREEN + " &7▪ &fIn fights&7: " + ChatColor.GREEN + inFightsUnranked,
+                        ChatColor.GREEN + " &7▪ &fIn queue&7: " + ChatColor.GREEN + inQueueUnranked) :
                 ImmutableList.of(
                         ChatColor.WHITE + " ",
-                        ChatColor.AQUA + "" + BOLD + "Ranked:",
-                        ChatColor.GREEN + "  In fights: " + ChatColor.WHITE + inFightsRanked,
-                        ChatColor.GREEN + "  In queue: " + ChatColor.WHITE + inQueueRanked,
+                        ChatColor.AQUA + "" + BOLD + ChatColor.UNDERLINE + "Ranked" + ChatColor.GRAY + ":",
+                        ChatColor.GREEN + " &7▪ &fIn fights: " + ChatColor.GREEN + inFightsRanked,
+                        ChatColor.GREEN + " &7▪ &fIn queue: " + ChatColor.GREEN + inQueueRanked,
                         ChatColor.AQUA + " ",
-                        ChatColor.AQUA + "" + BOLD + ChatColor.UNDERLINE + "Unranked:",
-                        ChatColor.GREEN + "  In fights: " + ChatColor.WHITE + inFightsUnranked,
-                        ChatColor.GREEN + "  In queue: " + ChatColor.WHITE + inQueueUnranked
+                        ChatColor.AQUA + "" + BOLD + ChatColor.UNDERLINE + "Unranked" + ChatColor.GRAY + ":",
+                        ChatColor.GREEN + " &7▪ &fIn fights&7: " + ChatColor.GREEN + inFightsUnranked,
+                        ChatColor.GREEN + " &7▪ &fIn queue&7: " + ChatColor.GREEN + inQueueUnranked
 
                 )
             );

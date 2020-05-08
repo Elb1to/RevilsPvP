@@ -21,14 +21,11 @@ import eu.revils.revilspvp.kt.menu.ButtonListeners;
 import eu.revils.revilspvp.kt.protocol.InventoryAdapter;
 import eu.revils.revilspvp.kt.protocol.LagCheck;
 import eu.revils.revilspvp.kt.protocol.PingAdapter;
-import eu.revils.revilspvp.kt.tab.TabAdapter;
 import eu.revils.revilspvp.kt.uuid.RedisUUIDCache;
 import eu.revils.revilspvp.kt.redis.RedisCredentials;
 import eu.revils.revilspvp.kt.command.CommandHandler;
-import eu.revils.revilspvp.kt.nametag.NametagEngine;
 import eu.revils.revilspvp.kt.redis.Redis;
-import eu.revils.revilspvp.kt.scoreboard.ScoreboardEngine;
-import eu.revils.revilspvp.kt.tab.TabEngine;
+
 import eu.revils.revilspvp.kt.util.serialization.*;
 import eu.revils.revilspvp.kt.uuid.UUIDCache;
 import eu.revils.revilspvp.kt.visibility.VisibilityEngine;
@@ -37,6 +34,10 @@ import eu.revils.revilspvp.pvpclasses.PvPClassHandler;
 import eu.revils.revilspvp.tournament.TournamentHandler;
 import eu.revils.revilspvp.util.event.HalfHourEvent;
 import eu.revils.revilspvp.util.event.HourEvent;
+import net.frozenorb.qlib.nametag.FrozenNametagHandler;
+import net.frozenorb.qlib.scoreboard.FrozenScoreboardHandler;
+import net.frozenorb.qlib.tab.FrozenTabHandler;
+import net.frozenorb.qlib.tab.TabAdapter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -63,8 +64,6 @@ import eu.revils.revilspvp.kittype.KitTypeJsonAdapter;
 import eu.revils.revilspvp.kittype.KitTypeParameterType;
 import eu.revils.revilspvp.listener.BasicPreventionListener;
 import eu.revils.revilspvp.listener.BowHealthListener;
-import eu.revils.revilspvp.listener.ChatFormatListener;
-import eu.revils.revilspvp.listener.ChatToggleListener;
 import eu.revils.revilspvp.listener.NightModeListener;
 import eu.revils.revilspvp.listener.PearlCooldownListener;
 import eu.revils.revilspvp.listener.RankedMatchQualificationListener;
@@ -123,9 +122,6 @@ public final class RevilsPvP extends JavaPlugin {
     @Getter private TournamentHandler tournamentHandler;
     @Getter public Redis redis;
     @Getter public CommandHandler commandHandler;
-    @Getter public ScoreboardEngine scoreboardEngine;
-    @Getter public TabEngine tabEngine;
-    @Getter public NametagEngine nametagEngine;
     @Getter public VisibilityEngine visibilityEngine;
     @Getter public UUIDCache uuidCache;
     @Getter private ChatColor dominantColor = ChatColor.GOLD;
@@ -133,7 +129,7 @@ public final class RevilsPvP extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        SpigotConfig.onlyCustomTab = true;
+        //SpigotConfig.onlyCustomTab = true;
         instance = this;
         saveDefaultConfig();
 
@@ -149,17 +145,9 @@ public final class RevilsPvP extends JavaPlugin {
         commandHandler.registerAll(this);
         commandHandler.registerParameterType(KitType.class, new KitTypeParameterType());
 
-        scoreboardEngine = new ScoreboardEngine();
-        scoreboardEngine.load();
-        scoreboardEngine.setConfiguration(RevilsPvPScoreboardConfiguration.create());
 
-        tabEngine = new TabEngine();
-        tabEngine.load();
-        tabEngine.setLayoutProvider(new RevilsPvPLayoutProvider());
 
-        nametagEngine = new NametagEngine();
-        nametagEngine.load();
-        nametagEngine.registerProvider(new RevilsPvPNametagProvider());
+
 
         visibilityEngine = new VisibilityEngine();
         visibilityEngine.load();
@@ -197,14 +185,17 @@ public final class RevilsPvP extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new BasicPreventionListener(), this);
         getServer().getPluginManager().registerEvents(new BowHealthListener(), this);
-        getServer().getPluginManager().registerEvents(new ChatFormatListener(), this);
-        getServer().getPluginManager().registerEvents(new ChatToggleListener(), this);
         getServer().getPluginManager().registerEvents(new NightModeListener(), this);
         getServer().getPluginManager().registerEvents(new PearlCooldownListener(), this);
         getServer().getPluginManager().registerEvents(new RankedMatchQualificationListener(), this);
         getServer().getPluginManager().registerEvents(new TabCompleteListener(), this);
         getServer().getPluginManager().registerEvents(new StatisticsHandler(), this);
         getServer().getPluginManager().registerEvents(new EventListeners(), this);
+
+        FrozenTabHandler.setLayoutProvider(new RevilsPvPLayoutProvider());
+        FrozenScoreboardHandler.setConfiguration(RevilsPvPScoreboardConfiguration.create());
+        FrozenNametagHandler.registerProvider(new RevilsPvPNametagProvider());
+
 
         // menu api
         getServer().getPluginManager().registerEvents(new ButtonListeners(), this);

@@ -3,12 +3,12 @@ package eu.revils.revilspvp.nametag;
 import eu.revils.revilspvp.RevilsPvP;
 import eu.revils.revilspvp.follow.FollowHandler;
 import eu.revils.revilspvp.pvpclasses.pvpclasses.ArcherClass;
-import eu.revils.revilspvp.kt.nametag.NametagInfo;
-import eu.revils.revilspvp.kt.nametag.NametagProvider;
 import eu.revils.revilspvp.match.Match;
 import eu.revils.revilspvp.match.MatchHandler;
 import eu.revils.revilspvp.match.MatchTeam;
 
+import net.frozenorb.qlib.nametag.NametagInfo;
+import net.frozenorb.qlib.nametag.NametagProvider;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 

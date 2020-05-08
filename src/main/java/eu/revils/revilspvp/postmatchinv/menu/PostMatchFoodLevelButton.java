@@ -20,7 +20,7 @@ final class PostMatchFoodLevelButton extends Button {
 
     @Override
     public String getName(Player player) {
-        return ChatColor.GREEN.toString() + foodLevel + "/20 Hunger";
+        return ChatColor.GOLD.toString() + foodLevel + "/20 Hunger";
     }
 
     @Override

@@ -37,15 +37,13 @@ public final class PartyInfoCommand {
         String members = Joiner.on(", ").join(PatchedPlayerUtils.mapToNames(party.getMembers()));
 
         sender.sendMessage(ChatColor.GRAY + RevilsPvPLang.LONG_LINE);
-        sender.sendMessage(ChatColor.YELLOW + "Leader: " + ChatColor.GOLD + leaderName);
-        sender.sendMessage(ChatColor.YELLOW + "Members " + ChatColor.GOLD + "(" + memberCount + ")" + ChatColor.YELLOW + ": " + ChatColor.GRAY + members);
 
         switch (party.getAccessRestriction()) {
             case PUBLIC:
-                sender.sendMessage(ChatColor.YELLOW + "Privacy: " + ChatColor.GREEN + "Open");
+                sender.sendMessage(ChatColor.GREEN + "Your Party " + ChatColor.GOLD + "[" + ChatColor.RED + "Open" + ChatColor.GRAY + " - " + ChatColor.WHITE + party.getMembers().size() + ChatColor.GRAY + "/" + ChatColor.WHITE + "30" + ChatColor.GOLD + "]");
                 break;
             case INVITE_ONLY:
-                sender.sendMessage(ChatColor.YELLOW + "Privacy: " + ChatColor.GOLD + "Invite-Only");
+                sender.sendMessage(ChatColor.GREEN + "Your Party " + ChatColor.GOLD + "[" + ChatColor.RED + "Invite-Only" + ChatColor.GRAY + " - " + ChatColor.WHITE + party.getMembers().size() + ChatColor.GRAY + "/" + ChatColor.WHITE + "30" + ChatColor.GOLD + "]");
                 break;
             case PASSWORD:
                 // leader can see password by hovering
@@ -54,14 +52,13 @@ public final class PartyInfoCommand {
                     BaseComponent[] passwordComponent = { new TextComponent(party.getPassword()) };
 
                     // Privacy: Password Protected [Hover for password]
-                    ComponentBuilder builder = new ComponentBuilder("Privacy: ").color(ChatColor.YELLOW);
+                    ComponentBuilder builder = new ComponentBuilder(ChatColor.GREEN + "Your Party " + ChatColor.GOLD + "[").color(ChatColor.YELLOW);
                     builder.append("Password Protected ").color(ChatColor.RED);
-                    builder.append("[Hover for password]").color(ChatColor.GRAY);
+                    builder.append("[Hover to Show]" + ChatColor.GRAY + " - " + ChatColor.WHITE + party.getMembers().size() + ChatColor.GRAY + "/" + ChatColor.WHITE + "30" + ChatColor.GOLD + "]").color(ChatColor.GRAY);
                     builder.event(new HoverEvent(showText, passwordComponent));
 
                     sender.spigot().sendMessage(builder.create());
                 } else {
-                    sender.sendMessage(ChatColor.YELLOW + "Privacy: " + ChatColor.RED + "Password Protected");
                 }
 
                 break;
@@ -69,6 +66,8 @@ public final class PartyInfoCommand {
                 break;
         }
 
+        sender.sendMessage(ChatColor.GRAY + " ▪ " + ChatColor.YELLOW + "Leader" + ChatColor.GRAY + ": " + ChatColor.GOLD + leaderName);
+        sender.sendMessage(ChatColor.GRAY + " ▪ " + ChatColor.YELLOW + "Members " + ChatColor.GRAY + "(" + memberCount + ")" + ChatColor.GRAY + ": " + ChatColor.GOLD + members);
         sender.sendMessage(ChatColor.GRAY + RevilsPvPLang.LONG_LINE);
     }
 

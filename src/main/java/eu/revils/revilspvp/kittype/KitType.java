@@ -146,9 +146,8 @@ public final class KitType {
 
     /**
      * Determines the knockback profile the kit will use for matches.
-
-    @Getter @Setter private String knockbackProfile;
      */
+    @Getter @Setter private String knockbackProfile;
 
     public static KitType byId(String id) {
         for (KitType kitType : allTypes) {

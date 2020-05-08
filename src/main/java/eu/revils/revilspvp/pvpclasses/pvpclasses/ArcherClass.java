@@ -7,6 +7,7 @@ import eu.revils.revilspvp.kt.util.TimeUtils;
 import eu.revils.revilspvp.match.MatchTeam;
 import eu.revils.revilspvp.pvpclasses.PvPClass;
 import eu.revils.revilspvp.pvpclasses.PvPClassHandler;
+import net.frozenorb.qlib.nametag.FrozenNametagHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -133,12 +134,12 @@ public class ArcherClass extends PvPClass {
                 getMarkedBy().putIfAbsent(shooter.getName(), new HashSet<>());
                 getMarkedBy().get(shooter.getName()).add(new Pair<>(player.getName(), System.currentTimeMillis() + (MARK_SECONDS * 1000)));
 
-                RevilsPvP.getInstance().nametagEngine.reloadPlayer(player);
+                FrozenNametagHandler.reloadPlayer(player);
 
                 new BukkitRunnable() {
 
                     public void run() {
-                        RevilsPvP.getInstance().nametagEngine.reloadPlayer(player);
+                        FrozenNametagHandler.reloadPlayer(player);
                     }
 
                 }.runTaskLater(RevilsPvP.getInstance(), (MARK_SECONDS * 20) + 5);

@@ -16,12 +16,12 @@ public final class SilentCommand {
             sender.removeMetadata("ModMode", RevilsPvP.getInstance());
             sender.removeMetadata("invisible", RevilsPvP.getInstance());
 
-            sender.sendMessage(ChatColor.RED + "Silent mode disabled.");
+            sender.sendMessage(ChatColor.RED + "Silent mode has been disabled.");
         } else {
             sender.setMetadata("ModMode", new FixedMetadataValue(RevilsPvP.getInstance(), true));
             sender.setMetadata("invisible", new FixedMetadataValue(RevilsPvP.getInstance(), true));
             
-            sender.sendMessage(ChatColor.GREEN + "Silent mode enabled.");
+            sender.sendMessage(ChatColor.GREEN + "Silent mode has been enabled.");
         }
 
         VisibilityUtils.updateVisibility(sender);

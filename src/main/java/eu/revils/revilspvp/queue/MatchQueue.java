@@ -113,11 +113,11 @@ public final class MatchQueue {
             if (ranked) {
                 EloHandler eloHandler = RevilsPvP.getInstance().getEloHandler();
 
-                teamAElo = " (" + eloHandler.getElo(teamA.getAliveMembers(), kitType) + " Elo)";
-                teamBElo = " (" + eloHandler.getElo(teamB.getAliveMembers(), kitType) + " Elo)";
+                teamAElo = " (" + eloHandler.getElo(teamA.getAliveMembers(), kitType) + " ELO)";
+                teamBElo = " (" + eloHandler.getElo(teamB.getAliveMembers(), kitType) + " ELO)";
             }
 
-            String foundStart = ChatColor.YELLOW.toString() + ChatColor.BOLD + "Match found!" + ChatColor.YELLOW + " Opponent: " + ChatColor.AQUA;
+            String foundStart = ChatColor.YELLOW + "Match found against: " + ChatColor.AQUA;
 
             teamA.messageAlive(foundStart + Joiner.on(", ").join(PatchedPlayerUtils.mapToNames(teamB.getAllMembers())) + teamBElo);
             teamB.messageAlive(foundStart + Joiner.on(", ").join(PatchedPlayerUtils.mapToNames(teamA.getAllMembers())) + teamAElo);

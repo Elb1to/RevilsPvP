@@ -39,20 +39,20 @@ final class SpectateButton extends Button {
         MatchTeam teamB = match.getTeams().get(1);
 
         if (match.isRanked()) {
-            description.add(ChatColor.GREEN + "Ranked");
+            description.add(ChatColor.GRAY + " ▪ " + ChatColor.WHITE + "Mode" + ChatColor.GRAY + ": " + ChatColor.GREEN + "Ranked");
         } else {
-            description.add(ChatColor.GRAY + "Unranked");
+            description.add(ChatColor.GRAY + " ▪ " + ChatColor.WHITE + "Mode" + ChatColor.GRAY + ": " + ChatColor.GREEN + "Unranked");
         }
 
         description.add("");
-        description.add(ChatColor.YELLOW + "Kit: " + ChatColor.WHITE + match.getKitType().getDisplayName());
-        description.add(ChatColor.YELLOW + "Arena: " + ChatColor.WHITE + match.getArena().getSchematic());
+        description.add(ChatColor.GRAY + " ▪ " + ChatColor.WHITE + "Kit" + ChatColor.GRAY + ": " + ChatColor.GREEN + match.getKitType().getDisplayName());
+        description.add(ChatColor.GRAY + " ▪ " + ChatColor.WHITE + "Arena" + ChatColor.GRAY + ": " + ChatColor.GREEN + match.getArena().getSchematic());
 
         List<UUID> spectators = new ArrayList<>(match.getSpectators());
         // don't count actual players and players in silent mode.
         spectators.removeIf(uuid -> Bukkit.getPlayer(uuid) != null && Bukkit.getPlayer(uuid).hasMetadata("ModMode") || match.getPreviousTeam(uuid) != null);
 
-        description.add(ChatColor.YELLOW + "Spectators: " + ChatColor.WHITE + spectators.size());
+        description.add(ChatColor.GRAY + " ▪ " + ChatColor.WHITE + "Spectators" + ChatColor.GRAY + ": " + ChatColor.GREEN + spectators.size());
 
         if (teamA.getAliveMembers().size() != 1 || teamB.getAliveMembers().size() != 1) {
             description.add("");
@@ -61,7 +61,7 @@ final class SpectateButton extends Button {
                 description.add(ChatColor.AQUA + RevilsPvP.getInstance().getUuidCache().name(member));
             }
 
-            description.add(ChatColor.YELLOW + "   vs.");
+            description.add(ChatColor.YELLOW + " vs ");
 
             for (UUID member : teamB.getAliveMembers()) {
                 description.add(ChatColor.AQUA + RevilsPvP.getInstance().getUuidCache().name(member));
@@ -69,7 +69,7 @@ final class SpectateButton extends Button {
         }
 
         description.add("");
-        description.add(ChatColor.GREEN + "» Click to spectate «");
+        description.add(ChatColor.YELLOW.toString() + ChatColor.UNDERLINE + "Left-Click" + ChatColor.YELLOW + " to spectate this match.");
 
         return description;
     }

@@ -9,6 +9,7 @@ import com.qrakn.morpheus.game.bukkit.event.PlayerQuitGameEvent;
 import eu.revils.revilspvp.RevilsPvP;
 import eu.revils.revilspvp.morpheus.menu.EventsMenu;
 import eu.revils.revilspvp.util.VisibilityUtils;
+import net.frozenorb.qlib.nametag.FrozenNametagHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -46,8 +47,8 @@ public class EventListeners implements Listener {
         if (event.getTo() == GameState.ENDED) {
             RevilsPvP.getInstance().getArenaHandler().releaseArena(game.getArena());
             for (Player player : game.getPlayers()) {
-                RevilsPvP.getInstance().nametagEngine.reloadPlayer(player);
-                RevilsPvP.getInstance().nametagEngine.reloadOthersFor(player);
+                FrozenNametagHandler.reloadPlayer(player);
+                FrozenNametagHandler.reloadOthersFor(player);
                 VisibilityUtils.updateVisibility(player);
                 RevilsPvP.getInstance().getLobbyHandler().returnToLobby(player);
             }
@@ -56,8 +57,8 @@ public class EventListeners implements Listener {
 
     @EventHandler
     public void onPlayerJoinGameEvent(PlayerJoinGameEvent event) {
-        RevilsPvP.getInstance().nametagEngine.reloadPlayer(event.getPlayer());
-        RevilsPvP.getInstance().nametagEngine.reloadOthersFor(event.getPlayer());
+        FrozenNametagHandler.reloadPlayer(event.getPlayer());
+        FrozenNametagHandler.reloadOthersFor(event.getPlayer());
         for (Player player : event.getGame().getPlayers()) {
             VisibilityUtils.updateVisibility(player);
         }
@@ -65,15 +66,15 @@ public class EventListeners implements Listener {
 
     @EventHandler
     public void onPlayerQuitGameEvent(PlayerQuitGameEvent event) {
-        RevilsPvP.getInstance().nametagEngine.reloadPlayer(event.getPlayer());
-        RevilsPvP.getInstance().nametagEngine.reloadOthersFor(event.getPlayer());
+        FrozenNametagHandler.reloadPlayer(event.getPlayer());
+        FrozenNametagHandler.reloadOthersFor(event.getPlayer());
         RevilsPvP.getInstance().getLobbyHandler().returnToLobby(event.getPlayer());
     }
 
     @EventHandler
     public void onPlayerGameInteractionEvent(PlayerGameInteractionEvent event) {
-        RevilsPvP.getInstance().nametagEngine.reloadPlayer(event.getPlayer());
-        RevilsPvP.getInstance().nametagEngine.reloadOthersFor(event.getPlayer());
+        FrozenNametagHandler.reloadPlayer(event.getPlayer());
+        FrozenNametagHandler.reloadOthersFor(event.getPlayer());
         VisibilityUtils.updateVisibility(event.getPlayer());
     }
 

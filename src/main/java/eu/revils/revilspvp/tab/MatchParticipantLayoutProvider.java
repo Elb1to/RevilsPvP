@@ -1,18 +1,13 @@
 package eu.revils.revilspvp.tab;
 
 import eu.revils.revilspvp.RevilsPvP;
+import eu.revils.revilspvp.kt.tab.TabLayout;
 import eu.revils.revilspvp.match.Match;
 import eu.revils.revilspvp.match.MatchTeam;
-import eu.revils.revilspvp.kt.tab.TabLayout;
-
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.BiConsumer;
 
 final class MatchParticipantLayoutProvider implements BiConsumer<Player, TabLayout> {
@@ -71,7 +66,7 @@ final class MatchParticipantLayoutProvider implements BiConsumer<Player, TabLayo
                 // + color differently
                 for (UUID teamMember : ourTeam.getAllMembers()) {
                     if (ourTeam.isAlive(teamMember)) {
-                        aliveLines.put(ChatColor.GREEN + RevilsPvP.getInstance().getUuidCache().name(teamMember),  RevilsPvPLayoutProvider.getPingOrDefault(teamMember));
+                        aliveLines.put(ChatColor.GREEN + RevilsPvP.getInstance().getUuidCache().name(teamMember), RevilsPvPLayoutProvider.getPingOrDefault(teamMember));
                     } else {
                         deadLines.put("&7&m" + RevilsPvP.getInstance().getUuidCache().name(teamMember), RevilsPvPLayoutProvider.getPingOrDefault(teamMember));
                     }

@@ -55,7 +55,7 @@ final class KitTypeButton extends Button {
         }
 
         description.add("");
-        description.add(ChatColor.YELLOW + "Click here to select " + ChatColor.YELLOW + ChatColor.BOLD + kitType.getDisplayName() + ChatColor.YELLOW + ".");
+        description.add(ChatColor.YELLOW.toString() + ChatColor.UNDERLINE + "Left-Click" + ChatColor.YELLOW + " to select " + ChatColor.GOLD + ChatColor.BOLD + kitType.getDisplayName() + ChatColor.YELLOW + " kit.");
 
         return description;
     }

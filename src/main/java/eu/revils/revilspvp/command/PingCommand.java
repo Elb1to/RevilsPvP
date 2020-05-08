@@ -19,7 +19,7 @@ public class PingCommand {
     public static void ping(Player sender, @Param(name = "target", defaultValue = "self") Player target) {
         int ping = PlayerUtils.getPing(target);
 
-        sender.sendMessage(target.getDisplayName() + ChatColor.YELLOW + "'s Ping: " + ChatColor.GREEN + ping + "ms");
+        sender.sendMessage(target.getDisplayName() + ChatColor.YELLOW + "'s Ping" + ChatColor.GRAY + ": " + ChatColor.GREEN + ping + "ms");
 
         if (sender.getName().equalsIgnoreCase(target.getName())) {
             Match match = RevilsPvP.getInstance().getMatchHandler().getMatchPlaying(sender);
@@ -30,7 +30,7 @@ public class PingCommand {
 
                         if (otherPlayer != null && !otherPlayer.equals(sender)) {
                             int otherPing = PlayerUtils.getPing(otherPlayer);
-                            sender.sendMessage(otherPlayer.getDisplayName() + ChatColor.YELLOW + "'s Ping: " + ChatColor.GREEN + otherPing + "ms");
+                            sender.sendMessage(otherPlayer.getDisplayName() + ChatColor.YELLOW + "'s Ping" + ChatColor.GRAY + ": " + ChatColor.GREEN + otherPing + "ms");
                         }
                     }
                 }

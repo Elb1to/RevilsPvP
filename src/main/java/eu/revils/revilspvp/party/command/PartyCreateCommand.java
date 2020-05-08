@@ -14,12 +14,12 @@ public final class PartyCreateCommand {
         PartyHandler partyHandler = RevilsPvP.getInstance().getPartyHandler();
 
         if (partyHandler.hasParty(sender)) {
-            sender.sendMessage(ChatColor.RED + "You are already in a party.");
+            sender.sendMessage(ChatColor.BLUE + "[Party] " + ChatColor.RED + "You are already in a party.");
             return;
         }
 
         partyHandler.getOrCreateParty(sender);
-        sender.sendMessage(ChatColor.YELLOW + "Created a new party.");
+        sender.sendMessage(ChatColor.BLUE + "[Party] " + ChatColor.GREEN + "You have created a new party.");
     }
 
 }

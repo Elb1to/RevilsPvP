@@ -74,7 +74,7 @@ public class TournamentHandler implements Listener {
         }
 
         Bukkit.broadcastMessage("");
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7A &c&ltournament&7 has started. Type &5/join&7 to play. (0/" + (teamSize < 3 ? teamSize * requiredTeams : requiredTeams) + ")"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&9[Tournament] &eA &6&ltournament&e has started. Type &d/join&e to play. &7(0/" + (teamSize < 3 ? teamSize * requiredTeams : requiredTeams) + ")"));
         Bukkit.broadcastMessage("");
 
         Tournament tournament;
@@ -171,7 +171,7 @@ public class TournamentHandler implements Listener {
         }
 
         sender.sendMessage(RevilsPvPLang.LONG_LINE);
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Live &cTournament &7Fights"));
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eLive &6Tournament &eFights"));
         sender.sendMessage("");
         List<Match> ongoingMatches = instance.getTournament().getMatches().stream().filter(m -> m.getState() != MatchState.TERMINATED).collect(Collectors.toList());
 
@@ -180,9 +180,9 @@ public class TournamentHandler implements Listener {
             MatchTeam secondTeam = match.getTeams().get(1);
 
             if (firstTeam.getAllMembers().size() == 1) {
-                sender.sendMessage("  " + ChatColor.GRAY + "» " + ChatColor.LIGHT_PURPLE + RevilsPvP.getInstance().uuidCache.name(firstTeam.getFirstMember()) + ChatColor.GRAY + " vs " + ChatColor.LIGHT_PURPLE + RevilsPvP.getInstance().uuidCache.name(secondTeam.getFirstMember()));
+                sender.sendMessage("  " + ChatColor.YELLOW + "» " + ChatColor.GOLD + RevilsPvP.getInstance().uuidCache.name(firstTeam.getFirstMember()) + ChatColor.YELLOW + " vs " + ChatColor.GOLD + RevilsPvP.getInstance().uuidCache.name(secondTeam.getFirstMember()));
             } else {
-                sender.sendMessage("  " + ChatColor.GRAY + "» " + ChatColor.LIGHT_PURPLE + RevilsPvP.getInstance().uuidCache.name(firstTeam.getFirstMember()) + ChatColor.GRAY + "'s team vs " + ChatColor.LIGHT_PURPLE + RevilsPvP.getInstance().uuidCache.name(secondTeam.getFirstMember()) + ChatColor.GRAY + "'s team");
+                sender.sendMessage("  " + ChatColor.YELLOW + "» " + ChatColor.GOLD + RevilsPvP.getInstance().uuidCache.name(firstTeam.getFirstMember()) + ChatColor.YELLOW + "'s team vs " + ChatColor.GOLD + RevilsPvP.getInstance().uuidCache.name(secondTeam.getFirstMember()) + ChatColor.YELLOW + "'s team");
             }
         }
         sender.sendMessage(RevilsPvPLang.LONG_LINE);
@@ -195,9 +195,7 @@ public class TournamentHandler implements Listener {
             return;
         }
 
-        Bukkit.broadcastMessage("");
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7The &c&ltournament&7 was &ccancelled."));
-        Bukkit.broadcastMessage("");
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&c&lThe tournament was cancelled by a staff member."));
         instance.setTournament(null);
     }
 

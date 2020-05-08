@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import eu.revils.revilspvp.RevilsPvP;
 import eu.revils.revilspvp.elo.EloHandler;
 import eu.revils.revilspvp.kittype.KitType;
-import eu.revils.revilspvp.kt.menu.Button;
+import net.frozenorb.qlib.menu.Button;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -13,11 +13,11 @@ import java.util.List;
 
 public class PlayerButton extends Button {
 
-    private static EloHandler eloHandler = RevilsPvP.getInstance().getEloHandler();
+    private EloHandler eloHandler = RevilsPvP.getInstance().getEloHandler();
 
     @Override
     public String getName(Player player) {
-        return getColoredName(player) + ChatColor.WHITE + ChatColor.BOLD + " | "  + ChatColor.WHITE + "Statistics";
+        return ChatColor.GOLD + getColoredName(player) + ChatColor.GRAY + " : "  + ChatColor.GOLD + "Statistics";
     }
 
     @Override

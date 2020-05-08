@@ -13,10 +13,10 @@ public final class BuildCommand {
     public static void silent(Player sender) {
         if (sender.hasMetadata("Build")) {
             sender.removeMetadata("Build", RevilsPvP.getInstance());
-            sender.sendMessage(ChatColor.RED + "Build mode disabled.");
+            sender.sendMessage(ChatColor.RED + "Build mode has been disabled.");
         } else {
             sender.setMetadata("Build", new FixedMetadataValue(RevilsPvP.getInstance(), true));
-            sender.sendMessage(ChatColor.GREEN + "Build mode enabled.");
+            sender.sendMessage(ChatColor.GREEN + "Build mode has been enabled.");
         }
     }
 

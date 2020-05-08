@@ -103,7 +103,7 @@ public final class DuelCommand {
 
         if (alreadySentInvite != null) {
             if (alreadySentInvite.getKitType() == kitType) {
-                sender.sendMessage(ChatColor.YELLOW + "You have already invited " + ChatColor.AQUA + target.getName() + ChatColor.YELLOW + " to a " + kitType.getColoredDisplayName() + ChatColor.YELLOW + " duel.");
+                sender.sendMessage(ChatColor.RED + "You have already invited " + target.getName() + " to a " + kitType.getColoredDisplayName() + " duel.");
                 return;
             } else {
                 // if an invite was already sent (with a different kit type)
@@ -112,10 +112,10 @@ public final class DuelCommand {
             }
         }
 
-        target.sendMessage(ChatColor.AQUA + sender.getName() + ChatColor.YELLOW + " has sent you a " + kitType.getColoredDisplayName() + ChatColor.YELLOW + " duel.");
+        target.sendMessage(ChatColor.BLUE + "[Duel] " + ChatColor.AQUA + sender.getName() + ChatColor.YELLOW + " has sent you a " + kitType.getColoredDisplayName() + ChatColor.YELLOW + " duel.");
         target.spigot().sendMessage(createInviteNotification(sender.getName()));
 
-        sender.sendMessage(ChatColor.YELLOW + "Successfully sent a " + kitType.getColoredDisplayName() + ChatColor.YELLOW + " duel invite to " + ChatColor.AQUA + target.getName() + ChatColor.YELLOW + ".");
+        sender.sendMessage(ChatColor.BLUE + "[Duel] " + ChatColor.YELLOW + "Successfully sent a " + kitType.getColoredDisplayName() + ChatColor.YELLOW + " duel invite to " + ChatColor.AQUA + target.getName() + ChatColor.YELLOW + ".");
         duelHandler.insertInvite(new PlayerDuelInvite(sender, target, kitType));
     }
 
@@ -139,7 +139,7 @@ public final class DuelCommand {
 
         if (alreadySentInvite != null) {
             if (alreadySentInvite.getKitType() == kitType) {
-                sender.sendMessage(ChatColor.YELLOW + "You have already invited " + ChatColor.AQUA + targetPartyLeader + "'s party" + ChatColor.YELLOW + " to a " + kitType.getColoredDisplayName() + ChatColor.YELLOW + " duel.");
+                sender.sendMessage(ChatColor.BLUE + "[Duel] " + ChatColor.YELLOW + "You have already invited " + ChatColor.AQUA + targetPartyLeader + "'s party" + ChatColor.YELLOW + " to a " + kitType.getColoredDisplayName() + ChatColor.YELLOW + " duel.");
                 return;
             } else {
                 // if an invite was already sent (with a different kit type)
@@ -148,10 +148,10 @@ public final class DuelCommand {
             }
         }
 
-        targetParty.message(ChatColor.AQUA + sender.getName() + "'s Party (" + senderParty.getMembers().size() + ")" + ChatColor.YELLOW + " has sent you a " + kitType.getColoredDisplayName() + ChatColor.YELLOW + " duel.");
+        targetParty.message(ChatColor.BLUE + "[Duel] " + ChatColor.AQUA + sender.getName() + "'s Party (" + senderParty.getMembers().size() + ")" + ChatColor.YELLOW + " has sent you a " + kitType.getColoredDisplayName() + ChatColor.YELLOW + " duel.");
         Bukkit.getPlayer(targetParty.getLeader()).spigot().sendMessage(createInviteNotification(sender.getName()));
 
-        sender.sendMessage(ChatColor.YELLOW + "Successfully sent a " + kitType.getColoredDisplayName() + ChatColor.YELLOW + " duel invite to " + ChatColor.AQUA + targetPartyLeader + "'s party" + ChatColor.YELLOW + ".");
+        sender.sendMessage(ChatColor.BLUE + "[Duel] " + ChatColor.YELLOW + "Successfully sent a " + kitType.getColoredDisplayName() + ChatColor.YELLOW + " duel invite to " + ChatColor.AQUA + targetPartyLeader + "'s party" + ChatColor.YELLOW + ".");
         duelHandler.insertInvite(new PartyDuelInvite(senderParty, targetParty, kitType));
     }
 

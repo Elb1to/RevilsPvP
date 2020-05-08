@@ -14,7 +14,7 @@ public final class GoldenHeadListener implements Listener {
 
     private static final int HEALING_POINTS = 8; // half hearts, so 4 hearts
     private static final ItemStack GOLDEN_HEAD = ItemBuilder.of(Material.GOLDEN_APPLE)
-            .name("&6&lGolden Head")
+            .name("&6Golden Head")
             .build();
 
     @EventHandler

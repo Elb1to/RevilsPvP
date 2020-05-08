@@ -17,6 +17,7 @@ import eu.revils.revilspvp.lobby.LobbyHandler;
 import eu.revils.revilspvp.postmatchinv.PostMatchPlayer;
 import eu.revils.revilspvp.setting.Setting;
 import eu.revils.revilspvp.setting.SettingHandler;
+import net.frozenorb.qlib.nametag.FrozenNametagHandler;
 import net.hylist.command.KnockbackCommand;
 import net.hylist.knockback.KnockbackProfile;
 import org.bson.Document;
@@ -181,9 +182,9 @@ public final class Match {
                 
                 player.teleport(spawn);
                 player.getInventory().setHeldItemSlot(0);
-                
-                RevilsPvP.getInstance().nametagEngine.reloadPlayer(player);
-                RevilsPvP.getInstance().nametagEngine.reloadOthersFor(player);
+
+                FrozenNametagHandler.reloadPlayer(player);
+                FrozenNametagHandler.reloadOthersFor(player);
                 
                 updateVisiblity.add(player);
                 PatchedPlayerUtils.resetInventory(player, GameMode.SURVIVAL);
@@ -217,7 +218,7 @@ public final class Match {
                     playSoundAll(Sound.NOTE_PLING, 1F);
                 }
                 
-                messageAll(ChatColor.YELLOW.toString() + countdownTimeRemaining + "...");
+                messageAll(ChatColor.YELLOW.toString() + "Duel starting in " + ChatColor.AQUA + countdownTimeRemaining + ChatColor.YELLOW + " second(s)..");
                 countdownTimeRemaining--;
             }
             
@@ -228,7 +229,7 @@ public final class Match {
         state = MatchState.IN_PROGRESS;
         startedAt = new Date();
         
-        messageAll(ChatColor.GREEN + "Match started.");
+        messageAll(ChatColor.YELLOW + "The duel has started, good luck!");
         Bukkit.getPluginManager().callEvent(new MatchStartEvent(this));
     }
     
@@ -254,7 +255,7 @@ public final class Match {
                 }
             }
             
-            messageAll(ChatColor.RED + "Match ended.");
+            messageAll(ChatColor.RED + "The duel has ended.");
             Bukkit.getPluginManager().callEvent(new MatchEndEvent(this));
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -408,9 +409,9 @@ public final class Match {
             // so players don't accidentally click the item to stop spectating
             player.getInventory().setHeldItemSlot(0);
         }
-        
-        RevilsPvP.getInstance().nametagEngine.reloadPlayer(player);
-        RevilsPvP.getInstance().nametagEngine.reloadOthersFor(player);
+
+        FrozenNametagHandler.reloadPlayer(player);
+        FrozenNametagHandler.reloadOthersFor(player);
         
         VisibilityUtils.updateVisibility(player);
         PatchedPlayerUtils.resetInventory(player, GameMode.CREATIVE, true); // because we're about to reset their inv on a timer

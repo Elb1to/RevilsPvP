@@ -28,7 +28,7 @@ public class SelectArenaMenu extends Menu {
     Set<String> enabledSchematics = Sets.newHashSet();
     
     public SelectArenaMenu(KitType kitType, Callback<Set<String>> mapsCallback, String title) {
-        super(ChatColor.BLUE.toString() + ChatColor.BOLD + title);
+        super(ChatColor.DARK_GRAY + title);
 
         this.kitType = kitType;
         this.mapsCallback = mapsCallback;

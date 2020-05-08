@@ -21,7 +21,7 @@ import java.util.Map;
 
 public final class ManageCommand {
 
-    @Command(names = {"manage"}, permission = "revilspvp.admin")
+    @Command(names = {"manage"}, permission = "op")
     public static void manage(Player sender) {
         new ManageMenu().openMenu(sender);
     }

@@ -53,14 +53,10 @@ public final class MatchUtils {
             }
 
             // fill inventory with spectator items
-            if (canViewInventories) {
-                inventory.setItem(0, SpectatorItems.VIEW_INVENTORY_ITEM);
-            }
-
             if (settingHandler.getSetting(player, Setting.VIEW_OTHER_SPECTATORS)) {
-                inventory.setItem(1, SpectatorItems.HIDE_SPECTATORS_ITEM);
+                inventory.setItem(7, SpectatorItems.HIDE_SPECTATORS_ITEM);
             } else {
-                inventory.setItem(1, SpectatorItems.SHOW_SPECTATORS_ITEM);
+                inventory.setItem(7, SpectatorItems.SHOW_SPECTATORS_ITEM);
             }
 
             // this bit is correct; see SpectatorItems file for more
@@ -70,8 +66,8 @@ public final class MatchUtils {
                 inventory.setItem(8, SpectatorItems.RETURN_TO_LOBBY_ITEM);
 
                 if (!followHandler.getFollowing(player).isPresent()) {
-                    inventory.setItem(3, LobbyItems.SPECTATE_RANDOM_ITEM);
-                    inventory.setItem(2, LobbyItems.SPECTATE_MENU_ITEM);
+                    inventory.setItem(0, LobbyItems.SPECTATE_RANDOM_ITEM);
+                    inventory.setItem(1, LobbyItems.SPECTATE_MENU_ITEM);
                 }
             }
         }

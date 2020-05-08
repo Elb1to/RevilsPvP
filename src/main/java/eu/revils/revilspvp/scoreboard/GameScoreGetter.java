@@ -3,8 +3,9 @@ package eu.revils.revilspvp.scoreboard;
 import com.qrakn.morpheus.game.Game;
 import com.qrakn.morpheus.game.GameQueue;
 import org.bukkit.entity.Player;
+import net.frozenorb.qlib.util.LinkedList;
 
-import java.util.LinkedList;
+
 import java.util.function.BiConsumer;
 
 final class GameScoreGetter implements BiConsumer<Player, LinkedList<String>> {

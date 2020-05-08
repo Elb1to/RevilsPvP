@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
  */
 public final class SettingsCommand {
 
-    @Command(names = {"settings", "preferences", "prefs", "options"}, permission = "")
+    @Command(names = {"preferences", "prefs", "options"}, permission = "")
     public static void settings(Player sender) {
         new SettingsMenu().openMenu(sender);
     }

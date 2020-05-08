@@ -17,7 +17,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class PartyLang {
 
-    private static final TextComponent INVITE_PREFIX = new TextComponent("Invite > ");
+    private static final TextComponent INVITE_PREFIX = new TextComponent("[Party] ");
 
     private static final TextComponent INVITED_YOU_TO_JOIN = new TextComponent(" invited you to join. ");
 
@@ -25,8 +25,8 @@ public final class PartyLang {
     private static final TextComponent INFO_BUTTON = new TextComponent("[Info]");
 
     static {
-        INVITE_PREFIX.setColor(ChatColor.AQUA);
-        INVITE_PREFIX.setBold(true);
+        INVITE_PREFIX.setColor(ChatColor.BLUE);
+        INVITE_PREFIX.setBold(false);
 
         INVITED_YOU_TO_JOIN.setColor(ChatColor.YELLOW);
 

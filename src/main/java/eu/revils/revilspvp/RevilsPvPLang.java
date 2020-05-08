@@ -42,7 +42,7 @@ public final class RevilsPvPLang {
      * @see HelpCommand
      * @see PartyHelpCommand
      */
-    public static final String LONG_LINE = ChatColor.STRIKETHROUGH + StringUtils.repeat("-", 53);
+    public static final String LONG_LINE = ChatColor.STRIKETHROUGH + StringUtils.repeat("-", 48);
 
     /**
      * `&cYou are not in a party.` - Self explanatory

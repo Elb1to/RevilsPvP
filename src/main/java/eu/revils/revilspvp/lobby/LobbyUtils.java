@@ -102,9 +102,9 @@ public final class LobbyUtils {
         player.setAllowFlight(player.getGameMode() == GameMode.CREATIVE || specMode);
 
         if (specMode || followingSomeone) {
-            inventory.setItem(5, LobbyItems.SPECTATE_MENU_ITEM);
-            inventory.setItem(3, LobbyItems.SPECTATE_RANDOM_ITEM);
-            inventory.setItem(4, LobbyItems.DISABLE_SPEC_MODE_ITEM);
+            inventory.setItem(1, LobbyItems.SPECTATE_MENU_ITEM);
+            inventory.setItem(0, LobbyItems.SPECTATE_RANDOM_ITEM);
+            inventory.setItem(8, LobbyItems.DISABLE_SPEC_MODE_ITEM);
 
             if (followingSomeone) {
                 inventory.setItem(8, LobbyItems.UNFOLLOW_ITEM);
@@ -130,31 +130,23 @@ public final class LobbyUtils {
             }
 
             if (queueHandler.isQueuedRanked(player.getUniqueId())) {
-                inventory.setItem(0, QueueItems.LEAVE_SOLO_UNRANKED_QUEUE_ITEM);
+                inventory.setItem(8, QueueItems.LEAVE_SOLO_UNRANKED_QUEUE_ITEM);
             } else if (queueHandler.isQueuedUnranked(player.getUniqueId())) {
-                inventory.setItem(0, QueueItems.LEAVE_SOLO_UNRANKED_QUEUE_ITEM);
+                inventory.setItem(8, QueueItems.LEAVE_SOLO_UNRANKED_QUEUE_ITEM);
             } else {
                 inventory.setItem(0, QueueItems.JOIN_SOLO_UNRANKED_QUEUE_ITEM);
                 inventory.setItem(1, QueueItems.JOIN_SOLO_RANKED_QUEUE_ITEM);
-                inventory.setItem(4, LobbyItems.ENABLE_SPEC_MODE_ITEM);
-                //inventory.setItem(5, EventItems.EVENTS_ITEM);
-                //inventory.setItem(6, LobbyItems.PLAYER_STATISTICS);
+                inventory.setItem(4, LobbyItems.MANAGE_ITEM);
+                inventory.setItem(6, LobbyItems.PLAYER_STATISTICS);
+                inventory.setItem(7, LobbyItems.PLAYER_SETTINGS);
                 inventory.setItem(8, KitItems.OPEN_EDITOR_ITEM);
 
                 ItemStack eventItem = EventItems.getEventItem();
 
-                if (player.hasPermission("revilspvp.admin")) {
                     if (eventItem != null) {
                         inventory.setItem(6, eventItem);
-                    }
-                    inventory.setItem(7, LobbyItems.MANAGE_ITEM);
-                } else {
-                    if (eventItem != null) {
-                        inventory.setItem(7, eventItem);
                     }
                 }
             }
         }
     }
-
-}
