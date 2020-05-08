@@ -51,7 +51,6 @@ public final class MatchHandler {
         Bukkit.getPluginManager().registerEvents(new MatchDeathMessageListener(), RevilsPvP.getInstance());
         Bukkit.getPluginManager().registerEvents(new MatchDurationLimitListener(), RevilsPvP.getInstance());
         Bukkit.getPluginManager().registerEvents(new MatchEnderPearlDamageListener(), RevilsPvP.getInstance());
-        new MatchKnockbackProfileListener();
         Bukkit.getPluginManager().registerEvents(new MatchFreezeListener(), RevilsPvP.getInstance());
         Bukkit.getPluginManager().registerEvents(new MatchGeneralListener(), RevilsPvP.getInstance());
         Bukkit.getPluginManager().registerEvents(new MatchHardcoreHealingListener(), RevilsPvP.getInstance());
