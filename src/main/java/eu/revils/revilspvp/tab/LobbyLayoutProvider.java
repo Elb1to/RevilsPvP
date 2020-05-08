@@ -1,6 +1,5 @@
 package eu.revils.revilspvp.tab;
 
-
 import me.activated.core.plugin.AquaCoreAPI;
 import net.frozenorb.qlib.tab.TabLayout;
 import org.bukkit.Bukkit;
@@ -14,6 +13,12 @@ final class LobbyLayoutProvider implements BiConsumer<Player, TabLayout> {
 
     @Override
     public void accept(Player player, TabLayout tabLayout) {
+        tabLayout.set(1, 0, "&6&lRevils Network");
+
+        tabLayout.set(0, 1, "&7&m----------------");
+        tabLayout.set(1, 1, "&7&m----------------");
+        tabLayout.set(2, 1, "&7&m----------------");
+
         int x = 0;
         int y = 0;
 
@@ -28,5 +33,13 @@ final class LobbyLayoutProvider implements BiConsumer<Player, TabLayout> {
                 ++y;
             }
         }
+
+        tabLayout.set(0, 18, "&7&m----------------");
+        tabLayout.set(1, 18, "&7&m----------------");
+        tabLayout.set(2, 18, "&7&m----------------");
+
+        tabLayout.set(0, 19, "&7www.revils.eu");
+        tabLayout.set(1, 19, "&7ts.revils.eu");
+        tabLayout.set(2, 19, "&7store.revils.eu");
     }
 }
