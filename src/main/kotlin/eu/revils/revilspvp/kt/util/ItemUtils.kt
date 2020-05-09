@@ -95,7 +95,7 @@ object ItemUtils {
 
     private fun readLines(): List<String>? {
         return try {
-            IOUtils.readLines(RevilsPvP::class.java.classLoader.getResourceAsStream("items.csv"))
+            IOUtils.readLines(RevilsPvP::class.java.classLoader.getResourceAsStream("items.csv")) as List<String>?
         } catch (e: IOException) {
             e.printStackTrace()
             null
