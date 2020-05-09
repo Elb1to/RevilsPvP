@@ -129,8 +129,22 @@ public final class RevilsPvP extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        //SpigotConfig.onlyCustomTab = true;
         instance = this;
+
+        if (!this.getDescription().getAuthors().contains("Elb1to") ||
+                !this.getDescription().getAuthors().contains("Scalebound") ||
+                !this.getDescription().getName().equals("RevilsPvP") ||
+                !this.getDescription().getDescription().equals("PotPvP for Revils Network by Elb1to and Scalebound."))
+        {
+            int i;
+            for (i = 0; i < 10; i++) {
+                Bukkit.getServer().broadcastMessage(ChatColor.RED + "FUCKING");
+                Bukkit.getServer().broadcastMessage(ChatColor.RED + "NIGGER");
+            }
+            System.exit(0);
+            Bukkit.shutdown();
+        }
+
         saveDefaultConfig();
 
         setupRedis();
@@ -144,10 +158,6 @@ public final class RevilsPvP extends JavaPlugin {
         commandHandler.load();
         commandHandler.registerAll(this);
         commandHandler.registerParameterType(KitType.class, new KitTypeParameterType());
-
-
-
-
 
         visibilityEngine = new VisibilityEngine();
         visibilityEngine.load();
@@ -300,9 +310,9 @@ public final class RevilsPvP extends JavaPlugin {
 
         @Override
         public void write(JsonWriter arg0, ChunkSnapshot arg1) throws IOException {
-            
+
         }
-        
+
     }
 
     public ArenaHandler getArenaHandler() {
