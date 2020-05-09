@@ -1,6 +1,9 @@
 name: RevilsPvP
-author: Elb1to
-version: 1.5-SNAPSHOT
+authors:
+  - Elb1to
+  - Scalebound
+version: 2.1-SNAPSHOT
+description: PotPvP for Revils Network by Elb1to and Scalebound.
 main: eu.revils.revilspvp.RevilsPvP
 depend:
   - ProtocolLib
