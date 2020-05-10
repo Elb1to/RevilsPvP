@@ -11,7 +11,6 @@ public final class RevilsPvPLayoutProvider implements LayoutProvider {
     public TabLayout provide(Player player) {
         if (RevilsPvP.getInstance() == null) return TabLayout.create(player);
         TabLayout tabLayout = TabLayout.create(player);
-
         new LobbyLayoutProvider().accept(player, tabLayout);
 
         return tabLayout;
