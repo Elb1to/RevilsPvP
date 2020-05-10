@@ -5,6 +5,7 @@ import eu.revils.revilspvp.party.Party;
 import eu.revils.revilspvp.party.PartyHandler;
 import eu.revils.revilspvp.kt.command.Command;
 import eu.revils.revilspvp.kt.command.data.parameter.Param;
+import eu.revils.revilspvp.tournament.TournamentHandler;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -18,8 +19,9 @@ import java.util.UUID;
 
 public final class PartyInviteCommand {
 
-    @Command(names = {"party invite", "p invite", "t invite", "team invite", "invite", "inv", "party inv", "p inv", "t inv", "team invite", "f invite", "f inv"}, permission = "")
+    @Command(names = {"party invite", "p invite", "t invite", "team invite", "invite", "inv", "party inv", "p inv", "t inv", "team invite", "f invite", "f inv"})
     public static void partyInvite(Player sender, @Param(name = "player") Player target) {
+        TournamentHandler tournamentHandler = RevilsPvP.getInstance().getTournamentHandler();
         PartyHandler partyHandler = RevilsPvP.getInstance().getPartyHandler();
         Party party = partyHandler.getParty(sender);
 
@@ -41,6 +43,11 @@ public final class PartyInviteCommand {
 
             if (party.getInvite(target.getUniqueId()) != null) {
                 sender.sendMessage(ChatColor.RED + target.getName() + " already has a pending party invite.");
+                return;
+            }
+
+            if (party.getMembers().size() != tournamentHandler.getTournament().getRequiredPartySize() && tournamentHandler.isInTournament(party)) {
+                sender.sendMessage(ChatColor.RED + "Your party currently exceeds the required members amount for the tournament.");
                 return;
             }
         }

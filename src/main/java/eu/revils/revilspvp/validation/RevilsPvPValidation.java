@@ -10,6 +10,7 @@ import eu.revils.revilspvp.queue.QueueHandler;
 import eu.revils.revilspvp.setting.Setting;
 import eu.revils.revilspvp.setting.SettingHandler;
 
+import eu.revils.revilspvp.tournament.TournamentHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -85,6 +86,11 @@ public final class RevilsPvPValidation {
             return false;
         }
 
+        if (isInSilentMode(duelSentBy)) {
+            sender.sendMessage(CANNOT_DO_THIS_IN_SILENT_MODE);
+            return false;
+        }
+
         if (!isInLobby(sender)) {
             sender.sendMessage(CANNOT_DO_THIS_WHILE_NOT_IN_LOBBY);
             return false;
@@ -139,7 +145,7 @@ public final class RevilsPvPValidation {
             return false;
         }
 
-        if (isInTournament(sender)) {
+        if (isInTournament(sender) || (isInTournament(target))) {
             initiator.sendMessage(CANNOT_DO_THIS_WHILST_IN_TOURNAMENT);
             return false;
         }
@@ -165,11 +171,13 @@ public final class RevilsPvPValidation {
 
         return true;
     }
-    public static boolean canInviteParty(Player player, Party party){
+
+    public static boolean canInviteParty(Player player, Party party) {
         if (isInTournament(party)) {
             player.sendMessage(CANNOT_DO_THIS_WHILST_IN_TOURNAMENT);
             return false;
         }
+
         return true;
     }
 
@@ -196,6 +204,11 @@ public final class RevilsPvPValidation {
 
         if (isInTournament(party)) {
             player.sendMessage(TARGET_PARTY_IN_TOURNAMENT);
+            return false;
+        }
+
+        if (party.getMembers().size() >= Party.MAX_SIZE && !Bukkit.getPlayer(party.getLeader()).isOp()) {
+            player.sendMessage(TARGET_PARTY_REACHED_MAXIMUM_SIZE);
             return false;
         }
 
@@ -380,9 +393,8 @@ public final class RevilsPvPValidation {
     }
 
     private boolean isInTournament(Party party) {
-        return false;
-        /*TournamentHandler tournamentHandler = RevilsPvP.getInstance().getTournamentHandler();
-        return tournamentHandler.isInTournament(party);*/
+        TournamentHandler tournamentHandler = RevilsPvP.getInstance().getTournamentHandler();
+        return tournamentHandler.isInTournament(party);
     }
 
     private boolean isInSilentMode(Player player) {

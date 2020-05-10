@@ -154,6 +154,7 @@ public class TournamentHandler implements Listener {
             return;
         }
 
+        }
         if (RevilsPvP.getInstance().getQueueHandler().getQueueEntry(senderParty) != null) {
             sender.sendMessage(ChatColor.RED + "You can't join the tournament if your party is currently queued.");
             return;

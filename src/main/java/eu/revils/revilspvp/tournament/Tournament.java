@@ -135,13 +135,12 @@ public class Tournament {
     }
 
     private void checkActiveParties() {
-        Set<UUID> realParties = RevilsPvP.getInstance().getPartyHandler().getParties().stream().map(p -> p.getPartyId()).collect(Collectors.toSet());
+        Set<UUID> realParties = RevilsPvP.getInstance().getPartyHandler().getParties().stream().map(Party::getPartyId).collect(Collectors.toSet());
         Iterator<Party> activePartyIterator = activeParties.iterator();
         while (activePartyIterator.hasNext()) {
             Party activeParty = activePartyIterator.next();
             if (!realParties.contains(activeParty.getPartyId())) {
                 activePartyIterator.remove();
-
                 if (!lost.contains(activeParty)) {
                     lost.add(activeParty);
                 }
@@ -307,7 +306,6 @@ public class Tournament {
         message.tooltip(ChatColor.translateAlternateColorCodes('&', "&6&lCLICK &6to hide this message."));
         SettingHandler settingHandler = RevilsPvP.getInstance().getSettingHandler();
 
-
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (loserParty.isMember(player.getUniqueId()) || settingHandler.getSetting(player, Setting.SEE_TOURNAMENT_ELIMINATION_MESSAGES)) {
                 message.send(player);
@@ -315,7 +313,7 @@ public class Tournament {
         }
     }
 
-    @Command(names = { "djm" }, permission = "")
+    @Command(names = { "djm" })
     public static void joinMessages(Player sender) {
         boolean oldValue = RevilsPvP.getInstance().getSettingHandler().getSetting(sender, Setting.SEE_TOURNAMENT_JOIN_MESSAGE);
         if (!oldValue) {
@@ -327,7 +325,7 @@ public class Tournament {
         sender.sendMessage(ChatColor.YELLOW + "You have " + ChatColor.RED + "disabled" + ChatColor.YELLOW + " tournament join messages.");
     }
 
-    @Command(names = { "dem" }, permission = "")
+    @Command(names = { "dem" })
     public static void eliminationMessages(Player sender) {
         boolean oldValue = RevilsPvP.getInstance().getSettingHandler().getSetting(sender, Setting.SEE_TOURNAMENT_ELIMINATION_MESSAGES);
         if (!oldValue) {

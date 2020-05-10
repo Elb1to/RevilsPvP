@@ -166,9 +166,10 @@ public final class Party {
         if (members.contains(player.getUniqueId())) {
             return;
         }
-        if (!RevilsPvPValidation.canInviteParty(player, this)) {
+
+        /*if (!RevilsPvPValidation.canInviteParty(player, this)) {
             return;
-        }
+        }*/
 
         if (!RevilsPvPValidation.canJoinParty(player, this)) {
             return;
