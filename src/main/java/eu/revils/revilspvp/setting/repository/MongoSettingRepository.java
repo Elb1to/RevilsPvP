@@ -1,14 +1,11 @@
 package eu.revils.revilspvp.setting.repository;
 
 import com.google.common.collect.ImmutableMap;
-
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
-
 import eu.revils.revilspvp.RevilsPvP;
-import eu.revils.revilspvp.util.MongoUtils;
 import eu.revils.revilspvp.setting.Setting;
-
+import eu.revils.revilspvp.util.MongoUtils;
 import org.bson.Document;
 
 import java.io.IOException;

@@ -9,6 +9,7 @@ import java.util.UUID;
 public interface SettingRepository {
 
     Map<Setting, Boolean> loadSettings(UUID playerUuid) throws IOException;
+
     void saveSettings(UUID playerUuid, Map<Setting, Boolean> settings) throws IOException;
 
 }

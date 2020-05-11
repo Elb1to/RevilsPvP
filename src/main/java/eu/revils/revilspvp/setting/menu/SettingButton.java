@@ -1,12 +1,10 @@
 package eu.revils.revilspvp.setting.menu;
 
 import com.google.common.base.Preconditions;
-
 import eu.revils.revilspvp.RevilsPvP;
+import eu.revils.revilspvp.kt.menu.Button;
 import eu.revils.revilspvp.setting.Setting;
 import eu.revils.revilspvp.setting.SettingHandler;
-import eu.revils.revilspvp.kt.menu.Button;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

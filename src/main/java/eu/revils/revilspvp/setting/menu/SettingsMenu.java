@@ -1,9 +1,8 @@
 package eu.revils.revilspvp.setting.menu;
 
-import eu.revils.revilspvp.setting.Setting;
 import eu.revils.revilspvp.kt.menu.Button;
 import eu.revils.revilspvp.kt.menu.Menu;
-
+import eu.revils.revilspvp.setting.Setting;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
