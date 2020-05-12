@@ -142,13 +142,6 @@
         </dependency>
         <dependency>
             <groupId>net.mineaus.lunar</groupId>
-            <artifactId>LunarClient</artifactId>
-            <version>LATEST</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/LunarClient-Plugin-4c84083.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>net.mineaus.lunar</groupId>
             <artifactId>LunarClientAPI</artifactId>
             <version>LATEST</version>
             <scope>system</scope>
