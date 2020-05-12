@@ -92,7 +92,7 @@ public class TournamentHandler implements Listener {
         }.runTaskTimer(RevilsPvP.getInstance(), 60 * 20, 60 * 20);
     }
 
-    @Command(names = { "tournament join", "join", "jointournament" }, permission = "")
+    @Command(names = { "tournament join", "join", "jointournament" })
     public static void tournamentJoin(Player sender) {
 
         if (instance.getTournament() == null) {
@@ -154,7 +154,13 @@ public class TournamentHandler implements Listener {
             return;
         }
 
+        if (senderParty.getMembers().size() != instance.getTournament().getRequiredPartySize()) {
+            senderParty.disband();
+            sender.sendMessage(ChatColor.RED + "Your party exceeded the required members amount to join the tournament.");
+            sender.sendMessage(ChatColor.RED + "Your party has " + senderParty.getMembers().size() + " members, and the tournament requires only " + instance.getTournament().getRequiredPartySize() + " members.");
+            return;
         }
+
         if (RevilsPvP.getInstance().getQueueHandler().getQueueEntry(senderParty) != null) {
             sender.sendMessage(ChatColor.RED + "You can't join the tournament if your party is currently queued.");
             return;
@@ -164,7 +170,7 @@ public class TournamentHandler implements Listener {
         instance.getTournament().addParty(senderParty);
     }
 
-    @Command(names = { "tournament status", "tstatus", "status" }, permission = "")
+    @Command(names = { "tournament status", "tstatus", "status" })
     public static void tournamentStatus(CommandSender sender) {
         if (instance.getTournament() == null) {
             sender.sendMessage(ChatColor.RED + "There is no ongoing tournament to get the status of.");
