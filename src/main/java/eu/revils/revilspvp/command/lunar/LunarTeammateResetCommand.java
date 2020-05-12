@@ -19,6 +19,5 @@ public class LunarTeammateResetCommand {
         }
         assert sender != null;
         sender.sendMessage(ChatColor.RED + "You resetted your teams!");
-        sender.sendMessage(ChatColor.GRAY + ChatColor.ITALIC.toString() + "(testing)");
     }
 }
