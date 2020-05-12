@@ -41,7 +41,6 @@ public class EventTask extends BukkitRunnable {
                     player.getInventory().remove(Material.EMERALD);
                 }
             }
-
         }
     }
 }
