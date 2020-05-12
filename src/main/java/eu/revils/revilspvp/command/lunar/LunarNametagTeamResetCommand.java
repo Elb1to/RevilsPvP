@@ -20,6 +20,5 @@ public class LunarNametagTeamResetCommand {
         }
         assert sender != null;
         sender.sendMessage(ChatColor.RED + "You resetted the player nametags you added for yourself!");
-        sender.sendMessage(ChatColor.GRAY + ChatColor.ITALIC.toString() + "(testing)");
     }
 }
