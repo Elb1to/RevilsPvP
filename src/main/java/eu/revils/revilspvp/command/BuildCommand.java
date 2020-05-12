@@ -2,7 +2,6 @@ package eu.revils.revilspvp.command;
 
 import eu.revils.revilspvp.RevilsPvP;
 import eu.revils.revilspvp.kt.command.Command;
-
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
