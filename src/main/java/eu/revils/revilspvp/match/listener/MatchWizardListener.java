@@ -5,7 +5,6 @@ import eu.revils.revilspvp.match.Match;
 import eu.revils.revilspvp.match.MatchHandler;
 import eu.revils.revilspvp.match.MatchTeam;
 import eu.revils.revilspvp.util.FireworkEffectPlayer;
-
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
@@ -39,11 +38,7 @@ public final class MatchWizardListener implements Listener {
             return;
         }
 
-        FireworkEffect effect = FireworkEffect.builder()
-            .withColor(Color.BLUE)
-            .with(FireworkEffect.Type.BALL_LARGE)
-            .build();
-
+        FireworkEffect effect = FireworkEffect.builder().withColor(Color.BLUE).with(FireworkEffect.Type.BALL_LARGE).build();
         Snowball snowball = player.launchProjectile(Snowball.class);
         snowball.setVelocity(snowball.getVelocity().multiply(2));
 
@@ -61,12 +56,10 @@ public final class MatchWizardListener implements Listener {
                 if (snowball.isDead() || snowball.isOnGround()) {
                     for (Entity entity : snowball.getNearbyEntities(4, 4, 4)) {
                         MatchTeam entityTeam = match.getTeam(entity.getUniqueId());
-
                         if (entityTeam != null && !entityTeam.getAllMembers().contains(player.getUniqueId())) {
-                            entity.setVelocity(entity.getLocation().toVector().subtract(snowball.getLocation().toVector()).normalize().add(new Vector(0, 0.7, 0.0)));
+                            entity.setVelocity(entity.getLocation().toVector().subtract(snowball.getLocation().toVector()).normalize().add(new Vector(0, 0.7, 0)));
                         }
                     }
-
                     snowball.remove();
                     cancel();
                 } else {
@@ -77,7 +70,6 @@ public final class MatchWizardListener implements Listener {
                     }
                 }
             }
-
         }.runTaskTimer(RevilsPvP.getInstance(), 1L, 1L);
     }
 
