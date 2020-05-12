@@ -2,13 +2,13 @@ package eu.revils.revilspvp.nametag;
 
 import eu.revils.revilspvp.RevilsPvP;
 import eu.revils.revilspvp.follow.FollowHandler;
-import eu.revils.revilspvp.pvpclasses.pvpclasses.ArcherClass;
 import eu.revils.revilspvp.match.Match;
 import eu.revils.revilspvp.match.MatchHandler;
 import eu.revils.revilspvp.match.MatchTeam;
-
+import eu.revils.revilspvp.pvpclasses.pvpclasses.ArcherClass;
 import net.frozenorb.qlib.nametag.NametagInfo;
 import net.frozenorb.qlib.nametag.NametagProvider;
+import net.mineaus.lunar.api.LunarClientAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -27,6 +27,10 @@ public final class RevilsPvPNametagProvider extends NametagProvider {
         ChatColor prefixColor = getNameColor(toRefresh, refreshFor);
         return createNametag(prefixColor.toString(), "");
     }
+
+    /*private static String getPartyTeammate(Player lcAPIteam) {
+        LunarClientAPI.INSTANCE().getUserManager().getPlayerData(lcAPIteam.getUniqueId()).isLunarClient();
+    }*/
 
     public static ChatColor getNameColor(Player toRefresh, Player refreshFor) {
         MatchHandler matchHandler = RevilsPvP.getInstance().getMatchHandler();
