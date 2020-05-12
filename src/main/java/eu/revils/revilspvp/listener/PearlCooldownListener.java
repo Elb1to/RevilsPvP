@@ -1,10 +1,10 @@
 package eu.revils.revilspvp.listener;
 
 import eu.revils.revilspvp.RevilsPvP;
+import eu.revils.revilspvp.match.MatchTeam;
 import eu.revils.revilspvp.match.event.MatchCountdownStartEvent;
 import eu.revils.revilspvp.match.event.MatchTerminateEvent;
-import eu.revils.revilspvp.match.MatchTeam;
-
+import net.mineaus.lunar.api.LunarClientAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.EnderPearl;
@@ -40,6 +40,14 @@ public final class PearlCooldownListener implements Listener {
         Player shooter = (Player) pearl.getShooter();
 
         pearlCooldown.put(shooter.getUniqueId(), System.currentTimeMillis() + PEARL_COOLDOWN_MILLIS);
+
+        try {
+            if (shooter != null) {
+                LunarClientAPI.INSTANCE().sendCooldown(shooter, "EnderPearl", Material.ENDER_PEARL, PEARL_COOLDOWN_MILLIS);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // cannot be made a lambda because of cancel() usage
         new BukkitRunnable() {
