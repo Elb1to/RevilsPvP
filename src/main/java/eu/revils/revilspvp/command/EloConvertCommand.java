@@ -1,18 +1,17 @@
 package eu.revils.revilspvp.command;
 
-import java.io.IOException;
-import java.util.Map;
-
 import eu.revils.revilspvp.RevilsPvP;
+import eu.revils.revilspvp.elo.repository.EloRepository;
+import eu.revils.revilspvp.kittype.KitType;
+import eu.revils.revilspvp.kt.command.Command;
+import net.minecraft.util.com.google.common.collect.ImmutableSet;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
-import eu.revils.revilspvp.elo.repository.EloRepository;
-import eu.revils.revilspvp.kittype.KitType;
-import eu.revils.revilspvp.kt.command.Command;
-import net.minecraft.util.com.google.common.collect.ImmutableSet;
+import java.io.IOException;
+import java.util.Map;
 
 public final class EloConvertCommand {
 

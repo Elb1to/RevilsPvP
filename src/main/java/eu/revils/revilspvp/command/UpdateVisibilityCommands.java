@@ -1,8 +1,7 @@
 package eu.revils.revilspvp.command;
 
-import eu.revils.revilspvp.util.VisibilityUtils;
 import eu.revils.revilspvp.kt.command.Command;
-
+import eu.revils.revilspvp.util.VisibilityUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 

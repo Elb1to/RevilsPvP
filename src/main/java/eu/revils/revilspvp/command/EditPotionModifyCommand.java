@@ -2,7 +2,6 @@ package eu.revils.revilspvp.command;
 
 import eu.revils.revilspvp.kt.command.Command;
 import eu.revils.revilspvp.kt.command.data.parameter.Param;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -14,7 +13,7 @@ import org.bukkit.potion.PotionEffectType;
 public final class EditPotionModifyCommand {
 
     @Command(names = {"editPotion modify"}, permission = "op")
-    public static void editPotionModify(Player sender, @Param(name="effect") String effect, @Param(name="seconds") int seconds, @Param(name="amplifier") int amplifier) {
+    public static void editPotionModify(Player sender, @Param(name = "effect") String effect, @Param(name = "seconds") int seconds, @Param(name = "amplifier") int amplifier) {
         PotionEffectType effectType = PotionEffectType.getByName(effect.toUpperCase());
         ItemStack hand = sender.getItemInHand();
 

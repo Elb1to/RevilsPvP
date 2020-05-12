@@ -1,9 +1,7 @@
 package eu.revils.revilspvp.command;
 
 import com.google.common.collect.ImmutableList;
-
 import eu.revils.revilspvp.kt.command.Command;
-
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -13,9 +11,9 @@ import java.util.concurrent.ThreadLocalRandom;
 public final class ShowMeTheDoorCommand {
 
     private static final List<String> reasons = ImmutableList.of(
-        "Here's the door.",
-        "Go cry about it.",
-        "Later, skater!"
+            "Here's the door.",
+            "Go cry about it.",
+            "Later, skater!"
     );
 
     @Command(names = {"showmethedoor"}, permission = "")

@@ -1,13 +1,11 @@
 package eu.revils.revilspvp.kit.menu.editkit;
 
 import com.google.common.base.Preconditions;
-
 import eu.revils.revilspvp.RevilsPvP;
 import eu.revils.revilspvp.kit.Kit;
-import eu.revils.revilspvp.util.InventoryUtils;
 import eu.revils.revilspvp.kt.menu.Button;
 import eu.revils.revilspvp.kt.menu.Menu;
-
+import eu.revils.revilspvp.util.InventoryUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

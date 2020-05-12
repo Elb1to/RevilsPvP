@@ -2,21 +2,20 @@ package eu.revils.revilspvp.command;
 
 import eu.revils.revilspvp.RevilsPvP;
 import eu.revils.revilspvp.follow.FollowHandler;
-import eu.revils.revilspvp.party.PartyHandler;
+import eu.revils.revilspvp.kt.command.Command;
+import eu.revils.revilspvp.kt.command.data.parameter.Param;
 import eu.revils.revilspvp.match.Match;
 import eu.revils.revilspvp.match.MatchHandler;
 import eu.revils.revilspvp.match.MatchTeam;
+import eu.revils.revilspvp.party.PartyHandler;
 import eu.revils.revilspvp.queue.QueueHandler;
-import eu.revils.revilspvp.kt.command.Command;
-import eu.revils.revilspvp.kt.command.data.parameter.Param;
-
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public final class PStatusCommand {
 
     @Command(names = {"pstatus"}, permission = "op")
-    public static void pStatus(Player sender, @Param(name="target", defaultValue = "self") Player target) {
+    public static void pStatus(Player sender, @Param(name = "target", defaultValue = "self") Player target) {
         MatchHandler matchHandler = RevilsPvP.getInstance().getMatchHandler();
         QueueHandler queueHandler = RevilsPvP.getInstance().getQueueHandler();
         PartyHandler partyHandler = RevilsPvP.getInstance().getPartyHandler();
