@@ -73,7 +73,6 @@ class CommandHandler {
         commandMapField.setAccessible(true)
 
         if (commandMapField.get(Bukkit.getServer()) is ExtendedCommandMap) {
-
         }
 
         val oldCommandMap = commandMapField.get(Bukkit.getServer())
