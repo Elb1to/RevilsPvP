@@ -13,7 +13,7 @@ public final class LunarNametagTeamUpdateCommand {
 
         try {
             if (sender != null) {
-                LunarClientAPI.INSTANCE().updateNameTag(sender, target, ChatColor.GOLD + "TEST");
+                LunarClientAPI.INSTANCE().updateNameTag(sender, target, ChatColor.GOLD + ChatColor.ITALIC.toString() + ChatColor.BOLD + "Nitor is gay Eksdeee");
             }
         } catch (Exception e) {
             e.printStackTrace();
