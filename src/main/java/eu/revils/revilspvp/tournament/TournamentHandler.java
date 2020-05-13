@@ -178,7 +178,7 @@ public class TournamentHandler implements Listener {
         }
 
         sender.sendMessage(RevilsPvPLang.LONG_LINE);
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eLive &6Tournament &eFights"));
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b&lLive Tournament Fights&7:"));
         sender.sendMessage("");
         List<Match> ongoingMatches = instance.getTournament().getMatches().stream().filter(m -> m.getState() != MatchState.TERMINATED).collect(Collectors.toList());
 
@@ -187,9 +187,9 @@ public class TournamentHandler implements Listener {
             MatchTeam secondTeam = match.getTeams().get(1);
 
             if (firstTeam.getAllMembers().size() == 1) {
-                sender.sendMessage("  " + ChatColor.YELLOW + "» " + ChatColor.GOLD + RevilsPvP.getInstance().uuidCache.name(firstTeam.getFirstMember()) + ChatColor.YELLOW + " vs " + ChatColor.GOLD + RevilsPvP.getInstance().uuidCache.name(secondTeam.getFirstMember()));
+                sender.sendMessage("  " + ChatColor.GRAY + "▪ " + ChatColor.AQUA + RevilsPvP.getInstance().uuidCache.name(firstTeam.getFirstMember()) + ChatColor.YELLOW + " vs " + ChatColor.AQUA + RevilsPvP.getInstance().uuidCache.name(secondTeam.getFirstMember()));
             } else {
-                sender.sendMessage("  " + ChatColor.YELLOW + "» " + ChatColor.GOLD + RevilsPvP.getInstance().uuidCache.name(firstTeam.getFirstMember()) + ChatColor.YELLOW + "'s team vs " + ChatColor.GOLD + RevilsPvP.getInstance().uuidCache.name(secondTeam.getFirstMember()) + ChatColor.YELLOW + "'s team");
+                sender.sendMessage("  " + ChatColor.GRAY + "▪ " + ChatColor.AQUA + RevilsPvP.getInstance().uuidCache.name(firstTeam.getFirstMember()) + ChatColor.YELLOW + "'s Team vs " + ChatColor.AQUA + RevilsPvP.getInstance().uuidCache.name(secondTeam.getFirstMember()) + ChatColor.YELLOW + "'s Team");
             }
         }
         sender.sendMessage(RevilsPvPLang.LONG_LINE);

@@ -28,14 +28,14 @@ public final class LobbyItems {
 
 
     static {
-        ItemUtils.setDisplayName(SPECTATE_RANDOM_ITEM, GOLD + "Spectate Random Match" + GRAY + " (Right-Click)");
-        ItemUtils.setDisplayName(SPECTATE_MENU_ITEM, GREEN + "Spectate Menu" + GRAY + " (Right-Click)");
+        ItemUtils.setDisplayName(SPECTATE_RANDOM_ITEM, GREEN + "Spectate Random Match" + GRAY + " (Right-Click)");
+        ItemUtils.setDisplayName(SPECTATE_MENU_ITEM, LIGHT_PURPLE + "Spectate Menu" + GRAY + " (Right-Click)");
         ItemUtils.setDisplayName(ENABLE_SPEC_MODE_ITEM, GREEN + "Enable Spectator Mode" + GRAY + " (Right-Click)");
         ItemUtils.setDisplayName(DISABLE_SPEC_MODE_ITEM, RED + "Disable Spectator Mode" + GRAY + " (Right-Click)");
         ItemUtils.setDisplayName(MANAGE_ITEM, LIGHT_PURPLE + "Create a Party" + GRAY + " (Right-Click)");
         ItemUtils.setDisplayName(PLAYER_SETTINGS, YELLOW + "Settings" + GRAY + " (Right-Click)");
         ItemUtils.setDisplayName(UNFOLLOW_ITEM, RED + "Stop Following" + GRAY + " (Right-Click)");
-        ItemUtils.setDisplayName(PLAYER_STATISTICS, BLUE + "Statistics" + GRAY + " (Right-Click)");
+        ItemUtils.setDisplayName(PLAYER_STATISTICS, DARK_GREEN + "Leaderboards" + GRAY + " (Right-Click)");
 
     }
 

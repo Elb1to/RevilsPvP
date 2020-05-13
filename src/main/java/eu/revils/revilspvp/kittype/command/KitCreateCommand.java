@@ -20,7 +20,7 @@ public class KitCreateCommand {
 
 		KitType kitType = new KitType(id);
 		kitType.setDisplayName(id);
-		kitType.setDisplayColor(ChatColor.GOLD);
+		kitType.setDisplayColor(ChatColor.AQUA);
 		kitType.setIcon(new MaterialData(Material.DIAMOND_SWORD));
 		kitType.setSort(50);
 		kitType.saveAsync();

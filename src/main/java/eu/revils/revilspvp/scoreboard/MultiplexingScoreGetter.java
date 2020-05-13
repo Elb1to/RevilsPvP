@@ -54,7 +54,7 @@ final class MultiplexingScoreGetter implements ScoreGetter {
         if (!scores.isEmpty()) {
             scores.addFirst("&a&7&m----------------------");
             scores.add("");
-            scores.add("&eRevils.eu/discord");
+            scores.add("&7https://revils.eu/");
             scores.add("&f&7&m----------------------");
         }
     }

@@ -54,7 +54,7 @@ final class LobbyScoreGetter implements BiConsumer<Player, LinkedList<String>> {
                 if (targetEntry != null) {
                     MatchQueue queue = targetEntry.getQueue();
 
-                    scores.add("&6Target Queue&6:");
+                    scores.add("&bTarget Queue&6:");
                     scores.add(" &7▪ &e" + (queue.isRanked() ? "Ranked" : "Unranked") + " " + queue.getKitType().getDisplayName());
                 }
             }
@@ -68,13 +68,14 @@ final class LobbyScoreGetter implements BiConsumer<Player, LinkedList<String>> {
 
             scores.add("");
             scores.add("&fQueuing for:");
-            scores.add(ChatColor.GOLD.toString() + queue.getKitType().getDisplayColor() + (queue.isRanked() ? "Ranked" : "Unranked") + " " + queue.getKitType().getDisplayName());
+            scores.add(ChatColor.AQUA.toString() + (queue.isRanked() ? "Ranked" : "Unranked") + " " + queue.getKitType().getDisplayName());
 
             if (queue.isRanked()) {
                 int elo = eloHandler.getElo(entry.getMembers(), queue.getKitType());
                 int window = entry.getWaitSeconds() * QueueHandler.RANKED_WINDOW_GROWTH_PER_SECOND;
 
-                scores.add("&fRange&7: &6" + Math.max(0, elo - window) + " - " + (elo + window));
+                scores.add("&fSearching range:");
+                scores.add(ChatColor.AQUA.toString() + Math.max(0, elo - window) + " - " + (elo + window));
             }
         }
 
@@ -85,7 +86,7 @@ final class LobbyScoreGetter implements BiConsumer<Player, LinkedList<String>> {
         Tournament tournament = RevilsPvP.getInstance().getTournamentHandler().getTournament();
         if (tournament != null) {
             scores.add("");
-            scores.add("&6&lTournament&7:");
+            scores.add("&b&lTournament&7:");
 
             if (tournament.getStage() == Tournament.TournamentStage.WAITING_FOR_TEAMS) {
                 int teamSize = tournament.getRequiredPartySize();

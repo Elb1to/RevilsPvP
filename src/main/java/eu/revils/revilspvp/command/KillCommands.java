@@ -16,7 +16,7 @@ public final class KillCommands {
     @Command(names = {"kill"}, permission = "basic.kill")
     public static void kill(Player sender, @Param(name="target") Player target) {
         target.setHealth(0);
-        sender.sendMessage(target.getDisplayName() + ChatColor.GOLD + " has been killed.");
+        sender.sendMessage(ChatColor.RED + target.getDisplayName() + ChatColor.YELLOW + " has been killed.");
     }
 
 }

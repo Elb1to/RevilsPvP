@@ -13,30 +13,30 @@ import java.util.List;
 public enum Setting {
 
     SHOW_SCOREBOARD(
-            ChatColor.GOLD + "" + ChatColor.BOLD + "Match Scoreboard",
+            ChatColor.WHITE + "★ " + ChatColor.AQUA.toString() + ChatColor.BOLD + "Match Scoreboard" + ChatColor.WHITE + " ★",
             ImmutableList.of(
                     ChatColor.GRAY + " Toggles side scoreboard in-match"
             ),
             Material.ITEM_FRAME,
-            ChatColor.YELLOW + "Show match scoreboard",
-            ChatColor.YELLOW + "Hide match scoreboard",
+            ChatColor.GREEN + "Show match scoreboard",
+            ChatColor.RED + "Hide match scoreboard",
             true,
             null // no permission required
     ),
     SHOW_SPECTATOR_JOIN_MESSAGES(
-            ChatColor.GOLD + "" + ChatColor.BOLD + "Spectator Join Messages",
+            ChatColor.WHITE + "★ " + ChatColor.AQUA.toString() + ChatColor.BOLD + "Spectator Join Messages" + ChatColor.WHITE + " ★",
             ImmutableList.of(
                     ChatColor.GRAY + " Enable this to display",
                     ChatColor.GRAY + " messages as spectators join."
             ),
             Material.BONE,
-            ChatColor.YELLOW + "Show spectator join messages",
-            ChatColor.YELLOW + "Hide spectator join messages",
+            ChatColor.GREEN + "Show spectator join messages",
+            ChatColor.RED + "Hide spectator join messages",
             true,
             null // no permission required
     ),
     VIEW_OTHER_SPECTATORS(
-            ChatColor.GOLD.toString() + ChatColor.BOLD + "Other Spectators",
+            ChatColor.WHITE + "★ " + ChatColor.AQUA.toString() + ChatColor.BOLD + "Other Spectators" + ChatColor.WHITE + " ★",
             ImmutableList.of(
                     ChatColor.GRAY + " If enabled, you can see spectators",
                     ChatColor.GRAY + " in the same match as you.",
@@ -44,13 +44,13 @@ public enum Setting {
                     ChatColor.GRAY + " Disable to only see alive players in match."
             ),
             Material.GLASS_BOTTLE,
-            ChatColor.YELLOW + "Show other spectators",
-            ChatColor.YELLOW + "Hide other spectators",
+            ChatColor.GREEN + "Show other spectators",
+            ChatColor.RED + "Hide other spectators",
             true,
             null // no permission required
     ),
     ALLOW_SPECTATORS(
-            ChatColor.GOLD.toString() + ChatColor.BOLD + "Allow Spectators",
+            ChatColor.WHITE + "★ " + ChatColor.AQUA.toString() + ChatColor.BOLD + "Allow Spectators" + ChatColor.WHITE + " ★",
             ImmutableList.of(
                     ChatColor.GRAY + " If enabled, players can spectate your",
                     ChatColor.GRAY + " matches with /spectate.",
@@ -58,13 +58,13 @@ public enum Setting {
                     ChatColor.GRAY + " Disable to disallow match spectators."
             ),
             Material.REDSTONE_TORCH_ON,
-            ChatColor.YELLOW + "Let players spectate your matches",
-            ChatColor.YELLOW + "Don't let players spectate your matches",
+            ChatColor.GREEN + "Let players spectate your matches",
+            ChatColor.RED + "Don't let players spectate your matches",
             true,
             null // no permission required
     ),
     RECEIVE_DUELS(
-            ChatColor.GOLD.toString() + ChatColor.BOLD + "Duel Invites",
+            ChatColor.WHITE + "★ " + ChatColor.AQUA.toString() + ChatColor.BOLD + "Duel Invites" + ChatColor.WHITE + " ★",
             ImmutableList.of(
                     ChatColor.GRAY + " If enabled, you will be able to receive",
                     ChatColor.GRAY + " duels from other players or parties.",
@@ -72,13 +72,13 @@ public enum Setting {
                     ChatColor.GRAY + " Disable to not receive, but still send duels."
             ),
             Material.FIRE,
-            ChatColor.YELLOW + "Allow duel invites",
-            ChatColor.YELLOW + "Disallow duel invites",
+            ChatColor.GREEN + "Allow duel invites",
+            ChatColor.RED + "Disallow duel invites",
             true,
             null
     ),
     VIEW_OTHERS_LIGHTNING(
-            ChatColor.GOLD.toString() + ChatColor.BOLD + "Death Lightning",
+            ChatColor.WHITE + "★ " + ChatColor.AQUA.toString() + ChatColor.BOLD + "Death Lightning" + ChatColor.WHITE + " ★",
             ImmutableList.of(
                     ChatColor.GRAY + " If enabled, lightning will be visible",
                     ChatColor.GRAY + " when other players die.",
@@ -86,13 +86,13 @@ public enum Setting {
                     ChatColor.GRAY + " Disable to hide others lightning."
             ),
             Material.TORCH,
-            ChatColor.YELLOW + "Show other lightning",
-            ChatColor.YELLOW + "Hide other lightning",
+            ChatColor.GREEN + "Show other lightning",
+            ChatColor.RED + "Hide other lightning",
             true,
             null // no permission required
     ),
     NIGHT_MODE(
-            ChatColor.GOLD.toString() + ChatColor.BOLD + "Night Mode",
+            ChatColor.WHITE + "★ " + ChatColor.AQUA.toString() + ChatColor.BOLD + "Night Mode" + ChatColor.WHITE + " ★",
             ImmutableList.of(
                     ChatColor.GRAY + " If enabled, your player time will be",
                     ChatColor.GRAY + " changed to night time.",
@@ -106,7 +106,7 @@ public enum Setting {
             null // no permission required
     ),
     SEE_TOURNAMENT_JOIN_MESSAGE(
-            ChatColor.GOLD.toString() + ChatColor.BOLD + "Tournament Join Messages",
+            ChatColor.WHITE + "★ " + ChatColor.AQUA.toString() + ChatColor.BOLD + "Tournament Join Messages" + ChatColor.WHITE + " ★",
             ImmutableList.of(
                     ChatColor.GRAY + " If enabled, you will see messages",
                     ChatColor.GRAY + " when people join the tournament",
@@ -114,13 +114,13 @@ public enum Setting {
                     ChatColor.GRAY + " Disable to only see your own party join messages."
             ),
             Material.IRON_DOOR,
-            ChatColor.YELLOW + "Tournament join messages are shown",
-            ChatColor.YELLOW + "Tournament join messages are hidden",
+            ChatColor.GREEN + "Tournament join messages are shown",
+            ChatColor.RED + "Tournament join messages are hidden",
             true,
             null // no permission required
     ),
     SEE_TOURNAMENT_ELIMINATION_MESSAGES(
-            ChatColor.GOLD.toString() + ChatColor.BOLD + "Tournament Elimination Messages",
+            ChatColor.WHITE + "★ " + ChatColor.AQUA.toString() + ChatColor.BOLD + "Tournament Elimination Messages" + ChatColor.WHITE + " ★",
             ImmutableList.of(
                     ChatColor.GRAY + " If enabled, you will see messages when",
                     ChatColor.GRAY + " people are eliminated the tournament",
@@ -128,8 +128,8 @@ public enum Setting {
                     ChatColor.GRAY + " Disable to only see your own party elimination messages."
             ),
             Material.SKULL_ITEM,
-            ChatColor.YELLOW + "Tournament elimination messages are shown",
-            ChatColor.YELLOW + "Tournament elimination messages are hidden",
+            ChatColor.GREEN + "Tournament elimination messages are shown",
+            ChatColor.RED + "Tournament elimination messages are hidden",
             true,
             null // no permission required
     );

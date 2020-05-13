@@ -22,7 +22,7 @@ public final class MapCommand {
         }
 
         Arena arena = match.getArena();
-        sender.sendMessage(ChatColor.YELLOW + "Playing on copy " + ChatColor.GOLD + arena.getCopy() + ChatColor.YELLOW + " of " + ChatColor.GOLD + arena.getSchematic() + ChatColor.YELLOW + ".");
+        sender.sendMessage(ChatColor.YELLOW + "Playing on copy " + ChatColor.AQUA + arena.getCopy() + ChatColor.YELLOW + " of " + ChatColor.AQUA + arena.getSchematic() + ChatColor.YELLOW + ".");
     }
 
 }

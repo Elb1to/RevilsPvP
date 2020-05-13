@@ -69,7 +69,7 @@ final class SpectateButton extends Button {
         }
 
         description.add("");
-        description.add(ChatColor.YELLOW.toString() + ChatColor.UNDERLINE + "Left-Click" + ChatColor.YELLOW + " to spectate this match.");
+        description.add(ChatColor.YELLOW.toString() + ChatColor.UNDERLINE + "Left-Click" + ChatColor.YELLOW + " to spectate the match!");
 
         return description;
     }

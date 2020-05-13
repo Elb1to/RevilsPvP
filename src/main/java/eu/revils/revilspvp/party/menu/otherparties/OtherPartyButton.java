@@ -28,7 +28,7 @@ final class OtherPartyButton extends Button {
 
     @Override
     public String getName(Player player) {
-        return ChatColor.GOLD + RevilsPvP.getInstance().getUuidCache().name(party.getLeader()) + "'s Team";
+        return ChatColor.AQUA + RevilsPvP.getInstance().getUuidCache().name(party.getLeader()) + "'s Team";
     }
 
     @Override
@@ -44,7 +44,7 @@ final class OtherPartyButton extends Button {
         }
 
         description.add("");
-        description.add(ChatColor.YELLOW.toString() + ChatColor.UNDERLINE + "Left-Click" + ChatColor.YELLOW + " to duel " + ChatColor.GOLD + RevilsPvP.getInstance().getUuidCache().name(party.getLeader()) + ChatColor.YELLOW + "'s team.");
+        description.add(ChatColor.YELLOW.toString() + ChatColor.UNDERLINE + "Left-Click" + ChatColor.YELLOW + " to duel " + ChatColor.AQUA + RevilsPvP.getInstance().getUuidCache().name(party.getLeader()) + ChatColor.YELLOW + "'s team.");
 
         return description;
     }

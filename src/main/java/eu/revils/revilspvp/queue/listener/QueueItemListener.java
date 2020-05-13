@@ -123,22 +123,14 @@ public final class QueueItemListener extends ItemListener {
                 Math.max(1, Math.min(64, ranked ? inQueueRanked + inFightsRanked : inQueueUnranked + inFightsUnranked)),
                 ranked ?  ImmutableList.of(
                         ChatColor.WHITE + " ",
-                        ChatColor.AQUA + "" + BOLD + ChatColor.UNDERLINE + "Ranked" + ChatColor.GRAY + ":",
-                        ChatColor.GREEN + " &7▪ &fIn fights: " + ChatColor.GREEN + inFightsRanked,
-                        ChatColor.GREEN + " &7▪ &fIn queue: " + ChatColor.GREEN + inQueueRanked,
-                        ChatColor.WHITE + " ",
-                        ChatColor.AQUA + "" + BOLD + ChatColor.UNDERLINE + "Unranked" + ChatColor.GRAY + ":",
-                        ChatColor.GREEN + " &7▪ &fIn fights&7: " + ChatColor.GREEN + inFightsUnranked,
-                        ChatColor.GREEN + " &7▪ &fIn queue&7: " + ChatColor.GREEN + inQueueUnranked) :
+                        ChatColor.GREEN + " &7▪ &fFighting&7: " + ChatColor.GREEN + inFightsRanked,
+                        ChatColor.GREEN + " &7▪ &fQueuing&7: " + ChatColor.GREEN + inQueueRanked,
+                        ChatColor.WHITE + "") :
                 ImmutableList.of(
                         ChatColor.WHITE + " ",
-                        ChatColor.AQUA + "" + BOLD + ChatColor.UNDERLINE + "Ranked" + ChatColor.GRAY + ":",
-                        ChatColor.GREEN + " &7▪ &fIn fights: " + ChatColor.GREEN + inFightsRanked,
-                        ChatColor.GREEN + " &7▪ &fIn queue: " + ChatColor.GREEN + inQueueRanked,
-                        ChatColor.AQUA + " ",
-                        ChatColor.AQUA + "" + BOLD + ChatColor.UNDERLINE + "Unranked" + ChatColor.GRAY + ":",
-                        ChatColor.GREEN + " &7▪ &fIn fights&7: " + ChatColor.GREEN + inFightsUnranked,
-                        ChatColor.GREEN + " &7▪ &fIn queue&7: " + ChatColor.GREEN + inQueueUnranked
+                        ChatColor.GREEN + " &7▪ &fFighting&7: " + ChatColor.GREEN + inFightsUnranked,
+                        ChatColor.GREEN + " &7▪ &fQueuing&7: " + ChatColor.GREEN + inQueueUnranked,
+                        ChatColor.WHITE + ""
 
                 )
             );
