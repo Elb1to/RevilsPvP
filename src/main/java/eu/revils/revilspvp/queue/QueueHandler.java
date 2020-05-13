@@ -25,10 +25,10 @@ public final class QueueHandler {
 
     public static final int RANKED_WINDOW_GROWTH_PER_SECOND = 5;
 
-    private static final String JOIN_SOLO_MESSAGE = ChatColor.YELLOW + "You were added to " + ChatColor.GOLD + "%s %s" + ChatColor.YELLOW + " queue.";
-    private static final String LEAVE_SOLO_MESSAGE = ChatColor.YELLOW + "You were removed from " + ChatColor.GOLD + "%s %s" + ChatColor.YELLOW + " queue.";
-    private static final String JOIN_PARTY_MESSAGE = ChatColor.YELLOW + "Your party was added to " + ChatColor.GOLD + "%s %s" + ChatColor.YELLOW + " queue.";
-    private static final String LEAVE_PARTY_MESSAGE = ChatColor.YELLOW + "Your party was removed from " + ChatColor.GOLD + "%s %s" + ChatColor.YELLOW + " queue.";
+    private static final String JOIN_SOLO_MESSAGE = ChatColor.YELLOW + "You were added to " + ChatColor.AQUA + "%s %s" + ChatColor.YELLOW + " queue.";
+    private static final String LEAVE_SOLO_MESSAGE = ChatColor.RED + "You were removed from the queue.";
+    private static final String JOIN_PARTY_MESSAGE = ChatColor.YELLOW + "Your party was added to " + ChatColor.AQUA + "%s %s" + ChatColor.YELLOW + " queue.";
+    private static final String LEAVE_PARTY_MESSAGE = ChatColor.RED + "Your party was removed from queue.";
 
     // we never call .put outside of the constructor so no concurrency is needed
     // (KitType type, boolean ranked) -> MatchQueue

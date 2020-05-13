@@ -19,31 +19,31 @@ public class GlobalEloButton extends Button {
 
     @Override
     public String getName(Player player) {
-        return ChatColor.GOLD.toString() + ChatColor.BOLD + "Global" + ChatColor.GRAY + " | " + ChatColor.GRAY + "Top 10";
+        return ChatColor.AQUA.toString() + ChatColor.BOLD + "Global ELO" + ChatColor.GRAY + " \u2758 " + ChatColor.WHITE + "Top 10";
     }
 
     @Override
     public List<String> getDescription(Player player) {
         List<String> description = Lists.newArrayList();
 
-        description.add(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------");
+        description.add(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "---------------------------");
 
         int counter = 1;
 
         for (Entry<String, Integer> entry : eloHandler.topElo(null).entrySet()) {
             String color = (counter <= 3 ? ChatColor.YELLOW : ChatColor.YELLOW).toString();
-            description.add(color + counter + ChatColor.GRAY + " : " + ChatColor.GOLD + entry.getKey() + ChatColor.GRAY + ": " + ChatColor.GRAY + entry.getValue());
+            description.add(color + " #" + counter + " " + ChatColor.WHITE + entry.getKey() + ChatColor.GRAY + " - " + ChatColor.GREEN + entry.getValue() + " ELO");
 
             counter++;
         }
 
-        description.add(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------");
+        description.add(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "---------------------------");
 
         return description;
     }
 
     @Override
     public Material getMaterial(Player player) {
-        return Material.NETHER_STAR;
+        return Material.COMPASS;
     }
 }

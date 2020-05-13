@@ -44,7 +44,7 @@ public final class KitType {
         teamFight.icon = new MaterialData(Material.BEACON);
         teamFight.id = "elb1to is a god xd";
         teamFight.displayName = "HCF Team Fight";
-        teamFight.displayColor = ChatColor.AQUA;
+        teamFight.displayColor = ChatColor.DARK_AQUA;
 
         allTypes.sort(Comparator.comparing(KitType::getSort));
     }

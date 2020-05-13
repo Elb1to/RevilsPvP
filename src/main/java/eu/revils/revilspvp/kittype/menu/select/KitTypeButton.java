@@ -36,7 +36,7 @@ final class KitTypeButton extends Button {
 
     @Override
     public String getName(Player player) {
-        return kitType.getDisplayColor() + ChatColor.BOLD.toString() + kitType.getDisplayName();
+        return ChatColor.WHITE + "★ " + ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + kitType.getDisplayName() + ChatColor.WHITE + " ★";
     }
 
     @Override
@@ -44,18 +44,16 @@ final class KitTypeButton extends Button {
         List<String> description = new ArrayList<>();
 
         if (kitType.isHidden()) {
-            description.add(ChatColor.GRAY + "Hidden from normal players");
+            description.add(ChatColor.GRAY + "Hidden from normal players!");
         }
 
         if (!descriptionLines.isEmpty()) {
             if (!(description.isEmpty())) {
-                description.add("");
             }
             description.addAll(descriptionLines);
         }
 
-        description.add("");
-        description.add(ChatColor.YELLOW.toString() + ChatColor.UNDERLINE + "Left-Click" + ChatColor.YELLOW + " to select " + ChatColor.GOLD + ChatColor.BOLD + kitType.getDisplayName() + ChatColor.YELLOW + " kit.");
+        description.add(ChatColor.YELLOW.toString() + ChatColor.UNDERLINE + "Left-Click" + ChatColor.YELLOW + " to select " + ChatColor.AQUA + ChatColor.BOLD + kitType.getDisplayName() + ChatColor.YELLOW + " kit.");
 
         return description;
     }

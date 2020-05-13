@@ -333,7 +333,7 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
         }
 
         // spectators don't have any bold entries on their scoreboard
-        scores.add(RevilsPvP.getInstance().getDominantColor() + "&fDuration: &6" + formattedDuration);
+        scores.add(RevilsPvP.getInstance().getDominantColor() + "&fDuration: &e" + formattedDuration);
     }
 
     private void renderPingLines(List<String> scores, Match match, Player ourPlayer) {

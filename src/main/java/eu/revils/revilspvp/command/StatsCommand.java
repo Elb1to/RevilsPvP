@@ -16,7 +16,7 @@ public final class StatsCommand {
     public static void onCommandExecute(Player sender) {
         EloHandler eloHandler = RevilsPvP.getInstance().getEloHandler();
         sender.sendMessage(ChatColor.GRAY + RevilsPvPLang.LONG_LINE);
-        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.GOLD + sender.getPlayer().getName() + ChatColor.GOLD + "'s Statistics" + ChatColor.GRAY + ":");
+        sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.AQUA + sender.getPlayer().getName() + ChatColor.AQUA + "'s Statistics" + ChatColor.GRAY + ":");
         for (KitType kitType : KitType.getAllTypes()) {
             if (kitType.isSupportsRanked()) {
                 sender.sendMessage(ChatColor.GRAY + " ▪ " + ChatColor.WHITE + kitType.getDisplayName() + ChatColor.GRAY + " - " + ChatColor.GREEN + eloHandler.getElo(sender, kitType) + " ELO");

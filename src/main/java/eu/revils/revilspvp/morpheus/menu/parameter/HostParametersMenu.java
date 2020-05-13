@@ -76,7 +76,7 @@ public class HostParametersMenu extends Menu {
                     }
 
                     GameQueue.INSTANCE.add(new Game(event, player, options));
-                    player.sendMessage(ChatColor.YELLOW + "You've added a " + ChatColor.GOLD + event.getName().toLowerCase() + ChatColor.YELLOW + " event to the queue.");
+                    player.sendMessage(ChatColor.YELLOW + "You've added a " + ChatColor.AQUA + event.getName().toLowerCase() + ChatColor.YELLOW + " event to the queue.");
                 }
 
                 player.closeInventory();

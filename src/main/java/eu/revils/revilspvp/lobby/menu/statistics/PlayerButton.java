@@ -17,24 +17,23 @@ public class PlayerButton extends Button {
 
     @Override
     public String getName(Player player) {
-        return ChatColor.GOLD + getColoredName(player) + ChatColor.GRAY + " : "  + ChatColor.GOLD + "Statistics";
+        return ChatColor.AQUA + getColoredName(player) + ChatColor.BOLD + "'s Statistics";
     }
 
     @Override
     public List<String> getDescription(Player player) {
         List<String> description = Lists.newArrayList();
 
-        description.add(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------");
+        description.add(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "---------------------------");
+        description.add(ChatColor.YELLOW + " ▪ " + ChatColor.WHITE + "Global" + ChatColor.GRAY + " - " + ChatColor.GREEN + eloHandler.getGlobalElo(player.getUniqueId()) + " ELO");
 
         for (KitType kitType : KitType.getAllTypes()) {
             if (kitType.isSupportsRanked()) {
-                description.add(ChatColor.GOLD + kitType.getDisplayName() + ChatColor.GRAY + ": " + eloHandler.getElo(player, kitType));
+                description.add(ChatColor.YELLOW + " ▪ " + ChatColor.WHITE + kitType.getDisplayName() + ChatColor.GRAY + " - " + ChatColor.GREEN + eloHandler.getElo(player, kitType) + " ELO");
             }
         }
 
-        description.add(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------");
-        description.add(ChatColor.GOLD + "Global" + ChatColor.GRAY + ": " + eloHandler.getGlobalElo(player.getUniqueId()));
-        description.add(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------");
+        description.add(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "---------------------------");
 
         return description;
     }

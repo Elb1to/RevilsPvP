@@ -27,25 +27,25 @@ public class KitButton extends Button {
 
     @Override
     public String getName(Player player) {
-        return kitType.getColoredDisplayName() + ChatColor.GRAY + " : " + ChatColor.GRAY + "Top 10";
+        return ChatColor.AQUA.toString() + ChatColor.BOLD + kitType.getDisplayName() + ChatColor.GRAY + " \u2758 " + ChatColor.WHITE + "Top 10";
     }
 
     @Override
     public List<String> getDescription(Player player) {
         List<String> description = Lists.newArrayList();
 
-        description.add(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------");
+        description.add(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "---------------------------");
 
         int counter = 1;
 
         for (Entry<String, Integer> entry : eloHandler.topElo(kitType).entrySet()) {
             String color = (counter <= 3 ? ChatColor.YELLOW : ChatColor.YELLOW).toString();
-            description.add(color + counter + ChatColor.GRAY + " : " + ChatColor.GOLD + entry.getKey() + ChatColor.GRAY + ": " + ChatColor.GRAY + entry.getValue());
+            description.add(color + " #" + counter + " " + ChatColor.WHITE + entry.getKey() + ChatColor.GRAY + " - " + ChatColor.GREEN + entry.getValue() + " ELO");
 
             counter++;
         }
 
-        description.add(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------");
+        description.add(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "---------------------------");
 
         return description;
     }
