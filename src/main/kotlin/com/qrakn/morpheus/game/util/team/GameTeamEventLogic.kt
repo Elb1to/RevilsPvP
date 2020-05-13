@@ -1,11 +1,9 @@
 package com.qrakn.morpheus.game.util.team
 
 import com.qrakn.morpheus.game.Game
-import com.qrakn.morpheus.game.bukkit.event.PlayerQuitGameEvent
 import com.qrakn.morpheus.game.event.GameEventLogic
 import com.qrakn.morpheus.game.event.impl.lms.LastManStandingGameEvent
 import com.qrakn.morpheus.game.event.impl.skywars.SkywarsGameEvent
-import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 import java.util.*

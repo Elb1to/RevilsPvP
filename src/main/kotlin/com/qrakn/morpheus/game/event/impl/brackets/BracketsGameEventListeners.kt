@@ -4,8 +4,8 @@ import com.qrakn.morpheus.game.GameQueue
 import com.qrakn.morpheus.game.GameState
 import com.qrakn.morpheus.game.bukkit.event.PlayerGameInteractionEvent
 import com.qrakn.morpheus.game.bukkit.event.PlayerQuitGameEvent
-import com.qrakn.morpheus.game.util.team.GameTeam
 import com.qrakn.morpheus.game.event.impl.sumo.SumoGameEventLogic
+import com.qrakn.morpheus.game.util.team.GameTeam
 import com.qrakn.morpheus.game.util.team.GameTeamEventLogic
 import com.qrakn.morpheus.game.util.team.GameTeamSizeParameter
 import eu.revils.revilspvp.RevilsPvP
@@ -89,7 +89,6 @@ class BracketsGameEventListeners : Listener {
                         }
                     }
                 }
-
                 event.isCancelled = true
             }
         }
@@ -168,7 +167,6 @@ class BracketsGameEventListeners : Listener {
                 Bukkit.getPluginManager().callEvent(PlayerGameInteractionEvent(player, game))
                 Bukkit.getPluginManager().callEvent(PlayerGameInteractionEvent(clicked, game))
             }
-
         }
     }
 
@@ -229,7 +227,7 @@ class BracketsGameEventListeners : Listener {
                 event.entity.health = event.entity.maxHealth
                 logic.check()
             } else {
-                object: BukkitRunnable() {
+                object : BukkitRunnable() {
                     override fun run() {
                         event.entity.spigot().respawn()
                         event.entity.teleport(game.arena.spectatorSpawn)
@@ -246,7 +244,7 @@ class BracketsGameEventListeners : Listener {
             val player = event.entity as Player
             val game = GameQueue.getCurrentGame(player) ?: return
             val logic = game.logic as? BracketsGameEventLogic ?: return
-            var participant = logic.get(player)?: return
+            var participant = logic.get(player) ?: return
 
             if (!(participant.fighting)) {
                 event.foodLevel = 20

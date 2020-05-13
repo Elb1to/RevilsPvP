@@ -34,7 +34,6 @@ class GameEventCountdown(var duration: Int, val runnable: Runnable, vararg val p
             if (duration == 0) {
                 runnable.run()
             }
-
             duration--
         }
     }

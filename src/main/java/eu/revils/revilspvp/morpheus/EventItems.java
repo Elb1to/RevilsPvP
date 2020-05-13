@@ -2,17 +2,14 @@ package eu.revils.revilspvp.morpheus;
 
 import com.qrakn.morpheus.game.Game;
 import com.qrakn.morpheus.game.GameQueue;
-import eu.revils.revilspvp.kt.util.ItemUtils;
-import lombok.experimental.UtilityClass;
 import eu.revils.revilspvp.kt.util.ItemBuilder;
+import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
-import static net.md_5.bungee.api.ChatColor.LIGHT_PURPLE;
 import static org.bukkit.ChatColor.*;
-import static org.bukkit.ChatColor.BOLD;
 
 @UtilityClass
 public final class EventItems {

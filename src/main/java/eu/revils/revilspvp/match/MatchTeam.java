@@ -35,7 +35,6 @@ public final class MatchTeam {
         this(ImmutableSet.of(initialMember));
     }
 
-
     public MatchTeam(Collection<UUID> initialMembers) {
         this.allMembers = ImmutableSet.copyOf(initialMembers);
         this.aliveMembers.addAll(initialMembers);

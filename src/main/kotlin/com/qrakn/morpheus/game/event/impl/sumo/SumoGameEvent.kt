@@ -5,8 +5,8 @@ import com.qrakn.morpheus.game.GameState
 import com.qrakn.morpheus.game.event.GameEvent
 import com.qrakn.morpheus.game.event.GameEventLogic
 import com.qrakn.morpheus.game.event.impl.brackets.BracketsGameEvent
-import com.qrakn.morpheus.game.util.team.GameTeamSizeParameter
 import com.qrakn.morpheus.game.parameter.GameParameter
+import com.qrakn.morpheus.game.util.team.GameTeamSizeParameter
 import eu.revils.revilspvp.RevilsPvPLang
 import org.bukkit.ChatColor
 import org.bukkit.Material
@@ -29,13 +29,11 @@ object SumoGameEvent : GameEvent {
         meta.author = "Revils Network"
         meta.title = "How To Play Sumo"
         meta.pages = listOf(
-                ChatColor.YELLOW.toString() + ChatColor.BOLD + "SUMO TUTORIAL\n" + ChatColor.RESET +
-                        "\n" +
+                ChatColor.YELLOW.toString() + ChatColor.BOLD + "SUMO TUTORIAL\n" + ChatColor.RESET + "\n" +
                         "In Sumo, you'll be placed on a platform " +
                         "with an opponent and whoever knocks the other " +
                         "person off first wins the match. " +
-                        "\n\n\n" +
-                        ChatColor.RED.toString() + "If you're in a 2v2 game, you can team up with others " +
+                        "\n\n\n" + ChatColor.RED.toString() + "If you're in a 2v2 game, you can team up with others " +
                         ChatColor.RED.toString() + "by right-clicking them with nothing in your hand."
         )
 

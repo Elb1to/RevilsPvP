@@ -43,7 +43,6 @@ public final class MatchWizardListener implements Listener {
         snowball.setVelocity(snowball.getVelocity().multiply(2));
 
         new BukkitRunnable() {
-
             int ticks = 0;
 
             @Override
@@ -52,7 +51,6 @@ public final class MatchWizardListener implements Listener {
                     cancel();
                     return;
                 }
-
                 if (snowball.isDead() || snowball.isOnGround()) {
                     for (Entity entity : snowball.getNearbyEntities(4, 4, 4)) {
                         MatchTeam entityTeam = match.getTeam(entity.getUniqueId());
