@@ -13,9 +13,11 @@ import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.qrakn.morpheus.Morpheus;
+import com.qrakn.morpheus.game.event.GameEvent;
 import eu.revils.revilspvp.follow.FollowHandler;
 import eu.revils.revilspvp.kit.KitHandler;
 import eu.revils.revilspvp.lobby.LobbyHandler;
+import eu.revils.revilspvp.morpheus.EventTask;
 import eu.revils.revilspvp.party.PartyHandler;
 import eu.revils.revilspvp.kt.menu.ButtonListeners;
 import eu.revils.revilspvp.kt.protocol.InventoryAdapter;
@@ -34,6 +36,7 @@ import eu.revils.revilspvp.pvpclasses.PvPClassHandler;
 import eu.revils.revilspvp.tournament.TournamentHandler;
 import eu.revils.revilspvp.util.event.HalfHourEvent;
 import eu.revils.revilspvp.util.event.HourEvent;
+import net.frozenorb.qlib.command.FrozenCommandHandler;
 import net.frozenorb.qlib.nametag.FrozenNametagHandler;
 import net.frozenorb.qlib.scoreboard.FrozenScoreboardHandler;
 import net.frozenorb.qlib.tab.FrozenTabHandler;
@@ -47,6 +50,7 @@ import org.bukkit.craftbukkit.libs.com.google.gson.GsonBuilder;
 import org.bukkit.craftbukkit.libs.com.google.gson.TypeAdapter;
 import org.bukkit.craftbukkit.libs.com.google.gson.stream.JsonReader;
 import org.bukkit.craftbukkit.libs.com.google.gson.stream.JsonWriter;
+import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
@@ -193,6 +197,15 @@ public final class RevilsPvP extends JavaPlugin {
         pvpClassHandler = new PvPClassHandler();
         tournamentHandler = new TournamentHandler();
 
+        new Morpheus(this); // qrakn game events
+        new EventTask().runTaskTimerAsynchronously(this, 1L, 1L);
+
+        for (GameEvent event : GameEvent.getEvents()) {
+            for (Listener listener : event.getListeners()) {
+                getServer().getPluginManager().registerEvents(listener, this);
+            }
+        }
+
         getServer().getPluginManager().registerEvents(new BasicPreventionListener(), this);
         getServer().getPluginManager().registerEvents(new BowHealthListener(), this);
         getServer().getPluginManager().registerEvents(new NightModeListener(), this);
@@ -201,20 +214,21 @@ public final class RevilsPvP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new TabCompleteListener(), this);
         getServer().getPluginManager().registerEvents(new StatisticsHandler(), this);
         getServer().getPluginManager().registerEvents(new EventListeners(), this);
+        getServer().getPluginManager().registerEvents(new ButtonListeners(), this); // menu api
 
         FrozenTabHandler.setLayoutProvider(new RevilsPvPLayoutProvider());
         FrozenScoreboardHandler.setConfiguration(RevilsPvPScoreboardConfiguration.create());
         FrozenNametagHandler.registerProvider(new RevilsPvPNametagProvider());
 
-
-        // menu api
-        getServer().getPluginManager().registerEvents(new ButtonListeners(), this);
+        /*FrozenCommandHandler.registerAll(this);
+        FrozenCommandHandler.registerParameterType(KitType.class, new KitTypeParameterType());
+        FrozenTabHandler.setLayoutProvider(new RevilsPvPLayoutProvider());
+        FrozenNametagHandler.registerProvider(new RevilsPvPNametagProvider());
+        FrozenScoreboardHandler.setConfiguration(RevilsPvPScoreboardConfiguration.create());*/
 
         setupHourEvents();
 
         getServer().getScheduler().runTaskTimerAsynchronously(this, cache, 20L, 20L);
-
-        new Morpheus(this);
     }
 
     @Override

@@ -10,7 +10,8 @@ import org.bukkit.event.HandlerList
 class PlayerQuitGameEvent(val player: Player, val game: Game) : Event() {
 
     companion object {
-        @JvmStatic val handlerList = HandlerList()
+        @JvmStatic
+        val handlerList = HandlerList()
     }
 
     init {

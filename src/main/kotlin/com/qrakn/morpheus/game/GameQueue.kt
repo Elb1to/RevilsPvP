@@ -1,12 +1,10 @@
 package com.qrakn.morpheus.game
 
-import com.qrakn.morpheus.Morpheus
 import com.qrakn.morpheus.game.task.GameStartTask
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 object GameQueue {
 
@@ -14,7 +12,7 @@ object GameQueue {
     val games = LinkedList<Game>()
 
     fun run(plugin: JavaPlugin) {
-        object: BukkitRunnable() {
+        object : BukkitRunnable() {
             override fun run() {
                 check(plugin)
             }

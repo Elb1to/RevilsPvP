@@ -53,7 +53,7 @@ object BracketsGameKitParameter : GameParameter {
             player.inventory.armorContents = getArmor()
             val items = getItems().toMutableList()
 
-            var filler = items[2]
+            var filler = items[3]
             if (filler != null && filler.type != Material.POTION && filler.type != Material.MUSHROOM_SOUP) {
                 filler = ItemStack(Material.AIR)
             }
