@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 public class ForceEndCommand {
 
-    @Command(names = {"forceend", "event cancel","stopevent", "cancelevent"}, permission = "op")
+    @Command(names = {"forceend", "event cancel", "stopevent", "cancelevent"}, permission = "op")
     public static void host(Player sender) {
         Game game = GameQueue.INSTANCE.getCurrentGame(sender);
 
