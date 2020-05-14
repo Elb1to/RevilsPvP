@@ -65,9 +65,8 @@ object BracketsGameEvent : GameEvent {
             if (game.getParameter(GameTeamSizeParameter.Duos.javaClass) == null) {
                 val fighter = logic.getNextParticipant(null)
                 val opponent = logic.getNextParticipant(fighter)
-
                 if (opponent != null && fighter != null) {
-                    toReturn.add("&a&r&7&m--------------------")
+                    toReturn.add("&7&m--------------------")
                     toReturn.add("${fighter.getName()}&7 vs ${opponent.getName()}")
                 }
             }
