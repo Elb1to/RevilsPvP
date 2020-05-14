@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 public class ForceEndCommand {
 
-    @Command(names = { "forceend"}, permission = "op")
+    @Command(names = {"forceend"}, permission = "op")
     public static void host(Player sender) {
         Game game = GameQueue.INSTANCE.getCurrentGame(sender);
 
@@ -15,7 +15,6 @@ public class ForceEndCommand {
             sender.sendMessage("You're not in a game");
             return;
         }
-
         game.end();
     }
 
