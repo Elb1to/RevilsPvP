@@ -142,7 +142,6 @@ open class BracketsGameEventLogic(val game: Game) : GameTeamEventLogic(game) {
                 }
             }
         }
-
         return current
     }
 
