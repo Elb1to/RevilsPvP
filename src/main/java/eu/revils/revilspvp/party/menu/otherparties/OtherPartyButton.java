@@ -56,7 +56,7 @@ final class OtherPartyButton extends Button {
 
     @Override
     public byte getDamageValue(Player player) {
-        return (byte) 3; // player head
+        return (byte) 3;
     }
 
     @Override
