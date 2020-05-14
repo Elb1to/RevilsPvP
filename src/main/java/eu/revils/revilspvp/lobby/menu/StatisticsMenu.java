@@ -1,8 +1,5 @@
 package eu.revils.revilspvp.lobby.menu;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import eu.revils.revilspvp.kittype.KitType;
 import eu.revils.revilspvp.lobby.menu.statistics.GlobalEloButton;
 import eu.revils.revilspvp.lobby.menu.statistics.KitButton;
@@ -14,9 +11,8 @@ import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-
-import org.jetbrains.annotations.NotNull;
-
+import java.util.HashMap;
+import java.util.Map;
 
 public final class StatisticsMenu extends Menu {
 
