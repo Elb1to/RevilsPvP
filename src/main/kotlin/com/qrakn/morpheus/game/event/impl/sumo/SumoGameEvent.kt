@@ -87,12 +87,13 @@ object SumoGameEvent : GameEvent {
                 val opponent = logic.getNextParticipant(fighter)
 
                 if (opponent != null && fighter != null) {
-                    toReturn.add("&a&r&7&m--------------------")
-                    toReturn.add("${fighter.getName()}&7 vs ${opponent.getName()}")
+                    toReturn.add("&7&m--------------------")
+                    toReturn.add(fighter.getName())
+                    toReturn.add("&7 vs ")
+                    toReturn.add(opponent.getName())
                 }
             }
         }
-
         return toReturn
     }
 
