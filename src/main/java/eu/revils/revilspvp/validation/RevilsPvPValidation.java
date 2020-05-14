@@ -207,10 +207,10 @@ public final class RevilsPvPValidation {
             return false;
         }
 
-        if (party.getMembers().size() >= Party.MAX_SIZE && !Bukkit.getPlayer(party.getLeader()).isOp()) {
+        /*if (party.getMembers().size() >= Party.MAX_SIZE && !Bukkit.getPlayer(party.getLeader()).isOp()) {
             player.sendMessage(TARGET_PARTY_REACHED_MAXIMUM_SIZE);
             return false;
-        }
+        }*/
 
         return true;
     }

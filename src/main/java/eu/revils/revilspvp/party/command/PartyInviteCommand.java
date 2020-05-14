@@ -46,10 +46,10 @@ public final class PartyInviteCommand {
                 return;
             }
 
-            if (party.getMembers().size() != tournamentHandler.getTournament().getRequiredPartySize() && tournamentHandler.isInTournament(party)) {
+            /*if (party.getMembers().size() != tournamentHandler.getTournament().getRequiredPartySize() && tournamentHandler.isInTournament(party)) {
                 sender.sendMessage(ChatColor.RED + "Your party currently exceeds the required members amount for the tournament.");
                 return;
-            }
+            }*/
         }
 
         if (partyHandler.hasParty(target)) {
