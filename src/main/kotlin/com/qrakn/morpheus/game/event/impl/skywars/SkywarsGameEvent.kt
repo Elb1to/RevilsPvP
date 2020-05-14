@@ -10,6 +10,7 @@ import com.qrakn.morpheus.game.util.team.GameTeamEventLogic
 import eu.revils.revilspvp.RevilsPvPLang
 import org.bukkit.ChatColor
 import org.bukkit.Material
+import org.bukkit.Statistic
 import org.bukkit.entity.Player
 import org.bukkit.event.Listener
 import org.bukkit.inventory.ItemStack
@@ -58,11 +59,11 @@ object SkywarsGameEvent : GameEvent {
         }
 
         toReturn.add("&cEvent &7($name)")
-        // todo fix max players for when game started xd
+        //TODO: Fix MaxPlayers for when the event has started xd
         toReturn.add("&6 ${RevilsPvPLang.LEFT_ARROW_NAKED} &fPlayers: &7${logic.getPlayersLeft()}/${game.getMaxPlayers()}")
 
         if (game.state == GameState.RUNNING) {
-            //toReturn.add("&6 ${RevilsPvPLang.LEFT_ARROW_NAKED} &fKills: &7${player.getStatistic(Statistic.PLAYER_KILLS)}")
+            toReturn.add("&6 ${RevilsPvPLang.LEFT_ARROW_NAKED} &fKills: &7${player.getStatistic(Statistic.PLAYER_KILLS)}")
         }
 
         return toReturn
