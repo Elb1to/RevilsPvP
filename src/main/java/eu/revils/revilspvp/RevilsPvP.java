@@ -36,7 +36,6 @@ import eu.revils.revilspvp.pvpclasses.PvPClassHandler;
 import eu.revils.revilspvp.tournament.TournamentHandler;
 import eu.revils.revilspvp.util.event.HalfHourEvent;
 import eu.revils.revilspvp.util.event.HourEvent;
-import net.frozenorb.qlib.command.FrozenCommandHandler;
 import net.frozenorb.qlib.nametag.FrozenNametagHandler;
 import net.frozenorb.qlib.scoreboard.FrozenScoreboardHandler;
 import net.frozenorb.qlib.tab.FrozenTabHandler;
@@ -197,15 +196,6 @@ public final class RevilsPvP extends JavaPlugin {
         pvpClassHandler = new PvPClassHandler();
         tournamentHandler = new TournamentHandler();
 
-        new Morpheus(this); // qrakn game events
-        new EventTask().runTaskTimerAsynchronously(this, 1L, 1L);
-
-        for (GameEvent event : GameEvent.getEvents()) {
-            for (Listener listener : event.getListeners()) {
-                getServer().getPluginManager().registerEvents(listener, this);
-            }
-        }
-
         getServer().getPluginManager().registerEvents(new BasicPreventionListener(), this);
         getServer().getPluginManager().registerEvents(new BowHealthListener(), this);
         getServer().getPluginManager().registerEvents(new NightModeListener(), this);
@@ -214,21 +204,26 @@ public final class RevilsPvP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new TabCompleteListener(), this);
         getServer().getPluginManager().registerEvents(new StatisticsHandler(), this);
         getServer().getPluginManager().registerEvents(new EventListeners(), this);
-        getServer().getPluginManager().registerEvents(new ButtonListeners(), this); // menu api
 
         FrozenTabHandler.setLayoutProvider(new RevilsPvPLayoutProvider());
         FrozenScoreboardHandler.setConfiguration(RevilsPvPScoreboardConfiguration.create());
         FrozenNametagHandler.registerProvider(new RevilsPvPNametagProvider());
-
-        /*FrozenCommandHandler.registerAll(this);
-        FrozenCommandHandler.registerParameterType(KitType.class, new KitTypeParameterType());
-        FrozenTabHandler.setLayoutProvider(new RevilsPvPLayoutProvider());
-        FrozenNametagHandler.registerProvider(new RevilsPvPNametagProvider());
-        FrozenScoreboardHandler.setConfiguration(RevilsPvPScoreboardConfiguration.create());*/
+        
+        // menu api
+        getServer().getPluginManager().registerEvents(new ButtonListeners(), this);
 
         setupHourEvents();
 
         getServer().getScheduler().runTaskTimerAsynchronously(this, cache, 20L, 20L);
+
+        new Morpheus(this); // qrakn game events
+        new EventTask().runTaskTimerAsynchronously(this, 1L, 1L);
+
+        for (GameEvent event : GameEvent.getEvents()) {
+            for (Listener listener : event.getListeners()) {
+                getServer().getPluginManager().registerEvents(listener, this);
+            }
+        }
     }
 
     @Override
