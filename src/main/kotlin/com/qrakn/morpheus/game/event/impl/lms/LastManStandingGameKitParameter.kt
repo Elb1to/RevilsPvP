@@ -12,7 +12,7 @@ object LastManStandingGameKitParameter : GameParameter {
     private val options = listOf(
             LastManStandingGameKitOption(KitType.byId("NODEBUFF")),
             LastManStandingGameKitOption(KitType.byId("SOUP")),
-            LastManStandingGameKitOption(KitType.byId("AXE")),
+            LastManStandingGameKitOption(KitType.byId("AxePvP")),
             LastManStandingGameKitOption(KitType.byId("CLASSIC"))
     )
 

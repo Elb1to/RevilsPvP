@@ -14,7 +14,7 @@ object BracketsGameKitParameter : GameParameter {
     private val options = listOf(
             BracketsGameKitOption(KitType.byId("NODEBUFF")),
             BracketsGameKitOption(KitType.byId("SOUP")),
-            BracketsGameKitOption(KitType.byId("AXE")),
+            BracketsGameKitOption(KitType.byId("AxePvP")),
             BracketsGameKitOption(KitType.byId("CLASSIC"))
     )
 
