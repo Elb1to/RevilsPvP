@@ -17,11 +17,11 @@ final class LobbyLayoutProvider implements BiConsumer<Player, TabLayout> {
 
     @Override
     public void accept(Player player, TabLayout tabLayout) {
-        tabLayout.set(1, 0, "&b&lRevils Network");
+        tabLayout.set(1, 1, "&b&lRevils Network");
 
-        tabLayout.set(0, 1, "&7&m----------------");
-        tabLayout.set(1, 1, "&7&m----------------");
-        tabLayout.set(2, 1, "&7&m----------------");
+        tabLayout.set(0, 0, "&7&m----------------");
+        tabLayout.set(1, 0, "&7&m----------------");
+        tabLayout.set(2, 0, "&7&m----------------");
 
         int x = 0;
         int y = 2;
@@ -47,7 +47,7 @@ final class LobbyLayoutProvider implements BiConsumer<Player, TabLayout> {
         tabLayout.set(2, 19, "&7&m----------------");
 
         tabLayout.set(0, 18, "&7Revils.eu/discord");
-        tabLayout.set(1, 18, "&7Revils.eu");
+        tabLayout.set(1, 18, "&7http://revils.eu/");
         tabLayout.set(2, 18, "&7Revils.eu/store");
     }
 

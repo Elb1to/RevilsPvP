@@ -74,7 +74,13 @@ public class TournamentHandler implements Listener {
         }
 
         Bukkit.broadcastMessage("");
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&9[Tournament] &eA &6&ltournament&e has started. Type &d/join&e to play. &7(0/" + (teamSize < 3 ? teamSize * requiredTeams : requiredTeams) + ")"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f███████"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f█&3█████&f█ &bTournament&7: &fKIT NAME HERE"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f███&3█&f███ &bPlayers&7: &f0/" + (teamSize < 3 ? teamSize * requiredTeams : requiredTeams)));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f███&3█&f███ &bTeam Size&7: &fTEAM SIZE HERE"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f███&3█&f███"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f███&3█&f███ &eUse &2/join &eto enter the tournament."));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f███████"));
         Bukkit.broadcastMessage("");
 
         Tournament tournament;
