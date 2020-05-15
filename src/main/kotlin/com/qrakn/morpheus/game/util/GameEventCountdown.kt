@@ -22,10 +22,10 @@ class GameEventCountdown(var duration: Int, val runnable: Runnable, vararg val p
             for (participant in participants) {
                 for (player in participant.players) {
                     if (duration > 0) {
-                        player.sendMessage(ChatColor.YELLOW.toString() + duration + "...")
+                        player.sendMessage(ChatColor.BLUE.toString() + "[Event] " + ChatColor.YELLOW.toString() + "Round starting in " + ChatColor.AQUA + duration + ChatColor.YELLOW + " second(s)..")
                         player.playSound(player.location, Sound.NOTE_PLING, 1F, 1F)
                     } else {
-                        player.sendMessage(ChatColor.GREEN.toString() + "Match started.")
+                        player.sendMessage(ChatColor.BLUE.toString() + "[Event] " + ChatColor.YELLOW.toString() + "The round has started, good luck!")
                         player.playSound(player.location, Sound.NOTE_PLING, 1F, 2F)
                     }
                 }

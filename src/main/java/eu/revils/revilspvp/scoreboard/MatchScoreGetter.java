@@ -112,7 +112,7 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
             renderSpectatorLines(scores, match, previousTeam);
         }
 
-        renderMetaLines(scores, match, participant);
+        renderMetaLines(scores, player, match, participant);
 
         if (renderPing) {
             renderPingLines(scores, match, player);
@@ -313,7 +313,7 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
         }
     }
 
-    private void renderMetaLines(List<String> scores, Match match, boolean participant) {
+    private void renderMetaLines(List<String> scores, Player ourPlayer, Match match, boolean participant) {
         Date startedAt = match.getStartedAt();
         Date endedAt = match.getEndedAt();
         String formattedDuration;
@@ -333,7 +333,16 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
         }
 
         // spectators don't have any bold entries on their scoreboard
+        List<MatchTeam> teams = match.getTeams();
+        MatchTeam firstTeam = teams.get(0);
+        MatchTeam secondTeam = teams.get(1);
+
+
+        Player otherPlayer = Bukkit.getPlayer(match.getTeam(ourPlayer.getUniqueId()) == firstTeam ? secondTeam.getFirstMember() : firstTeam.getFirstMember());
+        if (otherPlayer == null) return;
         scores.add(RevilsPvP.getInstance().getDominantColor() + "&fDuration: &e" + formattedDuration);
+        scores.add("");
+        scores.add(ChatColor.WHITE + "Ping" + ChatColor.GRAY + ": " + ChatColor.GREEN + PlayerUtils.getPing(ourPlayer) + "ms" + ChatColor.GRAY + " \u2758 " + ChatColor.RED + PlayerUtils.getPing(otherPlayer) + "ms");
     }
 
     private void renderPingLines(List<String> scores, Match match, Player ourPlayer) {

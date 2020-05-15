@@ -52,13 +52,13 @@ class GameStartTask(private val plugin: JavaPlugin, game: Game) {
 
             for (player in Bukkit.getOnlinePlayers()) {
                 player.sendMessage(arrayOf("",
-                        ChatColor.DARK_GRAY.toString() + "███████",
-                        ChatColor.DARK_GRAY.toString() + "█" + ChatColor.GOLD + "█████" + ChatColor.DARK_GRAY + "█" + " " + ChatColor.GOLD + "[${game.event.getName()} Event]",
-                        ChatColor.DARK_GRAY.toString() + "█" + ChatColor.GOLD + "█" + ChatColor.DARK_GRAY + "█████" + " " + game.host.displayName + ChatColor.GRAY + " is hosting an event!",
-                        ChatColor.DARK_GRAY.toString() + "█" + ChatColor.GOLD + "████" + ChatColor.DARK_GRAY + "██" + " " + ChatColor.GRAY + "Starts in " + ChatColor.AQUA + (formatIntoDetailedString(((startsAt + 500 - System.currentTimeMillis()) / 1000).toInt())),
-                        ChatColor.DARK_GRAY.toString() + "█" + ChatColor.GOLD + "█" + ChatColor.DARK_GRAY + "█████" + " " + ChatColor.GRAY + "Join with the ${ChatColor.GREEN}emerald${ChatColor.GRAY} in your hotbar.",
-                        ChatColor.DARK_GRAY.toString() + "█" + ChatColor.GOLD + "█████" + ChatColor.DARK_GRAY + "█" + " " + ChatColor.GRAY + ChatColor.ITALIC + "Event Type: (" + StringUtils.join(game.parameters.map { it.getDisplayName() }, ", ") + ")",
-                        ChatColor.DARK_GRAY.toString() + "███████",
+                        ChatColor.WHITE.toString() + " ███████",
+                        ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "█████" + ChatColor.WHITE + "█" + ChatColor.AQUA + " Event" + ChatColor.GRAY + ": " + ChatColor.WHITE + "${game.event.getName()}",
+                        ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "█" + ChatColor.WHITE + "█████" + ChatColor.AQUA + " Hoster" + ChatColor.GRAY + ": " + ChatColor.WHITE + game.host.displayName,
+                        ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "████" + ChatColor.WHITE + "██" + ChatColor.AQUA + " Starting in" + ChatColor.GRAY + ": " + ChatColor.WHITE + (formatIntoDetailedString(((startsAt + 500 - System.currentTimeMillis()) / 1000).toInt())),
+                        ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "█" + ChatColor.WHITE + "█████",
+                        ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "█████" + ChatColor.WHITE + "█" + ChatColor.YELLOW + " Join with the" + ChatColor.DARK_GREEN + " Emerald " + ChatColor.YELLOW + "in you hotbar.",
+                        ChatColor.WHITE.toString() + " ███████",
                         "")
                 )
             }

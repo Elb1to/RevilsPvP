@@ -50,13 +50,13 @@ open class BracketsGameEventLogic(val game: Game) : GameTeamEventLogic(game) {
     private fun broadcastWinner(winner: GameTeam) {
         for (player in Bukkit.getOnlinePlayers()) {
             player.sendMessage(arrayOf("",
-                    ChatColor.GRAY.toString() + "███████",
-                    ChatColor.GRAY.toString() + "█" + ChatColor.GOLD + "█████" + ChatColor.GRAY + "█" + " " + ChatColor.GOLD + "[${game.event.getName()} Event Winner]",
-                    ChatColor.GRAY.toString() + "█" + ChatColor.GOLD + "█" + ChatColor.GRAY + "█████" + " ",
-                    ChatColor.GRAY.toString() + "█" + ChatColor.GOLD + "████" + ChatColor.GRAY + "██" + " " + winner.getName() + ChatColor.GRAY + " has won the event!",
-                    ChatColor.GRAY.toString() + "█" + ChatColor.GOLD + "█" + ChatColor.GRAY + "█████" + " " + ChatColor.GRAY + ChatColor.ITALIC + "Opponents defeated: " + (getRound()?.minus(1)),
-                    ChatColor.GRAY.toString() + "█" + ChatColor.GOLD + "█████" + ChatColor.GRAY + "█" + " " + ChatColor.GRAY + ChatColor.ITALIC + "Event Type: (" + StringUtils.join(game.parameters.map { it.getDisplayName() }, ", ") + ")",
-                    ChatColor.GRAY.toString() + "███████",
+                    ChatColor.WHITE.toString() + " ███████",
+                    ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "█████" + ChatColor.WHITE + "█" + ChatColor.AQUA + " Event" + ChatColor.GRAY + ": " + ChatColor.WHITE + "${game.event.getName()}",
+                    ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "█" + ChatColor.WHITE + "█████" + ChatColor.AQUA + " Team Size" + ChatColor.GRAY + ": " + ChatColor.WHITE + StringUtils.join(game.parameters.map { it.getDisplayName() }, ", "),
+                    ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "████" + ChatColor.WHITE + "██",
+                    ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "█" + ChatColor.WHITE + "█████" + ChatColor.AQUA + " Winner(s)" + ChatColor.GRAY + ": " + ChatColor.WHITE + winner.getName(),
+                    ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "█████" + ChatColor.WHITE + "█" + ChatColor.AQUA + " Opponents defeated" + ChatColor.GRAY + ": " + ChatColor.WHITE + (getRound()?.minus(1)),
+                    ChatColor.WHITE.toString() + " ███████",
                     "")
             )
         }
@@ -73,7 +73,7 @@ open class BracketsGameEventLogic(val game: Game) : GameTeamEventLogic(game) {
                 opponent.round = fighter.round
             }
 
-            game.sendMessage("", ChatColor.YELLOW.toString() + "" + ChatColor.BOLD + "Next Matchup:", fighter.getName() + ChatColor.YELLOW.toString() + " vs. " + opponent.getName() + ChatColor.YELLOW + "!", "")
+            game.sendMessage(ChatColor.BLUE.toString() + "[Event] " + ChatColor.LIGHT_PURPLE + fighter.getName() + ChatColor.YELLOW.toString() + " vs. " + ChatColor.LIGHT_PURPLE + opponent.getName())
 
             fighter.starting = true
             opponent.starting = true

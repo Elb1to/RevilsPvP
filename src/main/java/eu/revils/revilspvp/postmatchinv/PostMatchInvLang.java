@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @UtilityClass
 public final class PostMatchInvLang {
 
-    static final String LINE = ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "-----------------------------------------------------";
+    static final String LINE = ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "-----------------------------------------";
     static final String INVENTORY_HEADER = ChatColor.GOLD + "Post-Match Inventories " + ChatColor.GRAY + "(click name to View):";
 
     private static final String WINNER = ChatColor.GREEN + "Winner:" + ChatColor.GRAY;

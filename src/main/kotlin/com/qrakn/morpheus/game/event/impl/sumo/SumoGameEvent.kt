@@ -20,25 +20,6 @@ object SumoGameEvent : GameEvent {
     private const val NAME = "Sumo"
     private const val PERMISSION = "com.qrakn.morpheus.host.sumo"
     private const val DESCRIPTION = "Knock people off the sumo platform."
-    private val tutorialBook = ItemStack(Material.WRITTEN_BOOK)
-
-    init {
-        val meta = tutorialBook.itemMeta as BookMeta
-
-        meta.displayName = ChatColor.GOLD.toString() + "How To Play Sumo"
-        meta.author = "Revils Network"
-        meta.title = "How To Play Sumo"
-        meta.pages = listOf(
-                ChatColor.YELLOW.toString() + ChatColor.BOLD + "SUMO TUTORIAL\n" + ChatColor.RESET + "\n" +
-                        "In Sumo, you'll be placed on a platform " +
-                        "with an opponent and whoever knocks the other " +
-                        "person off first wins the match. " +
-                        "\n\n\n" + ChatColor.RED.toString() + "If you're in a 2v2 game, you can team up with others " +
-                        ChatColor.RED.toString() + "by right-clicking them with nothing in your hand."
-        )
-
-        tutorialBook.itemMeta = meta
-    }
 
     override fun getName(): String {
         return NAME
@@ -77,20 +58,19 @@ object SumoGameEvent : GameEvent {
             name = "2v2 $name"
         }
 
-        toReturn.add("&cEvent &7($name)")
-        toReturn.add("&6 ${RevilsPvPLang.LEFT_ARROW_NAKED} &fPlayers: &7${logic.getPlayersLeft()}/${game.players.size}")
+        toReturn.add("&fEvent&7: &a$name")
+        toReturn.add("&fPlayers&7: &a${logic.getPlayersLeft()}/${game.players.size}")
 
         if (game.state == GameState.RUNNING) {
-            toReturn.add("&6 ${RevilsPvPLang.LEFT_ARROW_NAKED} &fRound: &7${logic.getRound()}")
+            toReturn.add("&fRound&7: &a#${logic.getRound()}")
             if (game.getParameter(GameTeamSizeParameter.Duos.javaClass) == null) {
                 val fighter = logic.getNextParticipant(null)
                 val opponent = logic.getNextParticipant(fighter)
 
                 if (opponent != null && fighter != null) {
-                    toReturn.add("&7&m--------------------")
-                    toReturn.add(fighter.getName())
-                    toReturn.add("&7 vs ")
-                    toReturn.add(opponent.getName())
+                    toReturn.add("&7")
+                    toReturn.add("&bCurrent Match&7:")
+                    toReturn.add("&f" + fighter.getName() + "&7 vs. &f" + opponent.getName())
                 }
             }
         }
@@ -110,7 +90,7 @@ object SumoGameEvent : GameEvent {
     }
 
     override fun getLobbyItems(): List<ItemStack> {
-        return listOf(tutorialBook)
+        return listOf()
     }
 
 }

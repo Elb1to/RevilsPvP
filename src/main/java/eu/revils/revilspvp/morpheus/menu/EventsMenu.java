@@ -29,7 +29,7 @@ public class EventsMenu extends Menu {
             toReturn.put(toReturn.size(), new Button() {
                 @Override
                 public String getName(Player player) {
-                    return ChatColor.AQUA + game.getEvent().getName() + " Event";
+                    return ChatColor.AQUA.toString() + ChatColor.BOLD + game.getEvent().getName() + " Event";
                 }
 
                 @Override
@@ -38,13 +38,12 @@ public class EventsMenu extends Menu {
                     List<String> lines = new ArrayList<>();
 
                     for (String line : Arrays.asList(
-                            "&7&m-------------------------",
-                            "&bPlayers&7: &f" + game.getPlayers().size() + (game.getMaxPlayers() == -1 ? "" : "&7/" + game.getMaxPlayers()),
-                            "&bState&7: &f" + StringUtils.capitalize(game.getState().name().toLowerCase()),
-                            "&bHosted By&7: &f" + game.getHost().getDisplayName(),
+                            "",
+                            " &7▪ &fHoster&7: &a" + game.getHost().getDisplayName(),
+                            " &7▪ &fPlayers&7: &a" + game.getPlayers().size() + (game.getMaxPlayers() == -1 ? "" : "/" + game.getMaxPlayers()),
+                            " &7▪ &fState&7: &a" + StringUtils.capitalize(game.getState().name().toLowerCase()) + "..",
                             " ",
-                            (game.getState() == GameState.STARTING ? "&aClick here to join." : "&7Click here to spectate."),
-                            "&7&m-------------------------")) {
+                            (game.getState() == GameState.STARTING ? "&e&nLeft-Click&e to join the event!" : "&e&nLeft-Click&e to spectate the event!"))) {
                         lines.add(ChatColor.translateAlternateColorCodes('&', line));
                     }
 

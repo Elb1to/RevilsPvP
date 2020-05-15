@@ -43,7 +43,7 @@ public class HostParametersMenu extends Menu {
         toReturn.put(8, new Button() { // todo change although i doubt one event would ever have more than 8 parameters lol
             @Override
             public String getName(Player player) {
-                return ChatColor.GREEN + "Start " + event.getName();
+                return ChatColor.GREEN + "Start " + event.getName() + " Event";
             }
 
             @Override

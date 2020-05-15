@@ -17,7 +17,7 @@ interface GameEvent {
 
     companion object {
         @JvmStatic val events = arrayListOf(SumoGameEvent, BracketsGameEvent, LastManStandingGameEvent, SkywarsGameEvent)
-        @JvmStatic val leaveItem = ItemBuilder.of(Material.INK_SACK).data(1).name(ChatColor.RED.toString() + "Leave Event").build()
+        @JvmStatic val leaveItem = ItemBuilder.of(Material.INK_SACK).data(1).name(ChatColor.RED.toString() + "Leave Event" + ChatColor.GRAY + " (Right-Click)").build()
     }
 
     fun getName(): String

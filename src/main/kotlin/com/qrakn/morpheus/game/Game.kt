@@ -32,7 +32,7 @@ class Game(val event: GameEvent, val host: Player, val parameters: List<GamePara
         spectators.add(player)
         players.add(player)
 
-        sendMessage(player.displayName + ChatColor.GRAY + " is now spectating.")
+        sendMessage(ChatColor.BLUE.toString() + "[Event] " + ChatColor.LIGHT_PURPLE + player.displayName + ChatColor.YELLOW + " is now spectating the event.")
 
         reset(player)
 
@@ -58,7 +58,7 @@ class Game(val event: GameEvent, val host: Player, val parameters: List<GamePara
 
         players.add(player)
 
-        sendMessage(player.displayName + ChatColor.GRAY + " joined the event.")
+        sendMessage(ChatColor.BLUE.toString() + "[Event] " + ChatColor.LIGHT_PURPLE + player.displayName + ChatColor.YELLOW + " has joined the event!")
 
         reset(player)
 

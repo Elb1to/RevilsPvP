@@ -18,7 +18,7 @@ public final class EventItems {
         List<Game> game = GameQueue.INSTANCE.getCurrentGames();
 
         if (game.size() > 0) {
-            return ItemBuilder.of(Material.EMERALD).name(BLUE.toString() + BOLD + "» " + GOLD + BOLD + "Join an Event" + BLUE.toString() + BOLD + " «").build();
+            return ItemBuilder.of(Material.EMERALD).name(DARK_PURPLE + "Join an Event" + GRAY + " (Right-Click)").build();
         }
 
         return null;
