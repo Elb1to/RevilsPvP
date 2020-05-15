@@ -57,21 +57,22 @@ object BracketsGameEvent : GameEvent {
             name = "2v2 $name"
         }
 
-        toReturn.add("&cEvent &7($name)")
-        toReturn.add("&6 ${RevilsPvPLang.LEFT_ARROW_NAKED} &fPlayers: &7${logic.getPlayersLeft()}/${game.players.size}")
+        toReturn.add("&fEvent&7: &a$name")
+        toReturn.add("&fPlayers&7: &a${logic.getPlayersLeft()}/${game.players.size}")
 
         if (game.state == GameState.RUNNING) {
-            toReturn.add("&6 ${RevilsPvPLang.LEFT_ARROW_NAKED} &fRound: &7${logic.getRound()}")
+            toReturn.add("&fRound&7: &a#${logic.getRound()}")
             if (game.getParameter(GameTeamSizeParameter.Duos.javaClass) == null) {
                 val fighter = logic.getNextParticipant(null)
                 val opponent = logic.getNextParticipant(fighter)
+
                 if (opponent != null && fighter != null) {
-                    toReturn.add("&7&m--------------------")
-                    toReturn.add("${fighter.getName()}&7 vs ${opponent.getName()}")
+                    toReturn.add("&7")
+                    toReturn.add("&bCurrent Match&7:")
+                    toReturn.add("&f" + fighter.getName() + "&7 vs. &f" + opponent.getName())
                 }
             }
         }
-
         return toReturn
     }
 

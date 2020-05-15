@@ -57,14 +57,13 @@ object LastManStandingGameEvent : GameEvent {
             name = "2v2 $name"
         }
 
-        toReturn.add("&cEvent &7($name)")
-        //TODO: Fix MaxPlayers for when the event has started xd
-        toReturn.add("&6 ${RevilsPvPLang.LEFT_ARROW_NAKED} &fPlayers: &7${logic.getPlayersLeft()}/${game.getMaxPlayers()}")
+        toReturn.add("&fEvent&7: &a$name")
+        toReturn.add("&fPlayers&7: &a${logic.getPlayersLeft()}/${game.players.size}")
 
         if (game.state == GameState.RUNNING) {
-            toReturn.add("&6 ${RevilsPvPLang.LEFT_ARROW_NAKED} &fKills: &7${player.getStatistic(Statistic.PLAYER_KILLS)}")
+            toReturn.add("")
+            toReturn.add("&fKills&7: &a${player.getStatistic(Statistic.PLAYER_KILLS)}")
         }
-
         return toReturn
     }
 
