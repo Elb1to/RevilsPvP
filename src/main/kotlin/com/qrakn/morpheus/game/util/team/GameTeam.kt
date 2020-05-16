@@ -33,7 +33,7 @@ class GameTeam(vararg var players: Player) {
     }
 
     fun getName(): String {
-        return StringUtils.join(players.map {it.displayName}.toTypedArray(), ChatColor.YELLOW.toString() + " + ")
+        return StringUtils.join(players.map {it.name}.toTypedArray(), ChatColor.YELLOW.toString() + " + ")
     }
 
     fun getPing(): Int {
