@@ -1,10 +1,7 @@
 package eu.revils.revilspvp.util;
 
 import eu.revils.revilspvp.RevilsPvP;
-import net.hylist.knockback.CraftKnockbackProfile;
-import net.hylist.knockback.KnockbackProfile;
 import org.bukkit.GameMode;
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
