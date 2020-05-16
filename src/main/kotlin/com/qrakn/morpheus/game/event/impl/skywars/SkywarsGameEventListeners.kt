@@ -38,7 +38,6 @@ class SkywarsGameEventListeners : Listener {
                 }
             }
         }
-
     }
 
     @EventHandler
@@ -69,7 +68,6 @@ class SkywarsGameEventListeners : Listener {
                 }
             }
         }
-
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -98,7 +96,6 @@ class SkywarsGameEventListeners : Listener {
                 event.isCancelled = false
             }
         }
-
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -109,7 +106,6 @@ class SkywarsGameEventListeners : Listener {
         if (game.players.contains(event.whoClicked as Player) && game.state != GameState.STARTING && !game.spectators.contains(event.whoClicked as Player)) {
             event.isCancelled = false
         }
-
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -120,7 +116,6 @@ class SkywarsGameEventListeners : Listener {
         if (game.players.contains(event.player) && game.state != GameState.STARTING && !game.spectators.contains(event.player)) {
             event.isCancelled = false
         }
-
     }
 
     @EventHandler(priority = EventPriority.HIGH)
