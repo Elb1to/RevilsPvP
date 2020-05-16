@@ -7,13 +7,10 @@ import com.qrakn.morpheus.game.event.GameEventLogic
 import com.qrakn.morpheus.game.event.impl.brackets.BracketsGameEvent
 import com.qrakn.morpheus.game.parameter.GameParameter
 import com.qrakn.morpheus.game.util.team.GameTeamSizeParameter
-import eu.revils.revilspvp.RevilsPvPLang
-import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.Listener
 import org.bukkit.inventory.ItemStack
-import org.bukkit.inventory.meta.BookMeta
 
 object SumoGameEvent : GameEvent {
 
@@ -70,7 +67,7 @@ object SumoGameEvent : GameEvent {
                 if (opponent != null && fighter != null) {
                     toReturn.add("&7")
                     toReturn.add("&bCurrent Match&7:")
-                    toReturn.add("&f" + fighter.getName() + "&7 vs. &f" + opponent.getName())
+                    toReturn.add("&b" + fighter.getName() + "&7 vs. &c" + opponent.getName())
                 }
             }
         }
