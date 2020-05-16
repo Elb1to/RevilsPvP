@@ -1,14 +1,18 @@
 package eu.revils.revilspvp.command;
 
 import eu.revils.revilspvp.RevilsPvP;
+import eu.revils.revilspvp.duel.DuelHandler;
 import eu.revils.revilspvp.follow.FollowHandler;
 import eu.revils.revilspvp.kt.command.Command;
 import eu.revils.revilspvp.kt.command.data.parameter.Param;
+import eu.revils.revilspvp.lobby.LobbyHandler;
 import eu.revils.revilspvp.match.Match;
 import eu.revils.revilspvp.match.MatchHandler;
 import eu.revils.revilspvp.match.MatchTeam;
 import eu.revils.revilspvp.party.PartyHandler;
+import eu.revils.revilspvp.pvpclasses.PvPClassHandler;
 import eu.revils.revilspvp.queue.QueueHandler;
+import eu.revils.revilspvp.tournament.TournamentHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -19,7 +23,9 @@ public final class PStatusCommand {
         MatchHandler matchHandler = RevilsPvP.getInstance().getMatchHandler();
         QueueHandler queueHandler = RevilsPvP.getInstance().getQueueHandler();
         PartyHandler partyHandler = RevilsPvP.getInstance().getPartyHandler();
+        LobbyHandler lobbyHandler = RevilsPvP.getInstance().getLobbyHandler();
         FollowHandler followHandler = RevilsPvP.getInstance().getFollowHandler();
+        TournamentHandler tournamentHandler = RevilsPvP.getInstance().getTournamentHandler();
 
         sender.sendMessage(ChatColor.RED + target.getName() + ":");
         sender.sendMessage("In match: " + matchHandler.isPlayingMatch(target));
@@ -28,8 +34,11 @@ public final class PStatusCommand {
         sender.sendMessage("Spectating match (NC): " + noCacheIsSpectatingMatch(target));
         sender.sendMessage("In or spectating match: " + matchHandler.isPlayingOrSpectatingMatch(target));
         sender.sendMessage("In or spectating match (NC): " + noCacheIsPlayingOrSpectatingMatch(target));
+        sender.sendMessage(" ");
+        sender.sendMessage("In lobby: " + lobbyHandler.isInLobby(target));
         sender.sendMessage("In queue: " + queueHandler.isQueued(target.getUniqueId()));
         sender.sendMessage("In party: " + partyHandler.hasParty(target));
+        sender.sendMessage("In tournament: " + tournamentHandler.isInTournament(partyHandler.getParty(target.getUniqueId())));
         sender.sendMessage("Following: " + followHandler.getFollowing(target).isPresent());
     }
 
