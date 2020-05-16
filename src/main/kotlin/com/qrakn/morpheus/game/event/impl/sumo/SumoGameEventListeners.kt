@@ -8,6 +8,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.entity.FoodLevelChangeEvent
 import org.bukkit.event.player.PlayerMoveEvent
+import org.bukkit.event.player.PlayerQuitEvent
 
 class SumoGameEventListeners : Listener {
 
@@ -27,7 +28,6 @@ class SumoGameEventListeners : Listener {
                     game.addSpectator(event.player)
                 }
             }
-
         }
     }
 
@@ -52,7 +52,6 @@ class SumoGameEventListeners : Listener {
                         return
                     }
                 }
-
                 event.isCancelled = true
             }
         }
@@ -71,6 +70,21 @@ class SumoGameEventListeners : Listener {
 
             if (game.players.contains(player)) {
                 event.foodLevel = 20
+            }
+        }
+    }
+
+    @EventHandler
+    fun onPlayerDisconnect(event: PlayerQuitEvent) {
+        if (event.player is Player) {
+            val player = event.player as Player
+            val game = GameQueue.getCurrentGame(player)
+            if (game != null) {
+                if (game.state == GameState.STARTING || game.state == GameState.RUNNING) {
+                    if (player.isDead && !player.isOnline) {
+                        game.deathOrDisconnect(player)
+                    }
+                }
             }
         }
     }
