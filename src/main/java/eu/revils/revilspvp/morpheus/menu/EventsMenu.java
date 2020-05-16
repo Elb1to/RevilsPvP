@@ -39,11 +39,11 @@ public class EventsMenu extends Menu {
 
                     for (String line : Arrays.asList(
                             "",
-                            " &7▪ &fHoster&7: &a" + game.getHost().getDisplayName(),
+                            " &7▪ &fHosted by&7: &a" + game.getHost().getDisplayName(),
                             " &7▪ &fPlayers&7: &a" + game.getPlayers().size() + (game.getMaxPlayers() == -1 ? "" : "/" + game.getMaxPlayers()),
                             " &7▪ &fState&7: &a" + StringUtils.capitalize(game.getState().name().toLowerCase()) + "..",
                             " ",
-                            (game.getState() == GameState.STARTING ? "&e&nLeft-Click&e to join the event!" : "&e&nLeft-Click&e to spectate the event!"))) {
+                            (game.getState() == GameState.STARTING ? "&e&nLeft-Click &eto join the event!" : "&e&nLeft-Click &eto spectate the event!"))) {
                         lines.add(ChatColor.translateAlternateColorCodes('&', line));
                     }
 
@@ -79,7 +79,6 @@ public class EventsMenu extends Menu {
         if (toReturn.isEmpty()) {
             player.closeInventory();
         }
-
         return toReturn;
     }
 
