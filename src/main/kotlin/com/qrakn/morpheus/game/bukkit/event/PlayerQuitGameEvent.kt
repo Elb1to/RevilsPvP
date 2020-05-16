@@ -18,7 +18,7 @@ class PlayerQuitGameEvent(val player: Player, val game: Game) : Event() {
         Bukkit.getScheduler().runTaskLater(RevilsPvP.getInstance(), {
             game.players.remove(player)
             game.spectators.remove(player)
-        }, 2L)
+        }, 1L)
     }
 
     override fun getHandlers(): HandlerList {
