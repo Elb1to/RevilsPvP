@@ -69,7 +69,7 @@ object BracketsGameEvent : GameEvent {
                 if (opponent != null && fighter != null) {
                     toReturn.add("&7")
                     toReturn.add("&bCurrent Match&7:")
-                    toReturn.add("&f" + fighter.getName() + "&7 vs. &f" + opponent.getName())
+                    toReturn.add("&b" + fighter.getName() + "&7 vs. &c" + opponent.getName())
                 }
             }
         }
