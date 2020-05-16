@@ -20,6 +20,7 @@ import eu.revils.revilspvp.setting.SettingHandler;
 import net.frozenorb.qlib.nametag.FrozenNametagHandler;
 import net.hylist.command.KnockbackCommand;
 import net.hylist.knockback.KnockbackProfile;
+import net.mineaus.lunar.api.LunarClientAPI;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -62,12 +63,12 @@ import eu.revils.revilspvp.util.VisibilityUtils;
 import org.spigotmc.SpigotConfig;
 
 public final class Match {
-    
+
     private static final int MATCH_END_DELAY_SECONDS = 3;
-    
+
     @Getter
     private final String _id = UUID.randomUUID().toString().substring(0, 7);
-    
+
     @Getter
     private final KitType kitType;
     @Getter
@@ -76,7 +77,7 @@ public final class Match {
     private final List<MatchTeam> teams; // immutable so @Getter is ok
     private final Map<UUID, PostMatchPlayer> postMatchPlayers = new HashMap<>();
     private final Set<UUID> spectators = new HashSet<>();
-    
+
     @Getter
     private MatchTeam winner;
     @Getter
@@ -89,7 +90,7 @@ public final class Match {
     private Date endedAt;
     @Getter
     private boolean ranked;
-    
+
     // we track if matches should give a rematch diamond manually. previouly
     // we just checked if both teams had 1 player on them, but this wasn't
     // always accurate. Scenarios like a team split of a 3 man team (with one
@@ -102,15 +103,15 @@ public final class Match {
     @Getter
     @Setter
     private EloCalculator.Result eloChange;
-    
+
     // this will keep track of blocks placed by players during this match.
     // it'll only be populated if the KitType allows building in the first place.
     private final Set<BlockVector> placedBlocks = new HashSet<>();
-    
+
     // we only spectators generate one message (either a join or a leave)
     // per match, to prevent spam. This tracks who has used their one message
     private final transient Set<UUID> spectatorMessagesUsed = new HashSet<>();
-    
+
     @Getter
     private Map<UUID, UUID> lastHit = Maps.newHashMap();
     @Getter
@@ -121,52 +122,54 @@ public final class Match {
     private Map<UUID, Integer> longestCombo = Maps.newHashMap();
     @Getter
     private Map<UUID, Integer> missedPots = Maps.newHashMap();
-    
+
     @Getter
     private List<ReplayableAction> replayableActions = Lists.newArrayList();
-    
+
     @Getter
     private Set<UUID> allPlayers = Sets.newHashSet();
-    
+
+    @Getter
+    private List<MatchTeam> matchTeams = Lists.newArrayList();
+
     @Getter
     private Set<UUID> winningPlayers;
     @Getter
     private Set<UUID> losingPlayers;
-    
+
     public Match(KitType kitType, Arena arena, List<MatchTeam> teams, boolean ranked, boolean allowRematches) {
         this.kitType = Preconditions.checkNotNull(kitType, "kitType");
         this.arena = Preconditions.checkNotNull(arena, "arena");
         this.teams = ImmutableList.copyOf(teams);
         this.ranked = ranked;
         this.allowRematches = allowRematches;
-        
+
         saveState();
     }
-    
+
     private void saveState() {
         if (kitType.isBuildingAllowed())
             this.arena.takeSnapshot();
     }
-    
+
     void startCountdown() {
         state = MatchState.COUNTDOWN;
-        
+
         Map<UUID, Match> playingCache = RevilsPvP.getInstance().getMatchHandler().getPlayingMatchCache();
         Set<Player> updateVisiblity = new HashSet<>();
-        
+
         for (MatchTeam team : this.getTeams()) {
             for (UUID playerUuid : team.getAllMembers()) {
-                
-                if (!team.isAlive(playerUuid))
-                    continue;
-                
+
+                if (!team.isAlive(playerUuid)) continue;
+
                 Player player = Bukkit.getPlayer(playerUuid);
-                
+
                 playingCache.put(player.getUniqueId(), this);
-                
+
                 Location spawn = (team == teams.get(0) ? arena.getTeam1Spawn() : arena.getTeam2Spawn()).clone();
                 Vector oldDirection = spawn.getDirection();
-                
+
                 Block block = spawn.getBlock();
                 while (block.getRelative(BlockFace.DOWN).getType() == Material.AIR) {
                     block = block.getRelative(BlockFace.DOWN);
@@ -179,37 +182,54 @@ public final class Match {
                 spawn = block.getLocation();
                 spawn.setDirection(oldDirection);
                 spawn.add(0.5, 0, 0.5);
-                
+
                 player.teleport(spawn);
                 player.getInventory().setHeldItemSlot(0);
 
                 FrozenNametagHandler.reloadPlayer(player);
                 FrozenNametagHandler.reloadOthersFor(player);
-                
+
+                /*
+                * For some reason, when a player is added to a team
+                * his checkmark (team identifier) is shown at the spawn
+                * location of the server, not where the player actually is.
+                *
+                * But for some gay reasons if I add the enemy team to my Lunar team
+                * it shows the checkmark correctly, and as expected, at the actual
+                * player's position... LunarAPI == State.HOMOSEXUAL
+                 */
+                if (LunarClientAPI.INSTANCE().isAuthenticated(player)) {
+                    try {
+                        LunarClientAPI.INSTANCE().sendTeamMate(player, matchTeams.toArray(new Player[matchTeams.size()]));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 updateVisiblity.add(player);
                 PatchedPlayerUtils.resetInventory(player, GameMode.SURVIVAL);
 
                 //PatchedPlayerUtils.setKnockbackProfile(player, kitType.getKnockbackProfile() == null ? SpigotConfig.globalKbProfile.getName() : kitType.getKnockbackProfile());
             }
         }
-        
+
         // we wait to update visibility until everyone's been put in the player cache
         // then we update vis, otherwise the update code will see 'partial' views of the
         // match
         updateVisiblity.forEach(VisibilityUtils::updateVisibilityFlicker);
-        
+
         Bukkit.getPluginManager().callEvent(new MatchCountdownStartEvent(this));
-        
+
         new BukkitRunnable() {
-            
+
             int countdownTimeRemaining = kitType.getId().equals("SUMO") ? 5 : 5;
-            
+
             public void run() {
                 if (state != MatchState.COUNTDOWN) {
                     cancel();
                     return;
                 }
-                
+
                 if (countdownTimeRemaining == 0) {
                     playSoundAll(Sound.NOTE_PLING, 2F);
                     startMatch();
@@ -217,50 +237,52 @@ public final class Match {
                 } else if (countdownTimeRemaining <= 3) {
                     playSoundAll(Sound.NOTE_PLING, 1F);
                 }
-                
+
                 messageAll(ChatColor.YELLOW.toString() + "Duel starting in " + ChatColor.AQUA + countdownTimeRemaining + ChatColor.YELLOW + " second(s)..");
                 countdownTimeRemaining--;
             }
-            
+
         }.runTaskTimer(RevilsPvP.getInstance(), 0L, 20L);
     }
-    
+
     private void startMatch() {
         state = MatchState.IN_PROGRESS;
         startedAt = new Date();
-        
+
         messageAll(ChatColor.YELLOW + "The duel has started, good luck!");
         Bukkit.getPluginManager().callEvent(new MatchStartEvent(this));
     }
-    
+
     public void endMatch(MatchEndReason reason) {
         // prevent duplicate endings
         if (state == MatchState.ENDING || state == MatchState.TERMINATED) {
             return;
         }
-        
+
         state = MatchState.ENDING;
         endedAt = new Date();
         endReason = reason;
-        
+
         try {
             for (MatchTeam matchTeam : this.getTeams()) {
                 for (UUID playerUuid : matchTeam.getAllMembers()) {
                     allPlayers.add(playerUuid);
-                    if (!matchTeam.isAlive(playerUuid))
-                        continue;
+                    if (!matchTeam.isAlive(playerUuid)) continue;
                     Player player = Bukkit.getPlayer(playerUuid);
-                    
+
                     postMatchPlayers.computeIfAbsent(playerUuid, v -> new PostMatchPlayer(player, kitType.getHealingMethod(), totalHits.getOrDefault(player.getUniqueId(), 0), longestCombo.getOrDefault(player.getUniqueId(), 0), missedPots.getOrDefault(player.getUniqueId(), 0)));
+                    if (LunarClientAPI.INSTANCE().isAuthenticated(player)) {
+                        LunarClientAPI.INSTANCE().resetTeamMates(player);
+                    }
                 }
             }
-            
+
             messageAll(ChatColor.RED + "The duel has ended.");
             Bukkit.getPluginManager().callEvent(new MatchEndEvent(this));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
         int delayTicks = MATCH_END_DELAY_SECONDS * 20;
         if (JavaPlugin.getProvidingPlugin(this.getClass()).isEnabled()) {
             Bukkit.getScheduler().runTaskLater(RevilsPvP.getInstance(), this::terminateMatch, delayTicks);
@@ -268,42 +290,42 @@ public final class Match {
             this.terminateMatch();
         }
     }
-    
+
     private void terminateMatch() {
         // prevent double terminations
         if (state == MatchState.TERMINATED) {
             return;
         }
-        
+
         state = MatchState.TERMINATED;
-        
+
         // if the match ends before the countdown ends
         // we have to set this to avoid a NPE in Date#from
         if (startedAt == null) {
             startedAt = new Date();
         }
-        
+
         // if endedAt wasn't set before (if terminateMatch was called directly)
         // we want to make sure we set an ending time. Otherwise we keep the
         // technically more accurate time set in endMatch
         if (endedAt == null) {
             endedAt = new Date();
         }
-        
+
         this.winningPlayers = winner.getAllMembers();
         this.losingPlayers = teams.stream().filter(team -> team != winner).flatMap(team -> team.getAllMembers().stream()).collect(Collectors.toSet());
-        
+
         Bukkit.getPluginManager().callEvent(new MatchTerminateEvent(this));
-        
+
         // we have to make a few edits to the document so we use Gson (which has
         // adapters
         // for things like Locations) and then edit it
         JsonObject document = RevilsPvP.getGson().toJsonTree(this).getAsJsonObject();
-        
+
         document.addProperty("winner", teams.indexOf(winner)); // replace the full team with their index in the full list
         document.addProperty("arena", arena.getSchematic()); // replace the full arena with its schematic (website doesn't care which copy we
                                                              // used)
-        
+
         Bukkit.getScheduler().runTaskAsynchronously(RevilsPvP.getInstance(), () -> {
             // The Document#parse call really sucks. It generates literally thousands of
             // objects per call.
@@ -315,18 +337,18 @@ public final class Match {
             parsedDocument.put("endedAt", endedAt);
             MongoUtils.getCollection(MatchHandler.MONGO_COLLECTION_NAME).insertOne(parsedDocument);
         });
-        
+
         MatchHandler matchHandler = RevilsPvP.getInstance().getMatchHandler();
         LobbyHandler lobbyHandler = RevilsPvP.getInstance().getLobbyHandler();
-        
+
         Map<UUID, Match> playingCache = matchHandler.getPlayingMatchCache();
         Map<UUID, Match> spectateCache = matchHandler.getSpectatingMatchCache();
-        
+
         if (kitType.isBuildingAllowed())
             arena.restore();
         RevilsPvP.getInstance().getArenaHandler().releaseArena(arena);
         matchHandler.removeMatch(this);
-        
+
         getTeams().forEach(team -> {
             team.getAllMembers().forEach(player -> {
                 if (team.isAlive(player)) {
@@ -336,7 +358,7 @@ public final class Match {
                 }
             });
         });
-        
+
         spectators.forEach(player -> {
             if (Bukkit.getPlayer(player) != null) {
                 playingCache.remove(player);
@@ -345,42 +367,42 @@ public final class Match {
             }
         });
     }
-    
+
     public Set<UUID> getSpectators() {
         return ImmutableSet.copyOf(spectators);
     }
-    
+
     public Map<UUID, PostMatchPlayer> getPostMatchPlayers() {
         return ImmutableMap.copyOf(postMatchPlayers);
     }
-    
+
     private void checkEnded() {
         if (state == MatchState.ENDING || state == MatchState.TERMINATED) {
             return;
         }
-        
+
         List<MatchTeam> teamsAlive = new ArrayList<>();
-        
+
         for (MatchTeam team : teams) {
             if (!team.getAliveMembers().isEmpty()) {
                 teamsAlive.add(team);
             }
         }
-        
+
         if (teamsAlive.size() == 1) {
             this.winner = teamsAlive.get(0);
             endMatch(MatchEndReason.ENEMIES_ELIMINATED);
         }
     }
-    
+
     public boolean isSpectator(UUID uuid) {
         return spectators.contains(uuid);
     }
-    
+
     public void addSpectator(Player player, Player target) {
         addSpectator(player, target, false);
     }
-    
+
     // fromMatch indicates if they were a player immediately before spectating.
     // we use this for things like teleporting and messages
     public void addSpectator(Player player, Player target, boolean fromMatch) {
@@ -388,20 +410,20 @@ public final class Match {
             player.sendMessage(ChatColor.RED + "This match is no longer available for spectating.");
             return;
         }
-        
+
         Map<UUID, Match> spectateCache = RevilsPvP.getInstance().getMatchHandler().getSpectatingMatchCache();
-        
+
         spectateCache.put(player.getUniqueId(), this);
         spectators.add(player.getUniqueId());
-        
+
         if (!fromMatch) {
             Location tpTo = arena.getSpectatorSpawn();
-            
+
             if (target != null) {
                 // we tp them a bit up so they're not inside of their target
                 tpTo = target.getLocation().clone().add(0, 1.5, 0);
             }
-            
+
             player.teleport(tpTo);
             player.sendMessage(ChatColor.YELLOW + "Now spectating " + ChatColor.AQUA + getSimpleDescription(true) + ChatColor.YELLOW + "...");
             sendSpectatorMessage(player, ChatColor.AQUA + player.getName() + ChatColor.YELLOW + " is now spectating.");
@@ -412,126 +434,126 @@ public final class Match {
 
         FrozenNametagHandler.reloadPlayer(player);
         FrozenNametagHandler.reloadOthersFor(player);
-        
+
         VisibilityUtils.updateVisibility(player);
         PatchedPlayerUtils.resetInventory(player, GameMode.CREATIVE, true); // because we're about to reset their inv on a timer
         InventoryUtils.resetInventoryDelayed(player);
         player.setAllowFlight(true);
         player.setFlying(true); // called after PlayerUtils reset, make sure they don't fall out of the sky
         ItemListener.addButtonCooldown(player, 1_500);
-        
+
         Bukkit.getPluginManager().callEvent(new MatchSpectatorJoinEvent(player, this));
     }
-    
+
     public void removeSpectator(Player player) {
         removeSpectator(player, true);
     }
-    
+
     public void removeSpectator(Player player, boolean returnToLobby) {
         Map<UUID, Match> spectateCache = RevilsPvP.getInstance().getMatchHandler().getSpectatingMatchCache();
-        
+
         spectateCache.remove(player.getUniqueId());
         spectators.remove(player.getUniqueId());
         ItemListener.addButtonCooldown(player, 1_500);
-        
+
         sendSpectatorMessage(player, ChatColor.AQUA + player.getName() + ChatColor.YELLOW + " is no longer spectating.");
-        
+
         if (returnToLobby) {
             RevilsPvP.getInstance().getLobbyHandler().returnToLobby(player);
         }
-        
+
         Bukkit.getPluginManager().callEvent(new MatchSpectatorLeaveEvent(player, this));
     }
-    
+
     private void sendSpectatorMessage(Player spectator, String message) {
         // see comment on spectatorMessagesUsed field for more
         if (spectator.hasMetadata("ModMode") || !spectatorMessagesUsed.add(spectator.getUniqueId())) {
             return;
         }
-        
+
         SettingHandler settingHandler = RevilsPvP.getInstance().getSettingHandler();
-        
+
         for (Player online : Bukkit.getOnlinePlayers()) {
             if (online == spectator) {
                 continue;
             }
-            
+
             boolean sameMatch = isSpectator(online.getUniqueId()) || getTeam(online.getUniqueId()) != null;
             boolean spectatorMessagesEnabled = settingHandler.getSetting(online, Setting.SHOW_SPECTATOR_JOIN_MESSAGES);
-            
+
             if (sameMatch && spectatorMessagesEnabled) {
                 online.sendMessage(message);
             }
         }
     }
-    
+
     public void markDead(Player player) {
         MatchTeam team = getTeam(player.getUniqueId());
-        
+
         if (team == null) {
             return;
         }
-        
+
         Map<UUID, Match> playingCache = RevilsPvP.getInstance().getMatchHandler().getPlayingMatchCache();
-        
+
         team.markDead(player.getUniqueId());
         playingCache.remove(player.getUniqueId());
-        
+
         postMatchPlayers.put(player.getUniqueId(), new PostMatchPlayer(player, kitType.getHealingMethod(), totalHits.getOrDefault(player.getUniqueId(), 0), longestCombo.getOrDefault(player.getUniqueId(), 0), missedPots.getOrDefault(player.getUniqueId(), 0)));
         checkEnded();
     }
-    
+
     public MatchTeam getTeam(UUID playerUuid) {
         for (MatchTeam team : teams) {
             if (team.isAlive(playerUuid)) {
                 return team;
             }
         }
-        
+
         return null;
     }
-    
+
     public MatchTeam getPreviousTeam(UUID playerUuid) {
         for (MatchTeam team : teams) {
             if (team.getAllMembers().contains(playerUuid)) {
                 return team;
             }
         }
-        
+
         return null;
     }
-    
+
     /**
      * Creates a simple, one line description of this match This will include two
      * players (if a 1v1) or player counts and the kit type
-     * 
+     *
      * @return A simple description of this match
      */
     public String getSimpleDescription(boolean includeRankedUnranked) {
         String players;
-        
+
         if (teams.size() == 2) {
             MatchTeam teamA = teams.get(0);
             MatchTeam teamB = teams.get(1);
-            
+
             if (teamA.getAliveMembers().size() == 1 && teamB.getAliveMembers().size() == 1) {
                 String nameA = RevilsPvP.getInstance().getUuidCache().name(teamA.getFirstAliveMember());
                 String nameB = RevilsPvP.getInstance().getUuidCache().name(teamB.getFirstAliveMember());
-                
+
                 players = nameA + " vs " + nameB;
             } else {
                 players = teamA.getAliveMembers().size() + " vs " + teamB.getAliveMembers().size();
             }
         } else {
             int numTotalPlayers = 0;
-            
+
             for (MatchTeam team : teams) {
                 numTotalPlayers += team.getAliveMembers().size();
             }
-            
+
             players = numTotalPlayers + " player fight";
         }
-        
+
         if (includeRankedUnranked) {
             String rankedStr = ranked ? "Ranked" : "Unranked";
             return players + " (" + rankedStr + " " + kitType.getDisplayName() + ")";
@@ -539,10 +561,10 @@ public final class Match {
             return players;
         }
     }
-    
+
     /**
      * Sends a basic chat message to all alive participants and spectators
-     * 
+     *
      * @param message
      *            the message to send
      */
@@ -550,10 +572,10 @@ public final class Match {
         messageAlive(message);
         messageSpectators(message);
     }
-    
+
     /**
      * Plays a sound for all alive participants and spectators
-     * 
+     *
      * @param sound
      *            the Sound to play
      * @param pitch
@@ -563,26 +585,26 @@ public final class Match {
         playSoundAlive(sound, pitch);
         playSoundSpectators(sound, pitch);
     }
-    
+
     /**
      * Sends a basic chat message to all spectators
-     * 
+     *
      * @param message
      *            the message to send
      */
     public void messageSpectators(String message) {
         for (UUID spectator : spectators) {
             Player spectatorBukkit = Bukkit.getPlayer(spectator);
-            
+
             if (spectatorBukkit != null) {
                 spectatorBukkit.sendMessage(message);
             }
         }
     }
-    
+
     /**
      * Plays a sound for all spectators
-     * 
+     *
      * @param sound
      *            the Sound to play
      * @param pitch
@@ -591,16 +613,16 @@ public final class Match {
     public void playSoundSpectators(Sound sound, float pitch) {
         for (UUID spectator : spectators) {
             Player spectatorBukkit = Bukkit.getPlayer(spectator);
-            
+
             if (spectatorBukkit != null) {
                 spectatorBukkit.playSound(spectatorBukkit.getEyeLocation(), sound, 10F, pitch);
             }
         }
     }
-    
+
     /**
      * Sends a basic chat message to all alive participants
-     * 
+     *
      * @see MatchTeam#messageAlive(String)
      * @param message
      *            the message to send
@@ -610,10 +632,10 @@ public final class Match {
             team.messageAlive(message);
         }
     }
-    
+
     /**
      * Plays a sound for all alive participants
-     * 
+     *
      * @param sound
      *            the Sound to play
      * @param pitch
@@ -624,7 +646,7 @@ public final class Match {
             team.playSoundAlive(sound, pitch);
         }
     }
-    
+
     /**
      * Records a placed block during this match. Used to keep track of which blocks
      * can be broken.
@@ -632,7 +654,7 @@ public final class Match {
     public void recordPlacedBlock(Block block) {
         placedBlocks.add(block.getLocation().toVector().toBlockVector());
     }
-    
+
     /**
      * Checks if a block can be broken in this match. Only used if the KitType
      * allows building.
@@ -640,5 +662,5 @@ public final class Match {
     public boolean canBeBroken(Block block) {
         return (kitType.getId().equals("SPLEEF") && (block.getType() == Material.SNOW_BLOCK || block.getType() == Material.GRASS || block.getType() == Material.DIRT)) || placedBlocks.contains(block.getLocation().toVector().toBlockVector());
     }
-    
+
 }
