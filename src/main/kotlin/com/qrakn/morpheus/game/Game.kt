@@ -84,6 +84,17 @@ class Game(val event: GameEvent, val host: Player, val parameters: List<GamePara
         player.updateInventory()
     }
 
+    fun deathOrDisconnect(player: Player) {
+
+        if (state == GameState.ENDED) {
+            return
+        }
+        if (!player.isOnline || player.isDead) {
+            players.remove(player)
+        }
+
+    }
+
     fun reset(player: Player) {
 
         if (spectators.contains(player)) {
@@ -114,7 +125,6 @@ class Game(val event: GameEvent, val host: Player, val parameters: List<GamePara
             end()
             return
         }
-
         arena.takeSnapshot()
         logic.start()
 
