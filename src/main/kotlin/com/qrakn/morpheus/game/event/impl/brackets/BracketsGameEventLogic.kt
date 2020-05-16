@@ -51,11 +51,11 @@ open class BracketsGameEventLogic(val game: Game) : GameTeamEventLogic(game) {
         for (player in Bukkit.getOnlinePlayers()) {
             player.sendMessage(arrayOf("",
                     ChatColor.WHITE.toString() + " ███████",
-                    ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "█████" + ChatColor.WHITE + "█" + ChatColor.AQUA + " Event" + ChatColor.GRAY + ": " + ChatColor.WHITE + "${game.event.getName()}",
-                    ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "█" + ChatColor.WHITE + "█████" + ChatColor.AQUA + " Team Size" + ChatColor.GRAY + ": " + ChatColor.WHITE + StringUtils.join(game.parameters.map { it.getDisplayName() }, ", "),
-                    ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "████" + ChatColor.WHITE + "██",
-                    ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "█" + ChatColor.WHITE + "█████" + ChatColor.AQUA + " Winner(s)" + ChatColor.GRAY + ": " + ChatColor.WHITE + winner.getName(),
-                    ChatColor.WHITE.toString() + " █" + ChatColor.DARK_AQUA + "█████" + ChatColor.WHITE + "█" + ChatColor.AQUA + " Opponents defeated" + ChatColor.GRAY + ": " + ChatColor.WHITE + (getRound()?.minus(1)),
+                    ChatColor.WHITE.toString() + " █" + ChatColor.AQUA + "█████" + ChatColor.WHITE + "█" + ChatColor.AQUA + " Event" + ChatColor.GRAY + ": " + ChatColor.WHITE + "${game.event.getName()}",
+                    ChatColor.WHITE.toString() + " █" + ChatColor.AQUA + "█" + ChatColor.WHITE + "█████" + ChatColor.AQUA + " Team Size" + ChatColor.GRAY + ": " + ChatColor.WHITE + StringUtils.join(game.parameters.map { it.getDisplayName() }, ", "),
+                    ChatColor.WHITE.toString() + " █" + ChatColor.AQUA + "████" + ChatColor.WHITE + "██",
+                    ChatColor.WHITE.toString() + " █" + ChatColor.AQUA + "█" + ChatColor.WHITE + "█████" + ChatColor.AQUA + " Winner(s)" + ChatColor.GRAY + ": " + ChatColor.WHITE + winner.getName(),
+                    ChatColor.WHITE.toString() + " █" + ChatColor.AQUA + "█████" + ChatColor.WHITE + "█" + ChatColor.AQUA + " Opponents defeated" + ChatColor.GRAY + ": " + ChatColor.WHITE + (getRound()?.minus(1)),
                     ChatColor.WHITE.toString() + " ███████",
                     "")
             )
