@@ -4,16 +4,16 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import eu.revils.revilspvp.RevilsPvP;
 import eu.revils.revilspvp.RevilsPvPLang;
-import eu.revils.revilspvp.party.Party;
-import lombok.Getter;
-import lombok.Setter;
 import eu.revils.revilspvp.kittype.KitType;
 import eu.revils.revilspvp.kt.command.Command;
 import eu.revils.revilspvp.kt.command.data.parameter.Param;
 import eu.revils.revilspvp.match.Match;
 import eu.revils.revilspvp.match.MatchState;
 import eu.revils.revilspvp.match.MatchTeam;
+import eu.revils.revilspvp.party.Party;
 import eu.revils.revilspvp.util.event.HalfHourEvent;
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -29,7 +29,9 @@ import java.util.stream.Collectors;
 
 public class TournamentHandler implements Listener {
 
-    @Getter @Setter private Tournament tournament = null;
+    @Getter
+    @Setter
+    private Tournament tournament = null;
     private static TournamentHandler instance;
 
     public TournamentHandler() {
@@ -51,7 +53,7 @@ public class TournamentHandler implements Listener {
         return tournament != null && tournament.getMatches().contains(match);
     }
 
-    @Command(names = { "tournament start" }, permission = "tournament.create")
+    @Command(names = {"tournament start"}, permission = "tournament.create")
     public static void tournamentCreate(CommandSender sender, @Param(name = "kit-type") KitType type, @Param(name = "teamSize") int teamSize, @Param(name = "requiredTeams") int requiredTeams) {
         if (instance.getTournament() != null) {
             sender.sendMessage(ChatColor.RED + "There's already an ongoing tournament!");
@@ -74,13 +76,13 @@ public class TournamentHandler implements Listener {
         }
 
         Bukkit.broadcastMessage("");
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f███████"));
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f█&3█████&f█ &bTournament&7: &fKIT NAME HERE"));
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f███&3█&f███ &bPlayers&7: &f0/" + (teamSize < 3 ? teamSize * requiredTeams : requiredTeams)));
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f███&3█&f███ &bTeam Size&7: &fTEAM SIZE HERE"));
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f███&3█&f███"));
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f███&3█&f███ &eUse &2/join &eto enter the tournament."));
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &f███████"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███████"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7█&b█████&7█ &bTournament&7: &f"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███&b█&7███ &bPlayers&7: &f0/" + (teamSize < 3 ? teamSize * requiredTeams : requiredTeams)));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███&b█&7███ &bTeam Size&7: &f"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███&b█&7███"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███&b█&7███ &eUse &2/join &eto enter the tournament."));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███████"));
         Bukkit.broadcastMessage("");
 
         Tournament tournament;
@@ -98,7 +100,7 @@ public class TournamentHandler implements Listener {
         }.runTaskTimer(RevilsPvP.getInstance(), 60 * 20, 60 * 20);
     }
 
-    @Command(names = { "tournament join", "join", "jointournament" })
+    @Command(names = {"tournament join", "join", "jointournament"})
     public static void tournamentJoin(Player sender) {
 
         if (instance.getTournament() == null) {
@@ -176,7 +178,7 @@ public class TournamentHandler implements Listener {
         instance.getTournament().addParty(senderParty);
     }
 
-    @Command(names = { "tournament status", "tstatus", "status" })
+    @Command(names = {"tournament status", "tstatus", "status"})
     public static void tournamentStatus(CommandSender sender) {
         if (instance.getTournament() == null) {
             sender.sendMessage(ChatColor.RED + "There is no ongoing tournament to get the status of.");
@@ -201,7 +203,7 @@ public class TournamentHandler implements Listener {
         sender.sendMessage(RevilsPvPLang.LONG_LINE);
     }
 
-    @Command(names = { "tournament cancel", "tcancel"},  permission = "op")
+    @Command(names = {"tournament cancel", "tcancel"}, permission = "op")
     public static void tournamentCancel(CommandSender sender) {
         if (instance.getTournament() == null) {
             sender.sendMessage(ChatColor.RED + "There is no running tournament to cancel.");
@@ -212,7 +214,7 @@ public class TournamentHandler implements Listener {
         instance.setTournament(null);
     }
 
-    @Command(names = { "tournament forcestart"}, permission = "op")
+    @Command(names = {"tournament forcestart"}, permission = "op")
     public static void tournamentForceStart(CommandSender sender) {
         if (instance.getTournament() == null) {
             sender.sendMessage(ChatColor.RED + "There is no tournament to force start.");
@@ -291,8 +293,6 @@ public class TournamentHandler implements Listener {
             for (int i = allStatuses.size() - 1; 0 <= i; i--) {
                 if (allStatuses.get(i).minimumPlayerCount <= playerCount) return allStatuses.get(i);
             }
-
-
             throw new IllegalArgumentException("No suitable sizes found!");
         }
     }
