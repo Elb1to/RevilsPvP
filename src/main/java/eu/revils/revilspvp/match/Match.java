@@ -183,6 +183,9 @@ public final class Match {
                 spawn.setDirection(oldDirection);
                 spawn.add(0.5, 0, 0.5);
 
+                player.setAllowFlight(false);
+                player.setFlying(false);
+
                 player.teleport(spawn);
                 player.getInventory().setHeldItemSlot(0);
 
@@ -323,8 +326,7 @@ public final class Match {
         JsonObject document = RevilsPvP.getGson().toJsonTree(this).getAsJsonObject();
 
         document.addProperty("winner", teams.indexOf(winner)); // replace the full team with their index in the full list
-        document.addProperty("arena", arena.getSchematic()); // replace the full arena with its schematic (website doesn't care which copy we
-                                                             // used)
+        document.addProperty("arena", arena.getSchematic()); // replace the full arena with its schematic (website doesn't care which copy we used)
 
         Bukkit.getScheduler().runTaskAsynchronously(RevilsPvP.getInstance(), () -> {
             // The Document#parse call really sucks. It generates literally thousands of
