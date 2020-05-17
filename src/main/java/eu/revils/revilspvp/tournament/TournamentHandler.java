@@ -77,11 +77,11 @@ public class TournamentHandler implements Listener {
 
         Bukkit.broadcastMessage("");
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███████"));
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7█&b█████&7█ &bTournament&7: &f"));
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███&b█&7███ &bPlayers&7: &f0/" + (teamSize < 3 ? teamSize * requiredTeams : requiredTeams)));
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███&b█&7███ &bTeam Size&7: &f"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7█&b█████&7█"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███&b█&7███ &eA tournament has"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███&b█&7███ &estarted! Type"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███&b█&7███ &d/join &e to play."));
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███&b█&7███"));
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███&b█&7███ &eUse &2/join &eto enter the tournament."));
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &7███████"));
         Bukkit.broadcastMessage("");
 
