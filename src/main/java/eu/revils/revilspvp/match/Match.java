@@ -183,8 +183,13 @@ public final class Match {
                 spawn.setDirection(oldDirection);
                 spawn.add(0.5, 0, 0.5);
 
-                player.setAllowFlight(false);
-                player.setFlying(false);
+                if (isSpectator(playerUuid)) {
+                    player.setAllowFlight(true);
+                    player.setFlying(true);
+                } else {
+                    player.setAllowFlight(false);
+                    player.setFlying(false);
+                }
 
                 player.teleport(spawn);
                 player.getInventory().setHeldItemSlot(0);
