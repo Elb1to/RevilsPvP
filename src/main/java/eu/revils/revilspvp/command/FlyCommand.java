@@ -12,6 +12,8 @@ public final class FlyCommand {
         if (!lobbyHandler.isInLobby(sender)) {
             return;
         }
+        sender.sendMessage("&eYou have &a&lENABLED &eyour fly mode");
+        sender.setAllowFlight(true);
         sender.setFlying(true);
     }
 }
