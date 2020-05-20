@@ -3,6 +3,7 @@ package eu.revils.revilspvp.command;
 import eu.revils.revilspvp.RevilsPvP;
 import eu.revils.revilspvp.kt.command.Command;
 import eu.revils.revilspvp.lobby.LobbyHandler;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public final class FlyCommand {
@@ -12,7 +13,7 @@ public final class FlyCommand {
         if (!lobbyHandler.isInLobby(sender)) {
             return;
         }
-        sender.sendMessage("&eYou have &a&lENABLED &eyour fly mode");
+        sender.sendMessage(ChatColor.YELLOW + "You have " + ChatColor.GREEN + ChatColor.BOLD + "ENABLED" + ChatColor.YELLOW + " your fly mode");
         sender.setAllowFlight(true);
         sender.setFlying(true);
     }
