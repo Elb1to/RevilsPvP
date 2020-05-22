@@ -2,6 +2,7 @@ package com.qrakn.morpheus.game
 
 import com.qrakn.morpheus.game.bukkit.event.GameStateChangeEvent
 import com.qrakn.morpheus.game.bukkit.event.PlayerJoinGameEvent
+import com.qrakn.morpheus.game.bukkit.event.PlayerQuitGameEvent
 import com.qrakn.morpheus.game.event.GameEvent
 import com.qrakn.morpheus.game.event.impl.lms.LastManStandingGameEventLogic
 import com.qrakn.morpheus.game.util.team.GameTeamSizeParameter
@@ -85,18 +86,19 @@ class Game(val event: GameEvent, val host: Player, val parameters: List<GamePara
     }
 
     fun deathOrDisconnect(player: Player) {
-
         if (state == GameState.ENDED) {
             return
         }
         if (!player.isOnline || player.isDead) {
             players.remove(player)
         }
+    }
 
+    fun removePlayer(player: Player) {
+        Bukkit.getPluginManager().callEvent(PlayerQuitGameEvent(player, this))
     }
 
     fun reset(player: Player) {
-
         if (spectators.contains(player)) {
             resetSpectator(player)
             return

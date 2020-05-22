@@ -6,7 +6,7 @@
     <groupId>eu.revils</groupId>
     <artifactId>RevilsPvP</artifactId>
     <name>RevilsPvP</name>
-    <version>3.0-DEV</version>
+    <version>3.1</version>
 
     <properties>
         <minehq.mavenLevel>minehq-high</minehq.mavenLevel>

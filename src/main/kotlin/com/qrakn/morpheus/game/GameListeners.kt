@@ -39,7 +39,7 @@ class GameListeners : Listener {
         }
     }
 
-    @EventHandler
+    /*@EventHandler
     fun onPlayerQuitEvent(event: PlayerQuitEvent) {
         val game = GameQueue.getCurrentGame(event.player)
 
@@ -54,7 +54,26 @@ class GameListeners : Listener {
                 iterator.remove()
             }
         }
+    }*/
 
+    @EventHandler
+    fun onPlayerQuitEvent(event: PlayerQuitEvent) {
+        val game = GameQueue.getCurrentGame(event.player)
+        if (game != null && game.players.contains(event.player)) {
+            game.removePlayer(event.player)
+        } else {
+            if (game != null) {
+                Bukkit.getPluginManager().callEvent(PlayerQuitGameEvent(event.player, game))
+            }
+        }
+
+        val iterator = GameQueue.games.iterator()
+        while (iterator.hasNext()) {
+            val other = iterator.next()
+            if (other.host == event.player && other.state == GameState.QUEUED) {
+                iterator.forEach {player -> player.removePlayer(event.player)}
+            }
+        }
     }
 
     @EventHandler
