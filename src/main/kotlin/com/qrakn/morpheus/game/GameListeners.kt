@@ -59,7 +59,6 @@ class GameListeners : Listener {
     @EventHandler
     fun onPlayerQuitEvent(event: PlayerQuitEvent) {
         val game = GameQueue.getCurrentGame(event.player)
-
         if (game != null && game.players.contains(event.player)) {
             game.removePlayer(event.player)
         } else {
