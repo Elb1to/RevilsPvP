@@ -180,7 +180,8 @@ final class MatchScoreGetter implements BiConsumer<Player, LinkedList<String>> {
     }
 
     private void render1v1MatchLines(List<String> scores, MatchTeam otherTeam) {
-        scores.add("&fOpponent&7: &c" + RevilsPvP.getInstance().getUuidCache().name(otherTeam.getFirstMember()));
+        Player player = Bukkit.getPlayer(otherTeam.getFirstMember());
+        scores.add("&fOpponent&7: &c" + (player != null ? player.getName() : RevilsPvP.getInstance().getUuidCache().name(otherTeam.getFirstMember())));
 
     }
 

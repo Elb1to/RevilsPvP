@@ -1,6 +1,7 @@
 package eu.revils.revilspvp.kt.uuid
 
 import eu.revils.revilspvp.RevilsPvP
+import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
@@ -33,6 +34,12 @@ abstract class UUIDCache : Listener {
     }
 
     fun name(uuid: UUID): String {
+        val player = Bukkit.getPlayer(uuid);
+
+        if(player != null) {
+            return player.name; // XD done LMFAOOOO didnt though about that xd ok send paypal email
+        }
+
         return uuidToName[uuid]?: "Unknown"
     }
 
