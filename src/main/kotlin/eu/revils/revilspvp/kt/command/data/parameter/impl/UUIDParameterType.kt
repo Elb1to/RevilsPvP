@@ -26,6 +26,12 @@ class UUIDParameterType : ParameterType<UUID?> {
                 return fromCache
             }
 
+            val player = Bukkit.getPlayer(source);
+
+            if(player != null) {
+                return player.uniqueId
+            }
+
             sender.sendMessage("${ChatColor.RED}$source is not a valid UUID.")
             null
         }
